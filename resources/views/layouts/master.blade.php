@@ -10,14 +10,14 @@
     @stack('styles')
 </head>
 <body>
-    @include('components.header')
+    <header>
+      @include('components.header')
+    </header>
 
     <main>
         @yield('content')
     </main>
 
-
-    
-
+    @stack('scripts')
 </body>
 </html>
