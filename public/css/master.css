@@ -9,15 +9,13 @@ body{
 }
 
 .container-home{
-  /* justify-items: center; */
   align-items: center;
-  /* justify-content: center; */
 }
 
 .btn-home{
   background-color: #2a2a2a; 
-  width: 50px;
-  height: 43px;
+  width: 53px;
+  height: 47px;
   border: none;
 }
 
@@ -74,7 +72,23 @@ body{
   color: white;
 }
 
+.input-group:hover .btn img,
+.input-group:hover .search img{
+  filter: brightness(0) invert(1);
+}
+
 .btn-home:hover{
   transform: scale(1.05);
 }
+
+.btn-topright:hover{
+  transform: scale(1.05);
+  filter: brightness(0) invert(1);
+}
+
+.btn-profile:hover{
+  transform: scale(1.05);
+  /* ini nanti kalo ada yang mau ditambahin buat profile, belum tak buat */
+}
+
 
