@@ -27,7 +27,7 @@ body{
 }
 
 .search::placeholder {
-  color: gray;
+  color: #9c9a9a;
 }
 
 .btn {
@@ -70,6 +70,11 @@ body{
 .input-group:hover .search {
   background-color: #474646;
   color: white;
+}
+
+.input-group .btn img,
+.input-group .search img{
+  transition: all 0.3s ease;
 }
 
 .input-group:hover .btn img,

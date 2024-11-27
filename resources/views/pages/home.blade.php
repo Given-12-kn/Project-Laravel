@@ -9,7 +9,20 @@
 @section('content') 
     <div class="container-fluid container-induk">
         <div class="left-panel resizable-panel">
-                
+            <div class="konten-top d-flex" style="align-items: center ; margin-top: 15px; margin-left: 20px; margin-right: 20px;">
+                <a class="navbar-brand" href="#">
+                    <img src="{{ asset('images/library.svg')}}" alt="Logo" class="d-inline-block align-text-top logo-library">
+                    <span class="span-library" style="color: #9c9a9a; margin-left: 5px;">Your Library</span>
+                </a>
+                <div class="ms-auto">
+                    <button class="btn btn-primary btn-top-sidebar">
+                        <img class="img-top-sidebar-right" src="{{ asset('images/plus.svg') }}" alt="add">
+                    </button>
+                    <button class="btn btn-primary btn-top-sidebar" style="margin-left: 8px">
+                        <img class="img-top-sidebar-right" src="{{ asset('images/arrow-right.svg') }}" alt="extend">
+                    </button>
+                </div>
+            </div>
         </div>
         <div class="divider"></div>
         <div class="right-panel resizable-panel">
