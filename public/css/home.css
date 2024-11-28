@@ -115,7 +115,7 @@
 }
 
 .song-item:hover{
-    background-color: #1b1b1b;
+    background-color: #2a2a2a;
     border-radius: 10px;
     transition: background-color 0.3s ease;
 }
@@ -198,4 +198,14 @@
 .card-jumpback-container{
     border-radius: 10px;
 }
+
+
+
+
+
+
+
+
+
+
 

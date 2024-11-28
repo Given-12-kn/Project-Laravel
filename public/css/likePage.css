@@ -1,0 +1,36 @@
+.tableLike th{
+    background-color: #121212;
+    color: white;
+}
+
+.tableLike tbody{
+    border-color: #121212;
+}
+
+.tableLike tbody img{
+    width: 70px;
+    height: 70px;
+}
+
+.tableLike tbody td{
+    background-color: #121212;
+    vertical-align: middle;
+    color: white;
+}
+
+.likedSongCaption{
+    margin: 10px;
+}
+
+.likedSongCaption p{
+    margin: 0;
+}
+
+.likedSongCaption .underCaption{
+    color: gray;
+}
+
+.eachRow:hover td {
+    background-color: #2a2a2a ; /* Warna latar saat salah satu kolom di-hover */
+    transition: background-color 0.3s ease; /* Animasi transisi */
+}

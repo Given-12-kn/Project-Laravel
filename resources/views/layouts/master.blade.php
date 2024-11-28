@@ -19,5 +19,9 @@
     </main>
 
     @stack('scripts')
+
+    <footer>
+        @yield('footer')
+    </footer>
 </body>
 </html>

@@ -36,6 +36,9 @@
             
             <div class="library-sidebar">
                 @foreach($librarySidebar as $item)
+                @if($item['name'] === 'Liked Songs')
+                    <a href="{{ route('likedsongs') }}" style="text-decoration: none; color: white">
+                @endif
                     <div class="song-item d-flex">
                         <img src="{{ $item['imgUrl'] }}" alt="{{ $item['name'] }}">
                         <div class="song-info">
@@ -43,7 +46,7 @@
                             <p class="sub-info">
                                 {{ $item['type'] }}
                                 @if ($item['name'] === 'Liked Songs')
-                                    <span>| {{ $likedSongs }} songs</span>
+                                    <span>| {{ $likedSongsCount }} songs</span>
                                 @endif
                                 @if (!empty($item['owner']))
                                     <span>| {{ $item['owner'] }}</span>
@@ -51,6 +54,9 @@
                             </p>
                         </div>
                     </div>
+                @if($item['name'] === 'Liked Songs')
+                    </a>
+                @endif
                 @endforeach
             </div>
         </div>
