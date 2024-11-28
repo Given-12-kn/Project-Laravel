@@ -1,11 +1,9 @@
 .container-induk {
     width: 100%;
-    height: 100vh;
     display: flex;
 }
 .left-panel {
     width: 20%;
-    height: 100vh;
     background-color: #121212;
     border-radius: 15px;
     margin-left: 2px;
@@ -14,7 +12,6 @@
 
 .right-panel {
     width: 80%;
-    height: 100vh;
     background-color: #121212;
     border-radius: 15px;
     margin-right: 2px;
@@ -26,6 +23,9 @@
     cursor: col-resize;
 }
 
+
+
+/* sidebar css */
 .konten-top .btn-top-sidebar{
     border-radius: 50%;
     padding: -30px;
@@ -54,3 +54,148 @@
 .konten-top .navbar-brand:hover{
     transition: filter 0.3s ease;
 }
+
+.button-filter-sidebar button{
+    background-color: #2a2a2a;
+    color: white;
+    border-radius: 40px;
+    padding: 5px 13px;
+    margin-right: 10px;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.button-filter-sidebar button:hover{
+    background-color: #474646;
+}
+
+.search-area-sidebar img{
+    transform: scale(0.78);
+}
+
+.search-area-sidebar .img-search{
+    border-radius: 22px;
+    padding: 11px;
+}
+
+.search-area-sidebar button{
+    border-radius: 50%;
+    background-color: #121212;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.search-area-sidebar .img-search:hover{
+    filter: brightness(0) invert(1);
+}
+.search-area-sidebar button:hover{
+    background-color: #1b1b1b;
+}
+
+.search-area-sidebar span:hover{
+    filter: brightness(0) invert(1);
+    transform: scale(1.03);
+}
+
+.library-sidebar img{
+    width: 70px;
+    height: 70px;
+    margin-right: 15px;
+    border-radius: 8px;
+}
+
+.song-item{
+    margin: 5px;
+    padding: 10px;
+    padding-bottom: 0px;
+}
+
+.song-item .sub-info{
+    color: gray;
+}
+
+.song-item:hover{
+    background-color: #1b1b1b;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+
+
+/* css buat konten utamanya home */
+.container-content-utama{
+    margin: 20px;
+}
+
+.container-content-utama .btn-filter button{
+    background-color: #2a2a2a;
+    color: white;
+    border-radius: 40px;
+    padding: 5px 13px;
+    margin-right: 10px;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.container-content-utama .btn-filter button:hover{
+    background-color: #474646;
+}
+
+.card-playlist{
+    background-color: #1b1b1b;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.card-playlist:hover{
+    background-color: #2a2a2a;
+}
+
+.card-playlist .card-body{
+    padding: 0px;
+    padding-top: 22px;
+    margin-left: 3px;
+}
+
+.card-madeforyou{
+    margin-right: 50px;
+    margin-top: 10px;
+    width: 200px;
+    height: 250px;
+    background-color: #121212;
+    border: none;
+}
+
+.card-jumpback{
+    margin-right: 50px;
+    margin-top: 10px;
+    width: 200px;
+    height: 280px;
+    background-color: #121212;
+    border: none;
+}
+
+.card-madeforyou-container:hover{
+    background-color: #2a2a2a;
+}
+
+.card-madeforyou-container:hover .card-madeforyou{
+    background-color: #2a2a2a;
+}
+
+.card-jumpback-container:hover{
+    background-color: #2a2a2a;
+}
+
+.card-jumpback-container:hover .card-jumpback{
+    background-color: #2a2a2a;
+}
+
+.card-madeforyou-container{
+    border-radius: 10px;
+}
+
+.card-jumpback-container{
+    border-radius: 10px;
+}
+

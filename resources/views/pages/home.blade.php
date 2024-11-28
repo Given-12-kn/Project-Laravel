@@ -9,7 +9,7 @@
 @section('content') 
     <div class="container-fluid container-induk">
         <div class="left-panel resizable-panel">
-            <div class="konten-top d-flex" style="align-items: center ; margin-top: 15px; margin-left: 20px; margin-right: 20px;">
+            <div class="konten-top d-flex" style="align-items: center ; margin-top: 15px; margin-left: 25px; margin-right: 20px;">
                 <a class="navbar-brand" href="#">
                     <img src="{{ asset('images/library.svg')}}" alt="Logo" class="d-inline-block align-text-top logo-library">
                     <span class="span-library" style="color: #9c9a9a; margin-left: 5px;">Your Library</span>
@@ -23,10 +23,40 @@
                     </button>
                 </div>
             </div>
+
+            <div class="button-filter-sidebar d-flex" style="margin: 15px 20px">
+                <button>Playlist</button>
+                <button>Artists</button>
+            </div>
+
+            <div class="search-area-sidebar d-flex justify-content-between" style="margin: 15px 0px; margin-left: 15px; margin-right: 20px; align-items: center">
+                <button><img class="img-search" src="{{ asset('images/search.svg') }}" alt="search-sidebar"></button>
+                <span style="color: gray">Recents<img src="{{ asset('images/filter.svg') }}" alt="filter"></span>
+            </div>
+            
+            <div class="library-sidebar">
+                @foreach($librarySidebar as $item)
+                    <div class="song-item d-flex">
+                        <img src="{{ $item['imgUrl'] }}" alt="{{ $item['name'] }}">
+                        <div class="song-info">
+                            <p>{{ $item['name'] }}</p>
+                            <p class="sub-info">
+                                {{ $item['type'] }}
+                                @if ($item['name'] === 'Liked Songs')
+                                    <span>| {{ $likedSongs }} songs</span>
+                                @endif
+                                @if (!empty($item['owner']))
+                                    <span>| {{ $item['owner'] }}</span>
+                                @endif
+                            </p>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
         <div class="divider"></div>
         <div class="right-panel resizable-panel">
-
+            @yield('panel')
         </div>
     </div>
 @endsection
@@ -43,6 +73,7 @@
             divider.addEventListener('mousedown', (e) => {
                 isResizing = true;
                 document.body.style.cursor = 'col-resize';
+                document.body.style.userSelect = 'none';
             });
 
             document.addEventListener('mousemove', (e) => {
@@ -62,6 +93,7 @@
                 if (isResizing) {
                     isResizing = false;
                     document.body.style.cursor = 'default';
+                    document.body.style.userSelect = 'auto';
                 }
             });
         });
