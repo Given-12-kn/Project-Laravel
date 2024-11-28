@@ -6,7 +6,7 @@
 
       <form class="d-flex ms-auto me-auto" role="search" style="height: 48px; width: 500px">
           <div class="container-fluid d-flex container-home" style="width: 80px; height: 48px">
-            <button class="btn-home rounded-circle">
+            <button class="btn-home rounded-circle" onclick="navigateToHome(event)">
               <img src="{{ asset('images/home.svg' )}}" alt="home">
             </button>
           </div>
@@ -29,3 +29,10 @@
     </div>
   </div>
 </nav>
+
+<script>
+  function navigateToHome(event) {
+    event.preventDefault();
+    window.location.href = '/';
+  }
+</script>

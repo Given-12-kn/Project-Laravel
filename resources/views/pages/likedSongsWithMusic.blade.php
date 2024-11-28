@@ -26,8 +26,8 @@
             </div>
         </div>
 
-        <div class="container-fluid" style="margin-top: 50px">
-            <table class="table tableLike">
+        <div class="container-fluid" style="margin-top: 50px;">
+            <table class="table tableLike" style="width: 95%">
                 <thead style="border-color: gray">
                     <th>#</th>
                     <th>Title</th>
