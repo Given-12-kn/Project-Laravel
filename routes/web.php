@@ -9,4 +9,4 @@ Route::get('home', [mainController::class, 'getHomeContent']);
 
 Route::get('likedsongs', [mainController::class, 'getLikedSongs'])->name('likedsongs');
 
-Route::get('playlist/{id}', [mainController::class, 'getMusic'])->name('playlist');
+Route::get('likedsongs/{id}', [mainController::class, 'getLikedSongsWithMusic'])->name('likedSongsWithMusic');

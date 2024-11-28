@@ -31,6 +31,98 @@
 }
 
 .eachRow:hover td {
-    background-color: #2a2a2a ; /* Warna latar saat salah satu kolom di-hover */
-    transition: background-color 0.3s ease; /* Animasi transisi */
+    background-color: #2a2a2a ; 
+    transition: background-color 0.3s ease;
+}
+
+
+
+/* footernya */
+.footer {
+  background-color: black;
+  height: 90px;
+  display: flex;
+}
+
+.footer .container-fluid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer .leftmost {
+  align-items: center;
+}
+
+.footer .leftmost p {
+  margin: 0;
+  margin-left: 10px;
+}
+
+.footer .middle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer .middle1 {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.footer .middle2 {
+  margin-top: 5px;
+}
+
+.footer .middle2 p {
+  margin: 5px;
+}
+
+.footer .middle2 hr {
+  margin-bottom: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.middle .gambar1{
+    transform: scale(0.5);
+}
+
+.middle .gambar3{
+    transform: scale(0.85);
+    margin-left: 10px;
+}
+
+.middle .gambar4{
+    margin-left: 10px;
+}
+
+.middle .gambar5{
+    transform: scale(0.85);
+    margin-left: 10px;
+}
+
+.rightmost .gambar1{
+    transform: scale(0.7);
+}
+
+.rightmost .gambar2{
+    transform: scale(0.68);
+    margin-left: 3px;
+}
+
+.rightmost .gambar3{
+    transform: scale(0.73);
+    margin-left: 3px;
+}
+
+.rightmost .gambar4{
+    transform: scale(0.68);
+    margin-left: 3px;
+}
+
+.rightmost .gambar5{
+    transform: scale(0.67);
+    margin-left: 3px;
 }

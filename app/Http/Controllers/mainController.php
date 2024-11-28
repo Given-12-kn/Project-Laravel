@@ -23,12 +23,20 @@ class mainController extends Controller
         return view('pages.likedSongs', ['librarySidebar' => $library, 'likedSongs' => $likedsongs,'likedSongsCount' => $likedSongsCount]);
     }
 
-    public function getMusic($id)
+    public function getLikedSongsWithMusic($id)
     {
         require_once base_path('./data.php');
 
-        $playlist = $playlists[$id];
+        $likedSongsCount = count($likedsongs);
 
-        return view('components.footer', ['playlist' => $playlist]);
+        $selectedSong = null;
+        foreach ($likedsongs as $song) {
+            if ($song['id'] == $id) {
+                $selectedSong = $song;
+                break; 
+            }
+        }
+
+        return view('pages.likedSongsWithMusic', ['librarySidebar' => $library, 'likedSongs' => $likedsongs,'likedSongsCount' => $likedSongsCount, 'selectedSong' => $selectedSong]);
     }
 }

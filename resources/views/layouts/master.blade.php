@@ -18,10 +18,9 @@
         @yield('content')
     </main>
 
-    @stack('scripts')
-
     <footer>
         @yield('footer')
     </footer>
+    @stack('scripts')
 </body>
 </html>
