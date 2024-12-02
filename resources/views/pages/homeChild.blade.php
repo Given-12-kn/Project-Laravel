@@ -45,9 +45,9 @@
                 @endforeach
             </div>
         </div>
-        
-        <h5 style="margin: 20px; margin-top: 0;">Jump back in</h5>
 
+        <h5 style="margin: 20px; margin-top: 0;">Jump back in</h5>
+        
         <div class="container-fluid d-flex" style="margin-top: 10px">
             <div class="row">
                 @foreach ($jumpback as $item)
