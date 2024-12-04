@@ -5,4 +5,8 @@ git add .
 git commit -m "message"
 
 # Push ke github
-git push
+git push origin
+
+# Ngambil Dari Github
+git fetch origin
+
