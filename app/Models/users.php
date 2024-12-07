@@ -3,8 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class users extends Model
+class users extends Authenticatable
 {
     public $table = 'users';
     public $primaryKey = 'id';
@@ -23,7 +25,7 @@ class users extends Model
         $baru->nama = $name;
         $baru->nrp = $nrp;
         $baru->email = $email;
-        $baru->password = bcrypt($password);
+        $baru->password = Hash::make($password);
         $baru->save();
     }
 

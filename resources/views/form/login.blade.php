@@ -7,7 +7,7 @@
     <div class="flex justify-center mt-20">
         <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
             <h1 class="text-center text-2xl font-bold mb-6">Login</h1>
-            <form action="{{ url('login/cek') }}" method="post">
+            <form action="{{ url('form/login/cekLogin') }}" method="post">
                 @csrf
                 <div class="mb-4">
                     <label for="username" class="block text-gray-700 font-medium mb-2">Username</label>
@@ -31,14 +31,16 @@
             </div>
             <div class="mt-2 text-center">
                 <span class="text-gray-700">Don't have an account?</span>
-                <a href="{{ url('/register') }}" class="text-blue-500 hover:underline"> Sign Up</a>
+                <a href="{{ route('register') }}" class="text-blue-500 hover:underline"> Sign Up</a>
             </div>
-            @if(Session::has('fail'))
-                <div class="mt-4 bg-red-100 text-red-700 p-4 rounded-lg">
-                    {{ Session::get('fail') }}
-                </div>
-            @endif
         </div>
+    </div>
+    <div class="flex justify-center">
+        @if(Session::has('fail'))
+            <div class="mt-4 bg-red-100 text-red-700 p-4 rounded-lg w-full max-w-md">
+                {{ Session::get('fail') }}
+            </div>
+        @endif
     </div>
 </div>
 

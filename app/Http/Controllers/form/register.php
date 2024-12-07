@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\home;
+namespace App\Http\Controllers\form;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -10,7 +10,7 @@ class register extends Controller
 {
     public function index()
     {
-        return view('home.register');
+        return view('form.register');
     }
 
     public function register(Request $request)
