@@ -18,7 +18,7 @@ class cekSudahLogin
      */
     public function handle(Request $request, Closure $next) : Response
     {
-        if (!Auth::user()->username == Session::get('auth')) {
+        if (Auth::check()) {
             Log::info('User not authenticated. Redirecting to login.');
             return redirect(url('form/login'));
         }

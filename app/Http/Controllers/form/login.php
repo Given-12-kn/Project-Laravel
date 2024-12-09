@@ -34,10 +34,8 @@ class login extends Controller
         ];
 
         if(Auth::attempt($data)){
-            Session::put('auth',$username);
             return redirect(url('/home'));
         } else {
-            Session::put('auth','');
             return redirect(url('form/login'))->with('fail', 'Username atau Password salah!');
         }
 
