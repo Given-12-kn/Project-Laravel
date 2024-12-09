@@ -3,8 +3,7 @@
 use App\Http\Controllers\form\login;
 use App\Http\Controllers\form\register;
 use App\Http\Controllers\home\homeController;
-
-
+use App\Http\Controllers\resetPassword;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +18,10 @@ Route::prefix('form')->group(function () {
     Route::controller(register::class)->group(function () {
         Route::get('/register', 'index')->name('register');
         Route::post('/register/add', 'register');
+    });
+    Route::controller(resetPassword::class)->group(function () {
+        Route::get('/resetPassword', 'index');
+        Route::post('/', '');
     });
 });
 

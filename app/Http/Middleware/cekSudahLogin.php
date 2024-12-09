@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\Response;
 
 class cekSudahLogin
@@ -17,10 +18,11 @@ class cekSudahLogin
      */
     public function handle(Request $request, Closure $next) : Response
     {
-        if (!Auth::check()) {
+        if (!Auth::user()->username == Session::get('auth')) {
             Log::info('User not authenticated. Redirecting to login.');
-            return redirect('/form/login');
+            return redirect(url('form/login'));
         }
         return $next($request);
     }
 }
+

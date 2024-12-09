@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\users;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class login extends Controller
 {
@@ -33,8 +34,10 @@ class login extends Controller
         ];
 
         if(Auth::attempt($data)){
+            Session::put('auth',$username);
             return redirect(url('/home'));
         } else {
+            Session::put('auth','');
             return redirect(url('form/login'))->with('fail', 'Username atau Password salah!');
         }
 

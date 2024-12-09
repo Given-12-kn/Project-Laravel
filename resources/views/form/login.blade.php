@@ -27,7 +27,7 @@
                 </button>
             </form>
             <div class="mt-4 text-center">
-                <a href="#" class="text-blue-500 hover:underline">Forgot Password?</a>
+                <a href="{{url('form/reset')}}" class="text-blue-500 hover:underline">Forgot Password?</a>
             </div>
             <div class="mt-2 text-center">
                 <span class="text-gray-700">Don't have an account?</span>
