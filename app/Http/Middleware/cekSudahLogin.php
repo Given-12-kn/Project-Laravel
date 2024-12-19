@@ -19,10 +19,11 @@ class cekSudahLogin
     public function handle(Request $request, Closure $next) : Response
     {
         if (Auth::check()) {
-            Log::info('User not authenticated. Redirecting to login.');
-            return redirect(url('form/login'));
+            return $next($request);
         }
-        return $next($request);
+
+        Log::info('User not authenticated. Redirecting to login.');
+        return redirect(url('form/login'));
     }
 }
 

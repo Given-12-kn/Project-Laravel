@@ -16,20 +16,21 @@ class login extends Controller
     }
 
     public function cekLogin(Request $request){
-        $username = $request->username;
+        $email = $request->email;
         $password = $request->password;
 
         $request->validate([
-            'username' => 'required',
+            'email' => 'required|email|max:255',
             'password' => 'required',
         ],
         [
-            'username.required' => 'Username harus diisi!',
-            'password.required' => 'Password harus diisi!',
+            'email.required' => 'Email harus diisi!',
+            'email.email' => 'Email tidak valid!',
+            'email.max' => 'Email terlalu panjang!',
         ]);
 
         $data = [
-            'username' => $username,
+            'email' => $email,
             'password' => $password,
         ];
 

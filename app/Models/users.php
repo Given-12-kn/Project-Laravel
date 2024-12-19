@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class users extends Authenticatable
 {
+    
     public $table = 'users';
     public $primaryKey = 'id';
     public $incrementing = true;

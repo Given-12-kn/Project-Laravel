@@ -1,0 +1,29 @@
+@keyframes scaleDown {
+    0% {
+      transform: scale(1.5);
+      opacity: 0.5;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes floatUp {
+    0% {
+      transform: translateY(50px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .bg-flower {
+    animation: scaleDown 2s ease-in-out forwards;
+  }
+
+  .float-element {
+    animation: floatUp 2s ease-in-out forwards;
+  }
