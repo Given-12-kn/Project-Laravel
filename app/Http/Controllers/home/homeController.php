@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\chat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class homeController extends Controller
 {
@@ -16,19 +17,17 @@ class homeController extends Controller
 
     public function sendChat(Request $request)
     {
-        $request->validate([
-            'chat' => 'required|string|max:255',
-        ],
-        [
-            'chat.required' => 'Pesan harus diisi!',
-            'chat.string' => 'Pesan harus berupa teks!',
-            'chat.max' => 'Pesan terlalu panjang!',
-        ]);
-
-
         //Simpan data (misal ke database)
-        chat::create(['chat' => $request->chat]);
+
+        $chat = new chat();
+        $chat->addChat(Auth::user()->nrp, $request->chat, date('Y'));
 
         return response()->json(['message' => 'Pesan berhasil diterima!'], 200);
+    }
+
+    public function loadMessage()
+    {
+        $data = chat::get();
+        return response()->json($data);
     }
 }

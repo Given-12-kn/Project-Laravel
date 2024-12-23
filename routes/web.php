@@ -30,6 +30,7 @@ Route::middleware(['cekSudahLogin'])->group(function () {
         Route::controller(homeController::class)->group(function () {
             Route::get('/', 'index');
             Route::post('/kirim', 'sendChat');
+            Route::get('/loadMessage', 'loadMessage');
         });
     });
 });
