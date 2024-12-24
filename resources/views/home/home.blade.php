@@ -99,7 +99,7 @@
 
     setInterval(() => {
         loadMessage();
-    }, 200);
+    }, 1000);
 </script>
 {{-- Ini Suapay Mereka gak bisa nembak url langsung--}}
 {{--Auth::logout();--}}
