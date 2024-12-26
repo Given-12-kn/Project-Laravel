@@ -1,3 +1,71 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@keyframes bloom {
+    0%, 100% {
+        transform: scale(0.95); /* Slightly smaller (closed) */
+        opacity: 0.9; /* Slightly transparent */
+    }
+    50% {
+        transform: scale(1); /* Fully expanded (bloom) */
+        opacity: 1; /* Fully visible */
+    }
+}
+
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+.hexagon {
+    width: 80px;
+    height: 46.19px;
+    background-color: #4F75FF;
+    position: relative;
+    margin: 25.6px 0;
+    animation: bloom 1s  infinite;
+}
+.hexagon::before,
+.hexagon::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+}
+.hexagon::before {
+    bottom: 100%;
+    border-bottom: 23.1px solid #4F75FF;
+}
+.hexagon::after {
+    top: 100%;
+    border-top: 23.1px solid #4F75FF;
+}
+.bloom {
+    animation: bloom 2s ease-in-out forwards;
+}
+
+.animate-float {
+    animation: float 5s ease-in-out infinite;
+}
+
+
+
+
+
+.delay-1 {
+    animation-delay: 1s;
+}
+.delay-2 {
+    animation-delay: 2s;
+}
+.delay-3 {
+    animation-delay: 3s;
+}
+

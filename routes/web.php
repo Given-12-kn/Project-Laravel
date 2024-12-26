@@ -32,6 +32,7 @@ Route::middleware(['cekSudahLogin'])->group(function () {
             Route::post('/kirim', 'sendChat');
             Route::get('/loadMessage', 'loadMessage');
         });
+       
     });
 });
 
