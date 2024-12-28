@@ -2,14 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.nav-link{
+    position: relative;
+    }
+    
+    .nav-link::after{
+        content: '';
+        opacity: 0;
+        transition: all 0.2s;
+        height: 2px;
+        width: 100%;
+        background-color: white;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+    
+    .nav-link:hover::after{
+        
+        opacity: 1;
+        
+    }
+    
 @keyframes bloom {
     0%, 100% {
-        transform: scale(0.95); /* Slightly smaller (closed) */
-        opacity: 0.9; /* Slightly transparent */
+        transform: scale(0.8); /* Smaller (closed) */
     }
     50% {
-        transform: scale(1); /* Fully expanded (bloom) */
-        opacity: 1; /* Fully visible */
+        transform: scale(1.2); /* Larger (bloomed) */
     }
 }
 
@@ -29,7 +50,8 @@
     background-color: #4F75FF;
     position: relative;
     margin: 25.6px 0;
-    animation: bloom 1s  infinite;
+    animation: bloom 1s infinite;
+    
 }
 .hexagon::before,
 .hexagon::after {
@@ -38,14 +60,17 @@
     width: 0;
     border-left: 40px solid transparent;
     border-right: 40px solid transparent;
+
 }
 .hexagon::before {
     bottom: 100%;
     border-bottom: 23.1px solid #4F75FF;
+    
 }
 .hexagon::after {
     top: 100%;
     border-top: 23.1px solid #4F75FF;
+    
 }
 .bloom {
     animation: bloom 2s ease-in-out forwards;
@@ -55,10 +80,6 @@
     animation: float 5s ease-in-out infinite;
 }
 
-
-
-
-
 .delay-1 {
     animation-delay: 1s;
 }
@@ -67,5 +88,38 @@
 }
 .delay-3 {
     animation-delay: 3s;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.125rem;
+    font-weight: bold;
+    line-height: 1.5;
+    transform: rotate(50deg); 
+    transition: transform 0.5s ease, font-size 0.5s ease, width 0.5s ease, height 0.5s ease;
+    overflow: visible;
+    padding: 0 10px;
+}
+
+.button .button-text {
+    transform: rotate(-50deg); 
+    white-space: nowrap; 
+    overflow: visible; 
+    text-overflow: clip; 
+}
+.button:hover {
+
+    font-size: 1.2rem; 
+    width: 120px;
+    height: 120px; 
 }
 

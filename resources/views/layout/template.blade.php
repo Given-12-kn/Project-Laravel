@@ -9,19 +9,18 @@
 </head>
 <body>
   <div class="relative bg-gradient-to-r from-gradientStart via-gradientMid to-gradientEnd h-screen overflow-hidden">
-    <!-- Navbar -->
+
     <nav class="absolute top-0 w-full bg-gradient-to-r from-gradientStart via-gradientMid to-gradientEnd bg-opacity-80 backdrop-blur-md py-4 z-50">
         <div class="container mx-auto flex justify-center items-center px-4">
             <a href="/" class="text-2xl font-bold text-black mr-8">anjay</a>
             <div class="flex space-x-8">
-                <a href="#about" class="px-6 py-4 text-white hover:text-blue-500 transition duration-300">About</a>
-                <a href="#services" class="px-6 py-4 text-white hover:text-blue-500 transition duration-300">Services</a>
-                <a href="#contact" class="px-6 py-4 text-white hover:text-blue-500 transition duration-300">Contact</a>
+                <a href="#about" class="nav-link px-8 py-6 text-white hover:text-blue-500 transition duration-300">About</a>
+                <a href="#services" class="nav-link px-8 py-6 text-white hover:text-blue-500 transition duration-300">Services</a>
+                <a href="#contact" class="nav-link px-8 py-6 text-white hover:text-blue-500 transition duration-300">Contact</a>
             </div>
         </div>
     </nav>
 
-    <!-- Floating Flowers Animation -->
     <div class="absolute top-0 left-0 w-full h-full pointer-events-none">
         <div class="absolute top-20 left-10 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-flowerPink hexagon"></div>
         <div class="absolute top-20 left-1/4 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-flowerYellow hexagon"></div>
@@ -32,11 +31,19 @@
     </div>
 
     <!-- Content -->
-    <div class="relative z-10 flex items-center justify-center h-full">
+    <div class="relative z-10 flex items-center justify-center h-full flex-col">
         <h1 class="text-5xl font-bold text-white drop-shadow-lg">
-            Welcome to the Amazing UI
+            Welcome to Your Company
         </h1>
+        <p class="mt-4 text-lg text-white">asdadasdasdasdadasdasdasdadasdsad</p>
+        <div>
+        <a href="#contact" class=" button mt-6 inline-block px-6 py-3 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-500 transition duration-300">
+            <span class="button-text">Given adalah profesor</span>
+        </a>
     </div>
+        
+    </div>
+    
   </div>
 
   @yield('content')

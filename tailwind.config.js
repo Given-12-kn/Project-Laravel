@@ -13,14 +13,14 @@ export default {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
             animation: {
-                bloom: 'bloom 2s ease-in-out forwards', // Animasi mekar
-                float: 'float 6s ease-in-out infinite', // Animasi mengapung
+                bloom: 'bloom 2s ease-in-out forwards', 
+                float: 'float 6s ease-in-out infinite', 
             },
             keyframes: {
                 bloom: {
-                    '0%': { transform: 'scale(0)', opacity: '0' }, // Kuncup
-                    '50%': { transform: 'scale(0.8)', opacity: '0.7' }, // Proses
-                    '100%': { transform: 'scale(1)', opacity: '1' }, // Mekar
+                    '0%': { transform: 'scale(0)', opacity: '0' }, 
+                    '50%': { transform: 'scale(0.8)', opacity: '0.7' }, 
+                    '100%': { transform: 'scale(1)', opacity: '1' }, 
                 },
                 float: {
                     '0%, 100%': { transform: 'translateY(0)' },
