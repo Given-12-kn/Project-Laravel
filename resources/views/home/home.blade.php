@@ -87,8 +87,8 @@
             success: function (response) {
                 $('#chat-messages').html('');
                 response.forEach(element => {
-                    $('#chat-messages').append( `<div class="flex justify-center mb-2">
-                        <div class="bg-blue-500 text-white p-2 rounded-lg max-w-xs text-center w-full">
+                    $('#chat-messages').append( `<div class="flex justify-center mb-2 w-full h-auto">
+                        <div class="bg-blue-500 text-white p-2 rounded-lg max-w-5xl text-center w-full ">
                             ${element.chat}
                         </div>
                     </div>`);
@@ -99,7 +99,7 @@
 
     setInterval(() => {
         loadMessage();
-    }, 1000);
+    }, 500);
 </script>
 {{-- Ini Suapay Mereka gak bisa nembak url langsung--}}
 {{--Auth::logout();--}}

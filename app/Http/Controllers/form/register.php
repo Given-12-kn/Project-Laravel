@@ -4,7 +4,7 @@ namespace App\Http\Controllers\form;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\users;
+use App\Models\usersR;
 
 class register extends Controller
 {
@@ -45,7 +45,7 @@ class register extends Controller
             'password' => bcrypt($request->password),
         ];
 
-        $u = new users();
+        $u = new usersR();
         $u->addUser($usename, $name, $nrp, $email, $password);
         return redirect(route('register'));
     }

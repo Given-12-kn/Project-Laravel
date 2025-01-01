@@ -4,7 +4,6 @@ namespace App\Http\Controllers\form;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\users;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 

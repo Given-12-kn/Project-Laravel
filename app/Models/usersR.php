@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class users extends Authenticatable
+class usersR extends Authenticatable
 {
-    
-    public $table = 'users';
+
+    public $table = 'usersR';
     public $primaryKey = 'id';
     public $incrementing = true;
     public $timestamps = false;
@@ -21,7 +21,7 @@ class users extends Authenticatable
         'password',
     ];
     public function addUser($username, $name, $nrp, $email, $password) {
-        $baru = new users();
+        $baru = new usersR();
         $baru->username = $username;
         $baru->nama = $name;
         $baru->nrp = $nrp;
@@ -31,7 +31,7 @@ class users extends Authenticatable
     }
 
     public function selectAll(){
-        return users::get();
+        return usersR::get();
     }
 
 }
