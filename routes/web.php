@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\form\login;
 use App\Http\Controllers\form\register;
+use App\Http\Controllers\home\audience;
 use App\Http\Controllers\home\homeController;
 use App\Http\Controllers\resetPassword;
 use Illuminate\Routing\RouteGroup;
@@ -32,7 +33,11 @@ Route::middleware(['cekSudahLogin'])->group(function () {
             Route::post('/kirim', 'sendChat');
             Route::get('/loadMessage', 'loadMessage');
         });
-       
+
+        Route::controller(audience::class)->group(function () {
+            
+        });
+
     });
 });
 

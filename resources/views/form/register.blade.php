@@ -10,10 +10,13 @@
     @endforeach
 
 @endif
+
+@extends('layout.bgform')
+@section('contentBgForm')
 <div class="container mx-auto">
     <div class="flex justify-center mt-20">
-        <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
-            <h1 class="text-center text-2xl font-bold mb-6">Register</h1>
+        <div class="w-full max-w-md bg-transparent p-8 rounded-lg shadow-lg">
+            <h1 class="text-center text-3xl font-bold mb-6">Register</h1>
             <form action="{{ url('form/register/add') }}" method="post">
                 @csrf
                 <div class="mb-4">
@@ -63,4 +66,5 @@
         </div>
     </div>
 </div>
+@endsection
 @endsection

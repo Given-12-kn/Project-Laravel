@@ -3,11 +3,13 @@
 @section('title', 'Form Login')
 
 @section('content')
+@extends('layout.bgform')
 
+@section('contentBgForm')
 <div class="container mx-auto">
     <div class="flex justify-center mt-20">
-        <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
-            <h1 class="text-center text-2xl font-bold mb-6">Login</h1>
+        <div class="w-full max-w-md bg-transparent p-8 rounded-lg shadow-lg">
+            <h1 class="text-center text-3xl font-bold mb-6">Login</h1>
             <form action="{{ url('form/login/cekLogin') }}" method="post">
                 @csrf
                 <div class="mb-4">
@@ -27,9 +29,6 @@
                     Login
                 </button>
             </form>
-            <div class="mt-4 text-center">
-                <a href="{{url('form/resetPassword')}}" class="text-blue-500 hover:underline">Forgot Password?</a>
-            </div>
             <div class="mt-2 text-center">
                 <span class="text-gray-700">Don't have an account?</span>
                 <a href="{{ route('register') }}" class="text-blue-500 hover:underline"> Sign Up</a>
@@ -46,6 +45,6 @@
     @endif
     </div>
 </div>
-
+@endsection
 
 @endsection

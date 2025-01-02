@@ -27,7 +27,7 @@ class homeController extends Controller
 
     public function loadMessage()
     {
-        $data = chat::get();
+        $data = chat::limit(500)->get();
         return response()->json($data);
     }
 }
