@@ -30,4 +30,10 @@ class homeController extends Controller
         $data = chat::limit(500)->get();
         return response()->json($data);
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/form/login');
+    }
 }

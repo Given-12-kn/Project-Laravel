@@ -32,10 +32,11 @@ Route::middleware(['cekSudahLogin'])->group(function () {
             Route::get('/', 'index');
             Route::post('/kirim', 'sendChat');
             Route::get('/loadMessage', 'loadMessage');
+            Route::get('/logout', 'logout');
         });
 
         Route::controller(audience::class)->group(function () {
-            
+
         });
 
     });
