@@ -95,7 +95,9 @@
 </nav>
 
 
+<div class="bg-gradient-to-r from-white via-[#f0e6fa] to-[#d2eaff]" style="height: 100vh">
 
+</div>
 
 
 

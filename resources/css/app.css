@@ -2,56 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-
-.nav-link{
-    position: relative;
-    }
-    
-    .nav-link::after{
-        content: '';
+@keyframes scaleUpDown {
+    0% {
+        transform: scale(0) translate(-50%, -50%);
         opacity: 0;
-        transition: all 0.2s;
-        height: 2px;
-        width: 100%;
-        background-color: white;
-        position: absolute;
-        bottom: 0;
-        left: 0;
     }
-    
-    .nav-link:hover::after{
-        
+    50% {
+        transform: scale(1.2) translate(-50%, -50%);
         opacity: 1;
-        
     }
-    
-@keyframes bloom {
-    0%, 100% {
-        transform: scale(0.8); /* Smaller (closed) */
-    }
-    50% {
-        transform: scale(1.2); /* Larger (bloomed) */
-    }
-}
-
-
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-20px);
+    100% {
+        transform: scale(0) translate(-50%, -50%);
+        opacity: 0;
     }
 }
 
 .hexagon {
+    --hex-color: #4F75FF;
     width: 80px;
     height: 46.19px;
-    background-color: #4F75FF;
+    background-color: var(--hex-color);
     position: absolute;
     margin: 25.6px 0;
-    animation: float 5s infinite ease-in-out;
-    
+    animation: scaleUpDown 4s forwards;
 }
 
 .hexagon::before,
@@ -65,60 +38,40 @@
 
 .hexagon::before {
     bottom: 100%;
-    border-bottom: 23.1px solid #4F75FF;
+    border-bottom: 23.1px solid var(--hex-color);
 }
 
 .hexagon::after {
     top: 100%;
-    border-top: 23.1px solid #4F75FF;
-}
-.bloom {
-    animation: bloom 2s ease-in-out forwards;
+    border-top: 23.1px solid var(--hex-color);
 }
 
-.animate-float {
-    animation: float 5s ease-in-out infinite;
+.bg-gradient-to-r {
+    background: linear-gradient(90deg, 
+        rgba(255, 255, 255, 1) 0%,         /* Putih */
+        rgba(250, 220, 250, 1) 35%,        /* Ungu muda lebih terang lagi */
+        rgba(200, 240, 255, 1) 100%        /* Biru muda yang tetap seimbang */
+    );
 }
 
-.delay-1 {
-    animation-delay: 1s;
-}
-.delay-2 {
-    animation-delay: 2s;
-}
-.delay-3 {
-    animation-delay: 3s;
+/* Container Hexagon (Latar Belakang) */
+.pointer-events-none {
+    position: absolute;
+    pointer-events: none; /* Hexagon tidak dapat diklik */
+    z-index: 0; /* Hexagon berada di belakang */
 }
 
-.button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* Kontainer Form */
+.relative.z-10 {
     position: relative;
-    width: 100px;
-    height: 100px;
-    background-color: #007bff;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    font-size: 1.125rem;
-    font-weight: bold;
-    line-height: 1.5;
-    transform: rotate(50deg); 
-    transition: transform 0.5s ease, font-size 0.5s ease, width 0.5s ease, height 0.5s ease;
-    overflow: visible;
-    padding: 0 10px;
+    z-index: 10; /* Form berada di depan */
 }
 
-.button .button-text {
-    transform: rotate(-50deg); 
-    white-space: nowrap; 
-    overflow: visible; 
-    text-overflow: clip; 
-}
-.button:hover {
+.bg-transparent {
+    background: linear-gradient(90deg, 
+    rgba(255, 255, 255, 1) 0%,         /* Putih sangat lembut */
+    rgba(240, 230, 250, 1) 35%,        /* Ungu muda sangat lembut */
+    rgba(210, 240, 255, 1) 100%       /* Biru muda pastel */
+    );
 
-    font-size: 1.2rem; 
-    width: 120px;
-    height: 120px; 
 }

@@ -1,33 +1,51 @@
-<div class="relative bg-gradient-to-r from-gradientStart via-gradientMid to-gradientEnd h-screen overflow-hidden">
+<div class="relative bg-gradient-to-r h-screen overflow-hidden">
 
-    <nav class="absolute top-0 w-full bg-gradient-to-r from-gradientStart via-gradientMid to-gradientEnd bg-opacity-80 backdrop-blur-md py-4 z-50">
-        <div class="container mx-auto flex justify-center items-center px-4">
-            <a href="/" class="text-2xl font-bold text-black mr-8">anjay</a>
-            <div class="flex space-x-8">
-                <a href="#about" class="nav-link px-8 py-6 text-white hover:text-blue-500 transition duration-300">About</a>
-                <a href="#services" class="nav-link px-8 py-6 text-white hover:text-blue-500 transition duration-300">Services</a>
-                <a href="#contact" class="nav-link px-8 py-6 text-white hover:text-blue-500 transition duration-300">Contact</a>
-            </div>
-        </div>
-    </nav>
-
-    <div class="absolute top-0 left-0 w-full h-full pointer-events-none">
-        <div class="hexagon" style="top: 10%; left: 50%; transform: translate(-50%, -50%);"></div>
-        <div class="hexagon" style="top: 25%; left: 75%; transform: translate(-50%, -50%);"></div>
-        <div class="hexagon" style="top: 50%; left: 90%; transform: translate(-50%, -50%);"></div>
-        <div class="hexagon" style="top: 75%; left: 75%; transform: translate(-50%, -50%);"></div>
-        <div class="hexagon" style="top: 90%; left: 50%; transform: translate(-50%, -50%);"></div>
-        <div class="hexagon" style="top: 75%; left: 25%; transform: translate(-50%, -50%);"></div>
-        <div class="hexagon" style="top: 50%; left: 10%; transform: translate(-50%, -50%);"></div>
-        <div class="hexagon" style="top: 25%; left: 25%; transform: translate(-50%, -50%);"></div>
-    </div>
+    <!-- Container untuk Hexagon -->
+    <div class="absolute top-0 left-0 w-full h-full pointer-events-none z-11"></div>
 
     <!-- Content -->
-
-    <div class="relative z-10 flex items-center justify-center h-full flex-col">
+    <div class="relative z-10 flex items-center justify-center h-full flex-col"">
         @yield('contentBgForm')
     </div>
 
-    </div>
+</div>
 
-  </div>
+<script>
+    function createHexagon() {
+    const hexagon = document.createElement('div');
+    hexagon.classList.add('hexagon');
+
+    const pastelColors = [
+        'rgba(240, 200, 250, 1)',  
+        'rgba(220, 230, 255, 1)', 
+        'rgba(250, 240, 255, 1)',  
+        'rgba(230, 245, 255, 1)', 
+        'rgba(245, 220, 250, 1)'   
+    ];
+
+    const color = pastelColors[Math.floor(Math.random() * pastelColors.length)];
+
+    hexagon.style.setProperty('--hex-color', color);
+
+    // Tentukan posisi acak
+    const posX = Math.random() * 100; 
+    const posY = Math.random() * 100; 
+
+    hexagon.style.left = `${posX}%`;
+    hexagon.style.top = `${posY}%`;
+
+    const container = document.querySelector('.absolute.top-0.left-0.w-full.h-full.pointer-events-none');
+    container.appendChild(hexagon);
+
+    hexagon.addEventListener('animationend', () => {
+        hexagon.remove();
+    });
+}
+
+setInterval(createHexagon, 1500);
+
+for (let i = 0; i < 10; i++) {
+    setTimeout(createHexagon, i * 1000); 
+}
+
+</script>
