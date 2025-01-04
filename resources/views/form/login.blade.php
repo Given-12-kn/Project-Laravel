@@ -7,8 +7,8 @@
 
 @section('contentBgForm')
 <div class="container mx-auto">
-    <div class="flex justify-center mt-20">
-        <div class="w-full max-w-md bg-transparent p-8 rounded-lg shadow-lg">
+    <div class="flex justify-center mt-18">
+        <div class="w-full max-w-md bg-transparent p-10 rounded-lg shadow-lg">
             <h1 class="text-center text-3xl font-bold mb-6">Login</h1>
             <form action="{{ url('form/login/cekLogin') }}" method="post">
                 @csrf
