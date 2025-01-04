@@ -48,11 +48,12 @@
     width: 80px;
     height: 46.19px;
     background-color: #4F75FF;
-    position: relative;
+    position: absolute;
     margin: 25.6px 0;
-    animation: bloom 1s infinite;
+    animation: float 5s infinite ease-in-out;
     
 }
+
 .hexagon::before,
 .hexagon::after {
     content: "";
@@ -60,17 +61,16 @@
     width: 0;
     border-left: 40px solid transparent;
     border-right: 40px solid transparent;
-
 }
+
 .hexagon::before {
     bottom: 100%;
     border-bottom: 23.1px solid #4F75FF;
-    
 }
+
 .hexagon::after {
     top: 100%;
     border-top: 23.1px solid #4F75FF;
-    
 }
 .bloom {
     animation: bloom 2s ease-in-out forwards;
@@ -122,4 +122,3 @@
     width: 120px;
     height: 120px; 
 }
-

@@ -12,12 +12,14 @@
     </nav>
 
     <div class="absolute top-0 left-0 w-full h-full pointer-events-none">
-        <div class="absolute top-20 left-10 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-flowerPink hexagon"></div>
-        <div class="absolute top-20 left-1/4 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-flowerYellow hexagon"></div>
-        <div class="absolute transform -translate-x-1/2 w-16 h-16 bg-flowerBlue hexagon top-1/2 left-1/3"></div>
-        <div class="absolute transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-flowerPurple hexagon top-5 left-3/4"></div>
-        <div class="absolute transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-flowerPink hexagon top-7 left-1/2"></div>
-        <div class="absolute transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-flowerYellow hexagon top-5 left-20"></div>
+        <div class="hexagon" style="top: 10%; left: 50%; transform: translate(-50%, -50%);"></div>
+        <div class="hexagon" style="top: 25%; left: 75%; transform: translate(-50%, -50%);"></div>
+        <div class="hexagon" style="top: 50%; left: 90%; transform: translate(-50%, -50%);"></div>
+        <div class="hexagon" style="top: 75%; left: 75%; transform: translate(-50%, -50%);"></div>
+        <div class="hexagon" style="top: 90%; left: 50%; transform: translate(-50%, -50%);"></div>
+        <div class="hexagon" style="top: 75%; left: 25%; transform: translate(-50%, -50%);"></div>
+        <div class="hexagon" style="top: 50%; left: 10%; transform: translate(-50%, -50%);"></div>
+        <div class="hexagon" style="top: 25%; left: 25%; transform: translate(-50%, -50%);"></div>
     </div>
 
     <!-- Content -->
