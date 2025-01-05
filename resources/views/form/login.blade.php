@@ -2,6 +2,9 @@
 
 @section('title', 'Form Login')
 
+@section('no-header')
+    no-header
+@endsection
 @section('content')
 @extends('layout.bgform')
 

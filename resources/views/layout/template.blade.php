@@ -8,8 +8,19 @@
     <title>@yield('title')</title>
 </head>
 <body>
+  @hasSection('no-header')
+        {{-- kalo g ada header g ngelakuin apa apa --}}
+  @else
+      @include('layout.header')
+  @endif
 
   @yield('content')
+
+  @hasSection('no-footer')
+    {{-- kalo g ada header g ngelakuin apa apa --}}
+  @else
+    @include('layout.footer')
+  @endif
 
   @vite('resources/js/app.js')
 </body>

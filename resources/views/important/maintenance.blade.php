@@ -19,6 +19,6 @@
     <h1>Open Talk Coming Soon!</h1>
     <div>
         <p>Sorry for the inconvenience. We&rsquo;re still preparing for open talk. If you need to you can always follow us on <a href="https://www.instagram.com/egbert_wangarry?igsh=eXVoNzF4azNqcTU2/">Instagram</a> for updates, otherwise we&rsquo;ll be back up shortly!</p>
-        <p>&mdash; The BWP Team</p>
+        <p>&mdash; The BWP Team TETEK</p>
     </div>
 </article>

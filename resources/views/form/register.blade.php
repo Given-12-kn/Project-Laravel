@@ -1,6 +1,11 @@
 @extends('layout.template')
 
 @section('title', 'Register')
+
+@section('no-header')
+    no-header
+@endsection
+
 @section('content')
 @if ($errors->any())
     @foreach ($errors->all() as $error)
