@@ -2,8 +2,8 @@
 
 use App\Http\Controllers\form\login;
 use App\Http\Controllers\form\register;
-use App\Http\Controllers\home\audience;
 use App\Http\Controllers\home\homeController;
+use App\Http\Controllers\live\liveController;
 use App\Http\Controllers\resetPassword;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
@@ -35,8 +35,11 @@ Route::middleware(['cekSudahLogin'])->group(function () {
             Route::get('/logout', 'logout');
         });
 
-        Route::controller(audience::class)->group(function () {
+    });
 
+    Route::prefix('live')->group(function () {
+        Route::controller(liveController::class)->group(function () {
+            Route::get('/', 'index');
         });
 
     });

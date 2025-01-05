@@ -30,7 +30,7 @@
             {{-- nav item --}}
             <div class="hidden md:ml-6 md:block">
                 <div class="flex space-x-4">
-                    <a href="#" class="relative rounded-md px-3 py-2 text-lg font-medium text-black hover:text-gray-700 focus:text-gray-700 group" aria-current="page">Home
+                    <a href="{{url('home/')}}" class="relative rounded-md px-3 py-2 text-lg font-medium text-black hover:text-gray-700 focus:text-gray-700 group" aria-current="page">Home
                     <span class="absolute left-0 bottom-0 h-0.5 w-full origin-center scale-x-0 bg-gray-700 transition-transform duration-300 group-hover:scale-x-100"></span>
                     </a>
                     <a href="#" class="relative rounded-md px-3 py-2 text-lg font-medium text-black hover:text-gray-700 focus:text-gray-700 group">Keluhan
@@ -39,7 +39,7 @@
                     <a href="#" class="relative rounded-md px-3 py-2 text-lg font-medium text-black hover:text-gray-700 focus:text-gray-700 group">About Us
                     <span class="absolute left-0 bottom-0 h-0.5 w-full origin-center scale-x-0 bg-gray-700 transition-transform duration-300 group-hover:scale-x-100"></span>
                     </a>
-                    <a href="#" class="relative rounded-md px-3 py-2 text-lg font-medium text-black hover:text-gray-700 focus:text-gray-700 group">live
+                    <a href="{{url('live/')}}" class="relative rounded-md px-3 py-2 text-lg font-medium text-black hover:text-gray-700 focus:text-gray-700 group">live
                     <span class="text-red-500">⦿</span>
                     <span class="absolute left-0 bottom-0 h-0.5 w-full origin-center scale-x-0 bg-gray-700 transition-transform duration-300 group-hover:scale-x-100"></span>
                     </a>
@@ -81,10 +81,10 @@
     <!-- Mobile menu, show/hide based on menu state. -->
     <div class="md:hidden hidden transition-all duration-200 transform origin-top scale-y-0" id="mobile-menu">
         <div class="space-y-1 px-2 pb-3 pt-2">
-        <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-black hover:bg-blue-400 hover:text-black" aria-current="page">Home</a>
+        <a href="{{url('home/')}}" class="block rounded-md px-3 py-2 text-base font-medium text-black hover:bg-blue-400 hover:text-black" aria-current="page">Home</a>
         <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-black hover:bg-blue-400 hover:text-black">Keluhan</a>
         <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-black hover:bg-blue-400 hover:text-black">About Us</a>
-        <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-black hover:bg-blue-400 hover:text-black">Live <span class="text-red-500">⦿</span></a>
+        <a href="{{url('live/')}}" class="block rounded-md px-3 py-2 text-base font-medium text-black hover:bg-blue-400 hover:text-black">Live <span class="text-red-500">⦿</span></a>
         </div>
     </div>
 </nav>
@@ -94,10 +94,10 @@
     const menuToggleButton = document.querySelector('[aria-controls="mobile-menu"]');
     const mobileMenu = document.getElementById('mobile-menu');
     const icons = menuToggleButton.querySelectorAll('svg');
-  
+
     menuToggleButton.addEventListener('click', () => {
       const isExpanded = menuToggleButton.getAttribute('aria-expanded') === 'true';
-  
+
       if (isExpanded) {
         mobileMenu.classList.add('scale-y-0');
         mobileMenu.classList.remove('scale-y-100');
@@ -111,19 +111,19 @@
           mobileMenu.classList.add('scale-y-100');
         }, 0);
       }
-  
+
       icons.forEach(icon => icon.classList.toggle('hidden'));
-  
+
       menuToggleButton.setAttribute('aria-expanded', !isExpanded);
     });
-  
+
     //profile
     const userMenuButton = document.getElementById('user-menu-button');
     const dropdownMenu = userMenuButton.nextElementSibling;
-  
+
     userMenuButton.addEventListener('click', () => {
       const isExpanded = userMenuButton.getAttribute('aria-expanded') === 'true';
-  
+
       if (isExpanded) {
         dropdownMenu.classList.remove('opacity-100', 'scale-100');
         dropdownMenu.classList.add('opacity-0', 'scale-95');
@@ -138,15 +138,15 @@
           dropdownMenu.classList.add('opacity-100', 'scale-100');
         }, 0);
       }
-  
+
       userMenuButton.setAttribute('aria-expanded', !isExpanded);
     });
-  
+
     //logout
     const logoutButton = document.getElementById('user-menu-item-2');
       logoutButton.addEventListener('click', () => {
          window.location.href = 'home/logout';
       });
-  
-    
+
+
   </script>
