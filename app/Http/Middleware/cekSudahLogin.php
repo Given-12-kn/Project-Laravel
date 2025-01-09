@@ -16,11 +16,13 @@ class cekSudahLogin
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next) : Response
+    public function handle(Request $request, Closure $next, ...$baru) : Response
     {
         if (Auth::check()) {
             return $next($request);
         }
+
+        
 
         Log::info('User not authenticated. Redirecting to login.');
         return redirect(url('form/login'));

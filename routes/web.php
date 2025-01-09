@@ -26,22 +26,22 @@ Route::prefix('form')->group(function () {
     });
 });
 
-Route::middleware(['cekSudahLogin'])->group(function () {
-    Route::prefix('home')->group(function () {
-        Route::controller(homeController::class)->group(function () {
-            Route::get('/', 'index');
-            Route::post('/kirim', 'sendChat');
-            Route::get('/loadMessage', 'loadMessage');
-            Route::get('/logout', 'logout');
-        });
 
+Route::prefix('home')->middleware('cekSudahLogin:dosen,siswa,admin')->group(function () {
+    Route::controller(homeController::class)->group(function () {
+        Route::get('/', 'index');
+        Route::post('/kirim', 'sendChat');
+        Route::get('/loadMessage', 'loadMessage');
+        Route::get('/logout', 'logout');
     });
 
-    Route::prefix('live')->group(function () {
-        Route::controller(liveController::class)->group(function () {
-            Route::get('/', 'index');
-        });
-
-    });
 });
+
+Route::prefix('live')->group(function () {
+    Route::controller(liveController::class)->group(function () {
+        Route::get('/', 'index');
+    });
+
+});
+
 

@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class dosen extends Model
+class siswa extends Model
 {
     protected $connection = "opentalk";
-    protected $table = 'dosen';
+    protected $table = 'siswa';
     protected $primaryKey = 'id';
     public $incrementing = true;
     public $timestamps = false;
@@ -15,10 +15,10 @@ class dosen extends Model
     public $fillable = [
         'id_users',
         'nama',
-        'nip',
+        'nrp',
     ];
 
     public function selectAll(){
-        return dosen::get();
+        return siswa::get();
     }
 }
