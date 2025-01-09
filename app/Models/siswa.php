@@ -18,7 +18,19 @@ class siswa extends Model
         'nrp',
     ];
 
+    public function addSiswa($id_users, $nama, $nrp) {
+        $baru = new siswa();
+        $baru->id_users = $id_users;
+        $baru->nama = $nama;
+        $baru->nrp = $nrp;
+        $baru->save();
+    }
+
     public function selectAll(){
         return siswa::get();
+    }
+
+    public function toUsers(){
+        return $this->belongsTo(usersR::class, 'id_users', 'id');
     }
 }

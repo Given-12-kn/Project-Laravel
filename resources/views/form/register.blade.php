@@ -67,6 +67,10 @@
                 <div class="mt-4 bg-red-100 text-red-700 p-4 rounded-lg">
                     {{ Session::get('fail') }}
                 </div>
+            @elseif (Session::has('success'))
+                <div class="mt-4 bg-green-100 text-green-700 p-4 rounded-lg">
+                    {{ Session::get('success') }}
+                </div>
             @endif
         </div>
     </div>

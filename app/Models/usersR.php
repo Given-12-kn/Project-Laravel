@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class usersR extends Authenticatable
 {
-
+    protected $connection = "opentalk";
     public $table = 'usersR';
     public $primaryKey = 'id';
     public $incrementing = true;
@@ -45,6 +45,14 @@ class usersR extends Authenticatable
 
     public function selectAll(){
         return usersR::get();
+    }
+
+    public function toSiswa(){
+        return $this->hasOne(siswa::class, 'id_users', 'id');
+    }
+
+    public function toDosen(){
+        return $this->hasOne(dosen::class, 'id_users', 'id');
     }
 
 }

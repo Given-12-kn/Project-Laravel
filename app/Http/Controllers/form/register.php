@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\form;
 
 use App\Http\Controllers\Controller;
+use App\Models\siswa;
 use Illuminate\Http\Request;
 use App\Models\usersR;
+use Illuminate\Support\Facades\DB;
 
 class register extends Controller
 {
@@ -24,8 +26,8 @@ class register extends Controller
         $request->validate([
             'username' => 'required',
             'name' => 'required',
-            'nrp' => 'required|min:9',
-            'email' => 'required|email',
+            'nrp' => 'required|min:9|unique:siswa,nrp',
+            'email' => 'required|email|unique:usersr,email',
             'password' => 'required|min:4',
         ],
         [
@@ -45,8 +47,26 @@ class register extends Controller
             'password' => bcrypt($request->password),
         ];
 
+        DB::beginTransaction();
+    try {
         $u = new usersR();
-        $u->addUser($usename, $name, $nrp, $email, $password);
-        return redirect(route('register'));
+        $u->username = $request->username;
+        $u->password = bcrypt($request->password);
+        $u->email = $request->email;
+        $u->role = 2;
+        $u->save();
+
+        siswa::create([
+            'id_users' => $u->id,
+            'nama' => $request->name,
+            'nrp' => $request->nrp,
+        ]);
+
+        DB::commit();
+        return redirect(route('register'))->with('success', 'Registrasi berhasil!');
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect(route('register'))->with('fail', 'Registrasi gagal! ' . $e->getMessage());
+    }
     }
 }

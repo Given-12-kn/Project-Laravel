@@ -12,7 +12,12 @@ class homeController extends Controller
 {
     public function index()
     {
-        return view('home.home2');
+        if (Auth::user()->role_text == 'admin') {
+
+        }
+        else if (Auth::user()->role_text == 'siswa') {
+            return view('home.home2');
+        }
     }
 
     public function sendChat(Request $request)

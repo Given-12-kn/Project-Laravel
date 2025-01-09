@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class chat extends Model
 {
-    protected $connection = "mysql";
+    protected $connection = "opentalk";
     protected $table = 'chat';
     protected $primaryKey = 'id';
     public $incrementing = true;

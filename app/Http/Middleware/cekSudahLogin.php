@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\Response;
 
+use function Laravel\Prompts\error;
+
 class cekSudahLogin
 {
     /**
@@ -18,14 +20,18 @@ class cekSudahLogin
      */
     public function handle(Request $request, Closure $next, ...$baru) : Response
     {
-        if (Auth::check()) {
-            return $next($request);
+        if (Auth::guest()) {
+            Log::info('User not authenticated. Redirecting to login.');
+            return redirect(url('form/login'));
         }
 
-        
+        foreach ($baru as $b) {
+            if(Auth::user()->role_text == $b){
+                return $next($request);
+            }
+        }
 
-        Log::info('User not authenticated. Redirecting to login.');
-        return redirect(url('form/login'));
+       abort(403, 'Unauthorized action.');
     }
 }
 
