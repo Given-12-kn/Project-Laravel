@@ -32,10 +32,6 @@
                     Login
                 </button>
             </form>
-            <div class="mt-2 text-center">
-                <span class="text-gray-700">Don't have an account?</span>
-                <a href="{{ route('register') }}" class="text-blue-500 hover:underline"> Sign Up</a>
-            </div>
         </div>
     </div>
     <div class="flex justify-center">

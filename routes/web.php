@@ -14,20 +14,20 @@ Route::prefix('form')->group(function () {
     Route::controller(login::class)->group(function () {
         Route::get('/login', 'index');
         Route::post('/login/cekLogin', 'cekLogin');
-        Route::post('/resetPassword', 'resetPassword');
+        //Route::post('/resetPassword', 'resetPassword');
     });
-    Route::controller(register::class)->group(function () {
+    Route::controller(register::class)->middleware('cekSudahLogin:admin')->group(function () {
         Route::get('/register', 'index')->name('register');
         Route::post('/register/add', 'register');
     });
-    Route::controller(resetPassword::class)->group(function () {
-        Route::get('/resetPassword', 'index');
-        Route::post('/', '');
-    });
+    // Route::controller(resetPassword::class)->group(function () {
+    //     Route::get('/resetPassword', 'index');
+    //     Route::post('/', '');
+    // });
 });
 
 
-Route::prefix('home')->middleware('cekSudahLogin:dosen,siswa,admin')->group(function () {
+Route::prefix('home')->group(function () {
     Route::controller(homeController::class)->group(function () {
         Route::get('/', 'index');
         Route::post('/kirim', 'sendChat');
@@ -38,7 +38,7 @@ Route::prefix('home')->middleware('cekSudahLogin:dosen,siswa,admin')->group(func
 });
 
 Route::prefix('live')->group(function () {
-    Route::controller(liveController::class)->group(function () {
+    Route::controller(liveController::class)->middleware('cekSudahLogin:siswa,admin,dosen')->group(function () {
         Route::get('/', 'index');
     });
 

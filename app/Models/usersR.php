@@ -47,12 +47,4 @@ class usersR extends Authenticatable
         return usersR::get();
     }
 
-    public function toSiswa(){
-        return $this->hasOne(siswa::class, 'id_users', 'id');
-    }
-
-    public function toDosen(){
-        return $this->hasOne(dosen::class, 'id_users', 'id');
-    }
-
 }

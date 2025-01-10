@@ -13,28 +13,23 @@ class homeController extends Controller
 {
     public function index()
     {
-        if (Auth::user()->role_text == 'admin') {;
-            dd(Auth::user()->toSiswa->nrp);
-        }
-        else if (Auth::user()->role_text == 'siswa') {
-            return view('home.home2');
-        }
+        return view('home.home2');
     }
 
     public function sendChat(Request $request)
     {
         //Simpan data (misal ke database)
 
-        $chat = new chat();
-        $chat->addChat(Auth::user()->nrp, $request->chat, date('Y'));
+        // $chat = new chat();
+        // $chat->addChat(Auth::user()->nrp, $request->chat, date('Y'));
 
         return response()->json(['message' => 'Pesan berhasil diterima!'], 200);
     }
 
     public function loadMessage()
     {
-        $data = chat::limit(500)->get();
-        return response()->json($data);
+        // $data = chat::limit(500)->get();
+        // return response()->json($data);
     }
 
     public function logout()

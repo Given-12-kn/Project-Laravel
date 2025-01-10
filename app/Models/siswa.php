@@ -3,34 +3,48 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
-class siswa extends Model
+use Illuminate\Foundation\Auth\User as Authenticatable;
+class siswa extends Authenticatable
 {
     protected $connection = "opentalk";
-    protected $table = 'siswa';
-    protected $primaryKey = 'id';
+    public $table = 'siswa';
+    public $primaryKey = 'id_siswa';
     public $incrementing = true;
     public $timestamps = false;
+    protected $appends = [];
+    protected $hidden = ['password_siswa'];
+    protected $authPasswordName = 'password_siswa';
 
     public $fillable = [
-        'id_users',
+        'id_jurusan',
         'nama',
+        'password_siswa',
         'nrp',
+        'is_active',
+        'angkatan',
+        'jenis_kelamin',
     ];
+    // public function addUser($username, $name, $nrp, $email, $password) {
+    //     $baru = new usersR();
+    //     $baru->username = $username;
+    //     $baru->nama = $name;
+    //     $baru->nrp = $nrp;
+    //     $baru->email = $email;
+    //     $baru->password = Hash::make($password);
+    //     $baru->role = 2;
+    //     $baru->save();
+    // }
 
-    public function addSiswa($id_users, $nama, $nrp) {
-        $baru = new siswa();
-        $baru->id_users = $id_users;
-        $baru->nama = $nama;
-        $baru->nrp = $nrp;
-        $baru->save();
-    }
 
     public function selectAll(){
-        return siswa::get();
+        return usersR::get();
     }
 
-    public function toUsers(){
-        return $this->belongsTo(usersR::class, 'id_users', 'id');
+    public function toLa(){
+        return $this->hasOne(live_account::class, 'nrp', 'nrp');
     }
+
+   public function toJurusan(){
+        return $this->hasOne(jurusan::class, 'id_jurusan', 'id_jurusan');
+   }
 }

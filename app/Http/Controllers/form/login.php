@@ -32,28 +32,35 @@ class login extends Controller
             'nrp.min' => 'Nrp terlalu pendek!',
         ]);
 
-        $siswa = siswa::where('nrp', $nrp)->first();
-        if(!$siswa){
-            return redirect(url('form/login'))->with('fail', 'Nrp tidak terdaftar!');
-        }
-        $pw = Hash::check($password, usersR::where('id', $siswa->id_users)->first()->password);
-        if(!$pw){
-            return redirect(url('form/login'))->with('fail', 'Password salah!');
-        }
-        Auth::login($siswa->toUsers);
-        return redirect(url('/home'));
-
-        // $data = [
-        //     'nrp' => $nrp,
-        //     'password' => $password,
-        // ];
-        // //Auth::attempt($data); itu kalau database nya cuma 1
-        // if(Auth::attempt($data)){
-        //     return redirect(url('/home'));
-        // } else {
-        //     return redirect(url('form/login'))->with('fail', 'Email atau Password salah!');
+        // $siswa = siswa::where('nrp', $nrp)->first();
+        // if(!$siswa){
+        //     return redirect(url('form/login'))->with('fail', 'Nrp tidak terdaftar!');
         // }
-
+        // $pw = Hash::check($password, usersR::where('id', $siswa->id_users)->first()->password);
+        // if(!$pw){
+        //     return redirect(url('form/login'))->with('fail', 'Password salah!');
+        // }
+        // Auth::login($siswa->toUsers);
+        // return redirect(url('/home'));
+        $siswa = siswa::where('nrp', $nrp)->first();
+        if($siswa){
+            if($siswa->is_active == 0){
+                return redirect(url('form/login'))->with('fail', 'Akun Anda Belum Aktif!');
+            }
+            else{
+                $data = [
+                    'nrp' => $nrp,
+                    'password' => $password,
+                ];
+                if(Auth::attempt($data)){
+                    return redirect(url('/home'));
+                } else {
+                    return redirect(url('form/login'))->with('fail', 'Nrp Atau Password Salah!');
+                }
+            }
+        } else {
+            return redirect(url('form/login'))->with('fail', 'Nrp Tidak Terdaftar!');
+        }
     }
 
     public function resetPassword(Request $request){

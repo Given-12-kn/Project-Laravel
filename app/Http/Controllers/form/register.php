@@ -7,6 +7,7 @@ use App\Models\siswa;
 use Illuminate\Http\Request;
 use App\Models\usersR;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class register extends Controller
 {
@@ -26,7 +27,7 @@ class register extends Controller
         $request->validate([
             'username' => 'required',
             'name' => 'required|min:4|unique:siswa,nama',
-            'nrp' => 'required|min:9|unique:siswa,nrp',
+            'nrp' => 'required|min:9|max:10|unique:siswa,nrp',
             'email' => 'required|email|unique:usersr,email',
             'password' => 'required|min:4',
         ],
@@ -37,6 +38,7 @@ class register extends Controller
             'name.unique' => 'Nama sudah terdaftar!',
             'nrp.required' => 'NRP harus diisi!',
             'nrp.min' => 'NRP minimal 9 karakter!',
+            'nrp.max' => 'NRP maksimal 10 karakter!',
             'nrp.unique' => 'NRP sudah terdaftar!',
             'email.required' => 'Email harus diisi!',
             'email.email' => 'Email tidak valid!',
@@ -47,20 +49,9 @@ class register extends Controller
 
         DB::beginTransaction();
     try {
-        $u = new usersR();
-        $u->username = $request->username;
-        $u->password = bcrypt($request->password);
-        $u->email = $request->email;
-        $u->role = 2;
-        $u->save();
-
-        siswa::create([
-            'id_users' => $u->id,
-            'nama' => $request->name,
-            'nrp' => $request->nrp,
-        ]);
-
+        
         DB::commit();
+        Session::flash('success', 'Registrasi berhasil!');
         return redirect(route('register'))->with('success', 'Registrasi berhasil!');
     } catch (\Exception $e) {
         DB::rollBack();
