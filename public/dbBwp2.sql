@@ -45,12 +45,17 @@ CREATE TABLE `jurusan` (
   PRIMARY KEY (`id_jurusan`),
   UNIQUE KEY `nama_jurusan` (`nama_jurusan`),
   UNIQUE KEY `kode_jurusan` (`kode_jurusan`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `jurusan` */
 
 insert  into `jurusan`(`id_jurusan`,`nama_jurusan`,`kode_jurusan`,`fakultas`) values
-(1,'informatika','02','teknik');
+(1,'Teknik Informatika','TI','teknik');
+(2,'Teknik Mesin', 'TM', 'Fakultas Teknik'),
+(3,'Teknik Elektro', 'TE', 'Fakultas Teknik'),
+(4,'Manajemen', 'MN', 'Fakultas Ekonomi'),
+(5,'Akuntansi', 'AK', 'Fakultas Ekonomi');
+
 
 /*Table structure for table `kategori` */
 
