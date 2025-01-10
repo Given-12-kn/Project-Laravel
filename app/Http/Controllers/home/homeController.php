@@ -6,14 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Models\chat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Log;
 
 class homeController extends Controller
 {
     public function index()
     {
-        if (Auth::user()->role_text == 'admin') {
-
+        if (Auth::user()->role_text == 'admin') {;
+            dd(Auth::user()->toSiswa->nrp);
         }
         else if (Auth::user()->role_text == 'siswa') {
             return view('home.home2');

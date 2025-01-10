@@ -25,7 +25,7 @@ class register extends Controller
 
         $request->validate([
             'username' => 'required',
-            'name' => 'required',
+            'name' => 'required|min:4|unique:siswa,nama',
             'nrp' => 'required|min:9|unique:siswa,nrp',
             'email' => 'required|email|unique:usersr,email',
             'password' => 'required|min:4',
@@ -33,19 +33,17 @@ class register extends Controller
         [
             'username.required' => 'Username harus diisi!',
             'name.required' => 'Nama harus diisi!',
+            'name.min' => 'Nama minimal 4 karakter!',
+            'name.unique' => 'Nama sudah terdaftar!',
             'nrp.required' => 'NRP harus diisi!',
             'nrp.min' => 'NRP minimal 9 karakter!',
+            'nrp.unique' => 'NRP sudah terdaftar!',
             'email.required' => 'Email harus diisi!',
             'email.email' => 'Email tidak valid!',
+            'email.unique' => 'Email sudah terdaftar!',
             'password.required' => 'Password harus diisi!',
             'password.min' => 'Password minimal 4 karakter!',
         ]);
-
-        $data = [
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-        ];
 
         DB::beginTransaction();
     try {

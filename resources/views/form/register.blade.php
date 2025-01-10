@@ -7,15 +7,6 @@
 @endsection
 
 @section('content')
-@if ($errors->any())
-    @foreach ($errors->all() as $error)
-        <div class="bg-red-100 text-red-700 p-4 rounded-lg mb-6">
-            {{ $error }}
-        </div>
-    @endforeach
-
-@endif
-
 @extends('layout.bgform')
 @section('contentBgForm')
 <div class="container mx-auto">
@@ -71,6 +62,14 @@
                 <div class="mt-4 bg-green-100 text-green-700 p-4 rounded-lg">
                     {{ Session::get('success') }}
                 </div>
+            @endif
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    <div class="mt-4 bg-red-100 text-red-700 p-4 rounded-lg mb-6">
+                        {{ $error }}
+                    </div>
+                @endforeach
+
             @endif
         </div>
     </div>
