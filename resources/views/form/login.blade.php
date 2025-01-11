@@ -5,6 +5,7 @@
 @section('no-header')
     no-header
 @endsection
+
 @section('content')
 @extends('layout.bgform')
 
@@ -27,6 +28,12 @@
                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                            placeholder="Enter Your Password">
                 </div>
+                
+                <div class="mb-4 flex items-center">
+                    <input type="checkbox" id="remember" name="remember" class="mr-2" > <!-- lek mau checkbox e agak besar pake o class iki class="w-6 h-6 mr-2" -->
+                    
+                    <label for="remember" class="text-gray-700">Remember Me</label>
+                </div>
                 <button type="submit"
                         class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg font-medium transition duration-200">
                     Login
@@ -39,7 +46,6 @@
             <div class="mt-3 bg-red-100 text-red-700 p-4 rounded-lg w-full max-w-md">
                 {{ Session::get('fail') }}
             </div>
-
         @endif
         @if ($errors->any())
             @foreach ($errors->all() as $error)
@@ -47,7 +53,7 @@
                     {{ $error }}
                 </div>
             @endforeach
-    @endif
+        @endif
     </div>
 </div>
 @endsection
