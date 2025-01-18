@@ -39,6 +39,10 @@ Route::prefix('home')->group(function () {
 
     Route::controller(adminController::class)->middleware('cekSudahLogin:admin')->group(function () {
         Route::get('/admin', 'index');
+        Route::get('/admin/daftarSiswa', 'daftarSiswa');
+        route::get('/admin/liveSetting' , 'liveSetting');
+
+        Route::post('/admin/ImportExcel', 'addExcel');
         Route::post('/orders', 'store');
     });
 
@@ -47,7 +51,7 @@ Route::prefix('home')->group(function () {
 Route::prefix('live')->group(function () {
     Route::controller(liveController::class)
         ->middleware('cekSudahLogin:siswa,admin,dosen')
-        ->group(function () {        
+        ->group(function () {
             Route::get('/', 'index')->name('live.index');
             Route::post('/store', 'store')->name('live.store');
         });
