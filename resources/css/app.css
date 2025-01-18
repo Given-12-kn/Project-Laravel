@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
 @keyframes scaleUpDown {
     0% {
         transform: scale(0) translate(-50%, -50%);
@@ -47,7 +51,7 @@
 }
 
 .bg-gradient-to-r {
-    background: linear-gradient(90deg, 
+    background: linear-gradient(90deg,
         rgba(255, 255, 255, 1) 0%,         /* Putih */
         rgba(250, 220, 250, 1) 35%,        /* Ungu muda lebih terang lagi */
         rgba(200, 240, 255, 1) 100%        /* Biru muda yang tetap seimbang */
@@ -68,7 +72,7 @@
 }
 
 .bg-transparent {
-    background: linear-gradient(90deg, 
+    background: linear-gradient(90deg,
     rgba(255, 255, 255, 1) 0%,         /* Putih sangat lembut */
     rgba(240, 230, 250, 1) 35%,        /* Ungu muda sangat lembut */
     rgba(210, 240, 255, 1) 100%       /* Biru muda pastel */

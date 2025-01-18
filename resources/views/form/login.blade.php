@@ -5,6 +5,7 @@
 @section('no-header')
     no-header
 @endsection
+@section('no-headerAdmin',true)
 
 @section('content')
 @extends('layout.bgform')
@@ -28,10 +29,10 @@
                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                            placeholder="Enter Your Password">
                 </div>
-                
+
                 <div class="mb-4 flex items-center">
                     <input type="checkbox" id="remember" name="remember" class="mr-2" > <!-- lek mau checkbox e agak besar pake o class iki class="w-6 h-6 mr-2" -->
-                    
+
                     <label for="remember" class="text-gray-700">Remember Me</label>
                 </div>
                 <button type="submit"
@@ -41,7 +42,7 @@
             </form>
         </div>
     </div>
-    <div class="flex justify-center">
+    <div class="flex justify-center items-center flex-col">
         @if (Session::has('fail'))
             <div class="mt-3 bg-red-100 text-red-700 p-4 rounded-lg w-full max-w-md">
                 {{ Session::get('fail') }}
@@ -49,7 +50,7 @@
         @endif
         @if ($errors->any())
             @foreach ($errors->all() as $error)
-                <div class="mt-3 bg-red-100 text-red-700 p-4 rounded-lg w-full max-w-md">
+                <div class="mt-3 bg-red-100 text-red-700 p-4 rounded-lg w-full max-w-md flex">
                     {{ $error }}
                 </div>
             @endforeach

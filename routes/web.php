@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\adminController;
 use App\Http\Controllers\form\login;
 use App\Http\Controllers\form\register;
 use App\Http\Controllers\home\homeController;
@@ -35,6 +36,11 @@ Route::prefix('home')->group(function () {
         Route::get('/logout', 'logout');
     });
 
+    Route::controller(adminController::class)->middleware('cekSudahLogin:admin')->group(function () {
+        Route::get('/admin', 'index');
+        Route::post('/orders', 'store');
+    });
+
 });
 
 Route::prefix('live')->group(function () {
@@ -43,5 +49,6 @@ Route::prefix('live')->group(function () {
     });
 
 });
+
 
 

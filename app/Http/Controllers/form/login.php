@@ -24,12 +24,14 @@ class login extends Controller
 
         $request->validate([
             'nrp' => 'required|max:10|min:9',
-            'password' => 'required',
+            'password' => 'required|min:3',
         ],
         [
             'nrp.required' => 'Nrp harus diisi!',
             'nrp.max' => 'Nrp terlalu panjang!',
             'nrp.min' => 'Nrp terlalu pendek!',
+            'password.required' => 'Password harus diisi!',
+            'password.min' => 'Password terlalu pendek!',
         ]);
 
         // $siswa = siswa::where('nrp', $nrp)->first();
@@ -53,6 +55,10 @@ class login extends Controller
                     'password' => $password,
                 ];
                 if(Auth::attempt($data)){
+                    $cekAdmin = Auth::user()->toLa->role_account;
+                    if($cekAdmin == 'admin'){
+                        return redirect(url('/home/admin'));
+                    }
                     return redirect(url('/home'));
                 } else {
                     return redirect(url('form/login'))->with('fail', 'Nrp Atau Password Salah!');

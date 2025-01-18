@@ -2,6 +2,8 @@
 
 @section('title', 'Form Login')
 
+@section('no-headerAdmin', true)
+
 @section('content')
 <nav class="bg-blue-600 text-white">
     <div class="container mx-auto px-4">
@@ -64,67 +66,67 @@
   <style>
 
     #main-chat-box {
-      background-color: #fffbcc; 
-      color: #333; 
+      background-color: #fffbcc;
+      color: #333;
       font-weight: bold;
-      border: 2px solid #ffc107; 
+      border: 2px solid #ffc107;
     }
-  
+
     #dynamic-chat-container div {
-      background-color: #f0f4f8; 
+      background-color: #f0f4f8;
       color: #555;
-      font-size: 0.9rem; 
+      font-size: 0.9rem;
       border: 1px solid #ccc;
-      padding: 8px; 
-      margin-bottom: 8px; 
+      padding: 8px;
+      margin-bottom: 8px;
       border-radius: 6px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
-  
+
     #dynamic-chat-container div:hover {
-      background-color: #e0e7ee; 
+      background-color: #e0e7ee;
     }
   </style>
-  
+
   <script>
     const addButton = document.getElementById('add-button');
     const chatInput = document.getElementById('chat-input');
     const dynamicChatContainer = document.getElementById('dynamic-chat-container');
     const mainMessageText = document.getElementById('main-message-text');
-    const upvoteButton = document.getElementById('upvote-button'); 
-  
+    const upvoteButton = document.getElementById('upvote-button');
+
     addButton.addEventListener('click', () => {
       const messageText = chatInput.value.trim();
       if (messageText === '') return;
-  
+
       if (dynamicChatContainer.children.length === 0 && mainMessageText.textContent === '') {
         mainMessageText.textContent = messageText;
       } else {
         const messageElement = document.createElement('div');
         messageElement.textContent = messageText;
-  
+
         dynamicChatContainer.appendChild(messageElement);
       }
-  
+
       chatInput.value = '';
     });
-  
+
     upvoteButton.addEventListener('click', () => {
-      const firstMessage = dynamicChatContainer.firstElementChild; 
-      if (!firstMessage) return; 
-  
+      const firstMessage = dynamicChatContainer.firstElementChild;
+      if (!firstMessage) return;
+
       const messageText = firstMessage.textContent;
-  
+
       firstMessage.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
       firstMessage.style.transform = 'translateY(-20px)';
       firstMessage.style.opacity = '0';
-  
+
       setTimeout(() => {
-        mainMessageText.textContent = messageText; 
-        dynamicChatContainer.removeChild(firstMessage); 
+        mainMessageText.textContent = messageText;
+        dynamicChatContainer.removeChild(firstMessage);
       }, 500);
     });
   </script>
-  
-  
+
+
 @endsection
