@@ -5,6 +5,7 @@ use App\Http\Controllers\form\login;
 use App\Http\Controllers\form\register;
 use App\Http\Controllers\home\homeController;
 use App\Http\Controllers\live\liveController;
+
 use App\Http\Controllers\resetPassword;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
@@ -44,11 +45,12 @@ Route::prefix('home')->group(function () {
 });
 
 Route::prefix('live')->group(function () {
-    Route::controller(liveController::class)->middleware('cekSudahLogin:siswa,admin,dosen')->group(function () {
-        Route::get('/', 'index');
-    });
-
+    Route::controller(liveController::class)
+        ->middleware('cekSudahLogin:siswa,admin,dosen')
+        ->group(function () {        
+            Route::get('/', 'index')->name('live.index');
+            Route::post('/store', 'store')->name('live.store');
+        });
 });
-
 
 
