@@ -214,7 +214,7 @@
 
             if (parseInt(container.dataset.step) === step) {
                 stepLine.classList.remove("bg-gray-300");
-                stepLine.classList.add("bg-black", "w-1");
+                stepLine.classList.add("bg-black");
 
                 setTimeout(() => {
                     stepDescription.classList.remove("opacity-0", "h-0", "border-transparent");
