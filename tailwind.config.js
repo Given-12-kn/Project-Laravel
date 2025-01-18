@@ -36,6 +36,9 @@ export default {
                 flowerBlue: '#00bfff',
                 flowerPurple: '#8a2be2',
             },
+            screens: {
+                customHeaderLogo: { min: '769px', max: '900px' }, // Custom breakpoint
+            },
         },
     },
     
