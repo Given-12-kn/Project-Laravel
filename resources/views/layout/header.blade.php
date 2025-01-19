@@ -33,7 +33,7 @@
                   <a href="{{url('home/')}}" class="relative rounded-md px-3 py-2 text-lg font-medium text-black hover:text-gray-700 focus:text-gray-700 group" aria-current="page">Home
                   <span class="absolute left-0 bottom-0 h-0.5 w-full origin-center scale-x-0 bg-gray-700 transition-transform duration-300 group-hover:scale-x-100"></span>
                   </a>
-                  <a href="#" class="relative rounded-md px-3 py-2 text-lg font-medium text-black hover:text-gray-700 focus:text-gray-700 group">Keluhan
+                  <a href="{{url('keluhan/')}}" class="relative rounded-md px-3 py-2 text-lg font-medium text-black hover:text-gray-700 focus:text-gray-700 group">Keluhan
                   <span class="absolute left-0 bottom-0 h-0.5 w-full origin-center scale-x-0 bg-gray-700 transition-transform duration-300 group-hover:scale-x-100"></span>
                   </a>
                   <a href="#" class="relative rounded-md px-3 py-2 text-lg font-medium text-black hover:text-gray-700 focus:text-gray-700 group">About Us
@@ -82,7 +82,7 @@
   <div class="md:hidden hidden transition-all duration-200 transform origin-top scale-y-0" id="mobile-menu">
       <div class="space-y-1 px-2 pb-3 pt-2">
       <a href="{{url('home/')}}" class="block rounded-md px-3 py-2 text-base font-medium text-black hover:bg-blue-400 hover:text-black" aria-current="page">Home</a>
-      <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-black hover:bg-blue-400 hover:text-black">Keluhan</a>
+      <a href="{{url('keluhan/keluhan')}}" class="block rounded-md px-3 py-2 text-base font-medium text-black hover:bg-blue-400 hover:text-black">Keluhan</a>
       <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-black hover:bg-blue-400 hover:text-black">About Us</a>
       <a href="{{url('live/')}}" class="block rounded-md px-3 py-2 text-base font-medium text-black hover:bg-blue-400 hover:text-black">Live <span class="text-red-500">⦿</span></a>
       </div>

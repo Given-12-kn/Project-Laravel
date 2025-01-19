@@ -59,4 +59,7 @@ Route::prefix('live')->group(function () {
         });
 });
 
+Route::get('/keluhan', function () {
+    return view('keluhan.keluhan');
+});
 
