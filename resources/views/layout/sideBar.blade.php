@@ -23,11 +23,9 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center px-4 py-2 hover:bg-blue-500">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                            </svg>
-                            <span class="ml-3">Setting Acc</span>
+                        <a href="{{ url('home/admin/excel') }}" class="flex items-center px-4 py-2 hover:bg-blue-500">
+                            <x-uiw-setting class="h-5 w-5 text-white" />
+                            <span class="ml-3 text-white">Acc Setting</span>
                         </a>
                     </li>
                     <li>
@@ -48,11 +46,9 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{url('home/admin/excel')}}" class="flex items-center px-4 py-2 hover:bg-blue-500">
-                            <svg xmlns="{{ svg('fileicon-microsoft-excel') }}" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 16h16M4 12h16M4 8h16" />
-                            </svg>
-                            <span class="ml-3">Add Excel Data</span>
+                        <a href="{{ url('home/admin/excel') }}" class="flex items-center px-4 py-2 hover:bg-blue-500">
+                            <x-fileicon-microsoft-excel class="h-5 w-5 text-white" />
+                            <span class="ml-3 text-white">Add Excel Data</span>
                         </a>
                     </li>
                 </ul>
