@@ -40,9 +40,11 @@ Route::prefix('home')->group(function () {
     Route::controller(adminController::class)->middleware('cekSudahLogin:admin')->group(function () {
         Route::get('/admin', 'index');
         Route::get('/admin/daftarSiswa', 'daftarSiswa');
-        route::get('/admin/liveSetting' , 'liveSetting');
+        Route::get('/admin/liveSetting' , 'liveSetting');
+        Route::get('/admin/excel' , 'excel');
+        Route::get('/admin/keluhan' , 'keluhan');
 
-        Route::post('/admin/ImportExcel', 'addExcel');
+        Route::post('/admin/ImportExcel', 'importExcel');
         Route::post('/orders', 'store');
     });
 

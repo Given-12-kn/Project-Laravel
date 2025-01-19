@@ -13,9 +13,41 @@
         <div class="col-md-6 mx-auto">
             <div class="card shadow" style="border-radius: 10px; overflow: hidden;">
                 <div class="card-header text-center h-16 align-items-center pt-4" style="background: linear-gradient(45deg, #6a11cb, #2575fc); color: white;">
-                    <p class="text-xl">DashBoard</p>
+                    <p class="text-xl">List of students who have registered</p>
                 </div>
+                <div class="card-body text-center">
+                    <table class="ttable-auto border-collapse border border-gray-300 w-full">
+                        <thead>
+                            <tr>
+                                <th class="border border-gray-300 px-2 py-1">No</th>
+                                <th class="border border-gray-300 px-2 py-1">Email</th>
+                                <th class="border border-gray-300 px-2 py-1">Nama</th>
+                                <th class="border border-gray-300 px-2 py-1">Nrp</th>
+                                <th class="border border-gray-300 px-2 py-1">Role</th>
+                                <th class="border border-gray-300 px-2 py-1">Aktif</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (isset($data) && count($data) > 0)
+                            @foreach ( $data as $key => $row )
+                            <tr>
+                                <td class="border border-gray-300 px-2 py-1">{{ $key + 1}}</td>
+                                <td class="border border-gray-300 px-2 py-1">{{ $row->email }}</td>
+                                <td class="border border-gray-300 px-2 py-1">{{ optional($row->toSiswa)->nama }}</td>
+                                <td class="border border-gray-300 px-2 py-1">{{ $row->nrp }}</td>
+                                <td class="border border-gray-300 px-2 py-1">{{ $row->role_account }}</td>
+                                <td class="border border-gray-300 px-2 py-1">{{ $row->is_active ? 'Active' : 'Inactive' }}</td>
+                            </tr>
+                            @endforeach
+                            @else
+                                <tr>
+                                    <td  class="border border-gray-300 px-2 py-1"> No Data</td>
+                                </tr>
+                            @endif
 
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -49,48 +81,6 @@
         content.style.width = 'calc(100% - 16rem)'; // Kembalikan ukuran konten semula
 
     }
-
-    document.getElementById('excel').addEventListener('change', function (event) {
-        clearTable();
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    const data = new Uint8Array(e.target.result);
-                    const workbook = XLSX.read(data, { type: 'array' });
-                    const firstSheetName = workbook.SheetNames[0]; // Get the first sheet
-                    const worksheet = workbook.Sheets[firstSheetName];
-                    const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 }); // Convert to 2D array
-
-                    populateTable(jsonData);
-                };
-                reader.readAsArrayBuffer(file);
-            }
-        });
-
-        function populateTable(data) {
-            const tableBody = document.getElementById('excel-data');
-            tableBody.innerHTML = ''; // Clear existing data
-
-            // Skip the header row and populate table
-            for (let i = 1; i < data.length; i++) {
-                const row = data[i];
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td>${row[0] || ''}</td>
-                    <td>${row[1] || ''}</td>
-                    <td>${row[2] || ''}</td>
-                    <td>${row[3] || ''}</td>
-                    <td>${row[4] || ''}</td>
-                `;
-                tableBody.appendChild(tr);
-            }
-        }
-
-        function clearTable() {
-            const tableBody = document.getElementById('excel-data');
-            tableBody.innerHTML = '';
-        }
 </script>
 
 <style>

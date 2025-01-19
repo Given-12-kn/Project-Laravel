@@ -13,9 +13,53 @@
         <div class="col-md-6 mx-auto">
             <div class="card shadow" style="border-radius: 10px; overflow: hidden;">
                 <div class="card-header text-center h-16 align-items-center pt-4" style="background: linear-gradient(45deg, #6a11cb, #2575fc); color: white;">
-                    <p class="text-xl">DashBoard</p>
+                    <p class="text-xl">Upload Excel File</p>
                 </div>
-
+                <div class="card-body text-center">
+                    <form action="{{ url('home/admin/ImportExcel') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <!-- Input File and Browse Button Inline -->
+                        <div class="form-group d-flex justify-content-center align-items-center mb-4">
+                            <label for="excel" class="mr-2" style="font-weight: bold;">Select Excel File:</label>
+                            <input type="file" name="excel" id="excel"  accept=".xls, .xlsx, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="form-control" style="width: auto;">
+                        </div>
+                        <!-- Upload Button -->
+                        <button type="submit" class="btn w-60 h-8 mt-5 bg-purple-600 text-white font-bold rounded transition duration-300 ease-in-out hover:bg-blue-500 hover:scale-105 ">
+                            <i class="fas fa-cloud-upload-alt"></i> Upload
+                        </button>
+                    </form>
+                    @if (Session::has('success'))
+                        <div class="alert alert-success mt-4" style="background-color: lightgreen; color: white;">
+                            {{ Session::get('success') }}
+                        </div>
+                    @elseif(Session::has('error'))
+                        <div class="alert alert-danger mt-4" style="background-color: red; color: white;">
+                            {{ Session::get('error') }}
+                        </div>
+                    @elseif($errors->any())
+                        <div class="alert alert-danger mt-4">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li style="background-color: red; color: white;">{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <table class="table-auto border-collapse border border-gray-300 w-full border-spacing-0 mt-4">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="border border-gray-300 px-2 py-1">Id</th>
+                                <th class="border border-gray-300 px-2 py-1">Email</th>
+                                <th class="border border-gray-300 px-2 py-1">Nrp</th>
+                                <th class="border border-gray-300 px-2 py-1">Role</th>
+                                <th class="border border-gray-300 px-2 py-1">Aktif</th>
+                            </tr>
+                        </thead>
+                        <tbody id="excel-data">
+                            <!-- Rows will be added dynamically -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -77,11 +121,11 @@
                 const row = data[i];
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td>${row[0] || ''}</td>
-                    <td>${row[1] || ''}</td>
-                    <td>${row[2] || ''}</td>
-                    <td>${row[3] || ''}</td>
-                    <td>${row[4] || ''}</td>
+                    <td class="border border-gray-300 px-2 py-1">${row[0] || ''}</td>
+                    <td class="border border-gray-300 px-2 py-1">${row[1] || ''}</td>
+                    <td class="border border-gray-300 px-2 py-1">${row[2] || ''}</td>
+                    <td class="border border-gray-300 px-2 py-1">${row[3] || ''}</td>
+                    <td class="border border-gray-300 px-2 py-1">${row[4] || ''}</td>
                 `;
                 tableBody.appendChild(tr);
             }
@@ -95,9 +139,11 @@
 
 <style>
     .btn-primary:hover, .btn-success:hover {
-    background-color: #2575fc;
+    background-color: #9000ff;
     transform: scale(1.05);
     transition: all 0.3s ease;
+    -webkit-animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+
 }
 
 /* Browse File Button Styling */

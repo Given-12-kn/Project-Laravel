@@ -11,8 +11,17 @@ class live_account extends Model
     public $primaryKey = 'id_live_account';
     public $incrementing = true;
     public $timestamps = false;
-    protected $appends = ['role_text'];
+    // protected $appends = ['role_text'];
     protected $hidden = ['password_siswa'];
+
+    protected $fillable = [
+        'email',
+        'nrp',
+        'role_account',
+        'is_active',
+        'created_at',
+        'id_live_account',
+    ];
 
     public function toSiswa(){
         return $this->hasOne(siswa::class, 'nrp', 'nrp');

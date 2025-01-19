@@ -2,10 +2,12 @@
 
 namespace App\Imports;
 
+use App\Models\live_account;
 use App\Models\NamaModel;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class ImportExcel implements ToModel
+class ImportExcel implements ToModel, WithHeadingRow
 {
     /**
     * @param array $row
@@ -14,11 +16,11 @@ class ImportExcel implements ToModel
     */
     public function model(array $row)
     {
-        return new ImportExcel([
-            'email' => $row[0],
-            'nrp' => $row[1],
-            'role_account' => $row[2],
-            'is_active' => $row[3],
+        return new live_account([
+            'email' => $row['email'],
+            'nrp' => $row['nrp'],
+            'role_account' => $row['role_account'],
+            'is_active' => $row['is_active'],
         ]);
     }
 }

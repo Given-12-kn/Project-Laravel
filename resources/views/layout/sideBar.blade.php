@@ -14,7 +14,7 @@
             <nav class="flex-grow">
                 <ul class="space-y-2 mt-4">
                     <li>
-                        <a href="#" class="flex items-center px-4 py-2 hover:bg-blue-500">
+                        <a href="{{url('home/admin/')}}" class="flex items-center px-4 py-2 hover:bg-blue-500">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 9a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 22V12h6v10" />
@@ -27,15 +27,15 @@
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                             </svg>
-                            <span class="ml-3">Setting Keluhan</span>
+                            <span class="ml-3">Setting Acc</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center px-4 py-2 hover:bg-blue-500">
+                        <a href="{{url('home/admin/daftarSiswa')}}" class="flex items-center px-4 py-2 hover:bg-blue-500">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-1a4 4 0 00-4-4H6a4 4 0 00-4 4v1h5M9 10a4 4 0 118 0m-4 6v4" />
                             </svg>
-                            <span class="ml-3">Lihat Siswa</span>
+                            <span class="ml-3">Daftar Siswa</span>
                         </a>
                     </li>
                     <li>
@@ -44,12 +44,12 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A2 2 0 0020 6.18V4a2 2 0 00-2-2h-4.058A2 2 0 0012.295 3l-.817 1.639A2 2 0 019.945 5.5H5a2 2 0 00-2 2v8a2 2 0 002 2h4.5" />
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 13l4.553-2.276A2 2 0 0020 9.82v-1.64a2 2 0 00-1.053-1.764L15 5M15 17a2 2 0 100 4 2 2 0 000-4z" />
                             </svg>
-                            <span class="ml-3">Setting Live</span>
+                            <span class="ml-3">Live Setting</span>
                         </a>
                     </li>
                     <li>
-                        <a href="/" class="flex items-center px-4 py-2 hover:bg-blue-500">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <a href="{{url('home/admin/excel')}}" class="flex items-center px-4 py-2 hover:bg-blue-500">
+                            <svg xmlns="{{ svg('fileicon-microsoft-excel') }}" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M4 16h16M4 12h16M4 8h16" />
                             </svg>
                             <span class="ml-3">Add Excel Data</span>
