@@ -65,3 +65,6 @@ Route::get('/keluhan', function () {
     return view('keluhan.keluhan');
 });
 
+Route::get('/keluhan/detailKeluhan', function () {
+    return view('keluhan.detailKeluhan');
+});

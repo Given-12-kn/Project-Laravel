@@ -53,7 +53,7 @@
         <!-- Langkah-langkah -->
         <div class="lg:ml-6 lg:w-1/2 w-full">
             <!-- Langkah 1 -->
-            <div class="flex flex-col mb-4 step-container" data-step="1">
+            <div class="flex flex-col mb-4 step-container" data-step="1" data-step-image="{{ asset('step1.png') }}">
                 <div class="flex items-center cursor-pointer" onclick="activateStep(1)">
                     <div class="w-0.5 h-16 bg-gray-300 mr-4 transition-all duration-500 ease-in-out step-line"></div>
                     <p class="text-gray-600 font-medium step-title">Discover real product opportunities</p>
@@ -64,7 +64,7 @@
             </div>
 
             <!-- Langkah 2 -->
-            <div class="flex flex-col mb-4 step-container" data-step="2">
+            <div class="flex flex-col mb-4 step-container" data-step="2" data-step-image="{{ asset('step2.png') }}">
                 <div class="flex items-center cursor-pointer" onclick="activateStep(2)">
                     <div class="w-0.5 h-16 bg-gray-300 mr-4 transition-all duration-500 ease-in-out step-line"></div>
                     <p class="text-gray-600 font-medium step-title">Accelerate product discovery with user feedback</p>
@@ -75,7 +75,7 @@
             </div>
 
             <!-- Langkah 3 -->
-            <div class="flex flex-col mb-4 step-container" data-step="3">
+            <div class="flex flex-col mb-4 step-container" data-step="3" data-step-image="{{ asset('step3.png') }}">
                 <div class="flex items-center cursor-pointer" onclick="activateStep(3)">
                     <div class="w-0.5 h-16 bg-gray-300 mr-4 transition-all duration-500 ease-in-out step-line"></div>
                     <p class="text-gray-600 font-medium step-title">Navigate problem spaces with confidence</p>
@@ -86,7 +86,7 @@
             </div>
 
             <!-- Langkah 4 -->
-            <div class="flex flex-col mb-4 step-container" data-step="4">
+            <div class="flex flex-col mb-4 step-container" data-step="4" data-step-image="{{ asset('step4.png') }}">
                 <div class="flex items-center cursor-pointer" onclick="activateStep(4)">
                     <div class="w-0.5 h-16 bg-gray-300 mr-4 transition-all duration-500 ease-in-out step-line"></div>
                     <p class="text-gray-600 font-medium step-title">Align solutions to genuine user desires</p>
@@ -208,29 +208,36 @@
     });
 
     function activateStep(step) {
-        const stepContainers = document.querySelectorAll(".step-container");
-        stepContainers.forEach((container) => {
-            const stepLine = container.querySelector(".step-line");
-            const stepDescription = container.querySelector(".step-description");
+    const stepContainers = document.querySelectorAll(".step-container");
+    const guideImage = document.getElementById("guide-image");
 
-            stepDescription.classList.remove("transition-all", "duration-300", "ease-in-out", "opacity-100", "h-auto");
-            stepDescription.classList.add("opacity-0", "h-0", "border-transparent");
+    stepContainers.forEach((container) => {
+        const stepLine = container.querySelector(".step-line");
+        const stepDescription = container.querySelector(".step-description");
 
-            if (parseInt(container.dataset.step) === step) {
-                stepLine.classList.remove("bg-gray-300");
-                stepLine.classList.add("bg-black");
+        stepDescription.classList.remove("transition-all", "duration-300", "ease-in-out", "opacity-100", "h-auto");
+        stepDescription.classList.add("opacity-0", "h-0", "border-transparent");
 
-                setTimeout(() => {
-                    stepDescription.classList.remove("opacity-0", "h-0", "border-transparent");
-                    stepDescription.classList.add("transition-all", "duration-300", "ease-in-out", "opacity-100", "h-auto", "border-black");
-                }, 0);
-            } else {
-                stepLine.classList.add("bg-gray-300");
-                stepLine.classList.remove("bg-black", "w-1");
+        if (parseInt(container.dataset.step) === step) {
+            stepLine.classList.remove("bg-gray-300");
+            stepLine.classList.add("bg-black");
 
+            setTimeout(() => {
+                stepDescription.classList.remove("opacity-0", "h-0", "border-transparent");
+                stepDescription.classList.add("transition-all", "duration-300", "ease-in-out", "opacity-100", "h-auto", "border-black");
+            }, 0);
+
+            const stepImage = container.dataset.stepImage;
+            if (stepImage) {
+                guideImage.src = stepImage;
             }
-        });
-    }
+        } else {
+            stepLine.classList.add("bg-gray-300");
+            stepLine.classList.remove("bg-black", "w-1");
+        }
+    });
+}
+
 </script>
 
 
