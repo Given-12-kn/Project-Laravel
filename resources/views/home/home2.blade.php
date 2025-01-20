@@ -37,7 +37,7 @@
 
 
     <div class="mt-8 mb-40 flex justify-center">
-        <a href="/your-link-here" class="bg-blue-400 text-white font-bold py-2 px-4 rounded-full hover:bg-blue-500 transition-transform transform hover:scale-105 duration-300">Add Keluhan</a>
+        <a href="/your-link-here" class="bg-blue-400 text-white font-bold py-2 px-4 rounded-full hover:bg-blue-500 transition-transform transform hover:scale-105 duration-300">Tambah Keluhan</a>
     </div>
 
     <div>

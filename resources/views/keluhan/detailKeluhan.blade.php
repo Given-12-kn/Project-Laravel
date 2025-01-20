@@ -68,13 +68,8 @@
     <!-- Card Jawaban -->
     <div class="p-8 flex justify-center items-center">
         <div class="bg-white shadow-lg rounded-lg max-w-3xl w-full p-6 fade-in">
-            <!-- Input Jawaban -->
-            <textarea id="replyInput" rows="4" class="w-full border border-gray-300 rounded-lg p-3 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Tulis jawaban Anda di sini..."></textarea>
-            
-            <!-- Tombol Kirim -->
-            <button id="sendButton" class="btn-send bg-blue-500 text-white px-6 py-2 rounded shadow hover:bg-blue-400 transition-colors">
-                Send
-            </button>
+            <h3 class="text-2xl">respon</h3> <br>
+            <span>Jawaban dari dosen akan ditampilkan disini</span>
         </div>
     </div>
 

@@ -6,6 +6,10 @@
     font-family: 'Poppins', sans-serif;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 @keyframes scaleUpDown {
     0% {
         transform: scale(0) translate(-50%, -50%);
@@ -52,30 +56,28 @@
 
 .bg-gradient-to-r {
     background: linear-gradient(90deg,
-        rgba(255, 255, 255, 1) 0%,         /* Putih */
-        rgba(250, 220, 250, 1) 35%,        /* Ungu muda lebih terang lagi */
-        rgba(200, 240, 255, 1) 100%        /* Biru muda yang tetap seimbang */
+        rgba(255, 255, 255, 1) 0%,       
+        rgba(250, 220, 250, 1) 35%,      
+        rgba(200, 240, 255, 1) 100%        
     );
 }
 
-/* Container Hexagon (Latar Belakang) */
 .pointer-events-none {
     position: absolute;
-    pointer-events: none; /* Hexagon tidak dapat diklik */
-    z-index: 0; /* Hexagon berada di belakang */
+    pointer-events: none; 
+    z-index: 0; 
 }
 
-/* Kontainer Form */
 .relative.z-10 {
     position: relative;
-    z-index: 10; /* Form berada di depan */
+    z-index: 10; 
 }
 
 .bg-transparent {
     background: linear-gradient(90deg,
-    rgba(255, 255, 255, 1) 0%,         /* Putih sangat lembut */
-    rgba(240, 230, 250, 1) 35%,        /* Ungu muda sangat lembut */
-    rgba(210, 240, 255, 1) 100%       /* Biru muda pastel */
+    rgba(255, 255, 255, 1) 0%,       
+    rgba(240, 230, 250, 1) 35%,      
+    rgba(210, 240, 255, 1) 100%    
     );
 
 }

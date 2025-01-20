@@ -36,7 +36,7 @@
                   <a href="{{url('keluhan/')}}" class="relative rounded-md px-3 py-2 text-lg font-medium text-black hover:text-gray-700 focus:text-gray-700 group">Keluhan
                   <span class="absolute left-0 bottom-0 h-0.5 w-full origin-center scale-x-0 bg-gray-700 transition-transform duration-300 group-hover:scale-x-100"></span>
                   </a>
-                  <a href="#" class="relative rounded-md px-3 py-2 text-lg font-medium text-black hover:text-gray-700 focus:text-gray-700 group">About Us
+                  <a href="#aboutUsFooter" class="relative rounded-md px-3 py-2 text-lg font-medium text-black hover:text-gray-700 focus:text-gray-700 group">About Us
                   <span class="absolute left-0 bottom-0 h-0.5 w-full origin-center scale-x-0 bg-gray-700 transition-transform duration-300 group-hover:scale-x-100"></span>
                   </a>
                   <a href="{{url('live/')}}" class="relative rounded-md px-3 py-2 text-lg font-medium text-black hover:text-gray-700 focus:text-gray-700 group">live
