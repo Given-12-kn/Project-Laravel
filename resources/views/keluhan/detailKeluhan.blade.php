@@ -54,7 +54,7 @@
 
     <!-- Card Detail Keluhan -->
     <div class="p-8 flex justify-center items-center">
-        <div class="bg-white shadow-lg rounded-lg max-w-3xl w-full p-6">
+        <div id="detailKeluhanCard" class="bg-white shadow-lg rounded-lg max-w-3xl w-full p-6 opacity-0 scale-95 transition-all duration-500 ease-in-out">
             <!-- Judul Keluhan -->
             <h2 class="text-2xl font-semibold mb-4 text-center">Judul Keluhan</h2>
             
@@ -98,9 +98,17 @@
                     alert('Jawaban berhasil dikirim!');
                     sendButton.innerText = 'Send';
                     sendButton.disabled = false;
-                    replyInput.value = ''; // Kosongkan input
+                    replyInput.value = ''; 
                 }, 2000);
             });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const detailKeluhanCard = document.getElementById('detailKeluhanCard');
+
+            setTimeout(() => {
+                detailKeluhanCard.classList.remove('opacity-0', 'scale-95'); 
+            }, 100); 
         });
     </script>
 </body>
