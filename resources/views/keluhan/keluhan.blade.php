@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://cdn.tailwindcss.com"></script>
+@extends('layout.template')
+@section('no-headerAdmin', true)
+
+@section('title', 'Live Session')
+
+@section('content')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <title>Keluhan</title>
+
     <style>
         .fade-in {
             animation: fadeIn 0.8s ease-in-out forwards;
@@ -211,6 +210,4 @@
         });
     </script>
 
-    
-</body>
-</html>
+@endsection

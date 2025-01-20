@@ -1,4 +1,5 @@
 @extends('layout.template')
+@section('no-headerAdmin', true)
 
 @section('title', 'Live Session')
 
