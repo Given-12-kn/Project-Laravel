@@ -4,6 +4,7 @@ use App\Http\Controllers\adminController;
 use App\Http\Controllers\form\login;
 use App\Http\Controllers\form\register;
 use App\Http\Controllers\home\homeController;
+use App\Http\Controllers\keluhan\keluhanController;
 use App\Http\Controllers\live\liveController;
 
 use App\Http\Controllers\resetPassword;
@@ -67,4 +68,11 @@ Route::get('/keluhan', function () {
 
 Route::get('/keluhan/detailKeluhan', function () {
     return view('keluhan.detailKeluhan');
+});
+
+Route::prefix('keluhan')->group(function () {
+    Route::get('/', [keluhanController::class, 'index']);
+    Route::get('/detailKeluhan', function(){
+        return view('keluhan.detailKeluhan');
+    });
 });
