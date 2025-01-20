@@ -72,7 +72,7 @@ Route::get('/keluhan/detailKeluhan', function () {
 
 Route::prefix('keluhan')->group(function () {
     Route::get('/', [keluhanController::class, 'index']);
-    Route::get('/detailKeluhan', function(){
+    Route::get('/detail', function(){
         return view('keluhan.detailKeluhan');
     });
 });
