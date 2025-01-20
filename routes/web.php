@@ -78,10 +78,14 @@ Route::prefix('keluhan')->group(function () {
     });
 });
 
-Route::get('/dosenKeluhan', function () {
-    return view('dosen.dosenKeluhan');
-});
-
-Route::get('/dosenKeluhan/dosenDetailKeluhan', function () {
-    return view('dosen.dosenDetailKeluhan');
+Route::prefix('dosen')->group(function () {
+    Route::get('/', function () {
+        return view('dosen.dosenKeluhan');
+    });
+    Route::get('/detail', function(){
+        return view('dosen.dosenDetailKeluhan');
+    });
+    Route::get('/live', function(){
+        return view('dosen.dosenLive');
+    });
 });

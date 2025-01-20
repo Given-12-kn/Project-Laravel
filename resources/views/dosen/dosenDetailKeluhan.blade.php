@@ -38,7 +38,7 @@
     <div class="header-container p-4">
         <div class="flex justify-between items-center">
         
-            <a href="/dosenKeluhan" class="bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-400 transition-colors">
+            <a href="/dosen" class="bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-400 transition-colors">
                 Back
             </a>
             
@@ -49,10 +49,11 @@
     </div>
 
     <div class="p-8 flex justify-center items-center">
-        <div class="bg-white shadow-lg rounded-lg max-w-3xl w-full p-6">
-           
+        <div id="detailKeluhanCard" class="bg-white shadow-lg rounded-lg max-w-3xl w-full p-6 opacity-0 scale-95 transition-all duration-500 ease-in-out">
+            <!-- Judul Keluhan -->
             <h2 class="text-2xl font-semibold mb-4 text-center">Judul Keluhan</h2>
             
+            <!-- Isi Keluhan -->
             <p class="text-gray-700 leading-relaxed mb-4">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos incidunt maiores ullam fuga atque harum obcaecati officiis, ipsa ad dolorem.
             </p>
@@ -94,6 +95,14 @@
                     replyInput.value = '';
                 }, 2000);
             });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const detailKeluhanCard = document.getElementById('detailKeluhanCard');
+
+            setTimeout(() => {
+                detailKeluhanCard.classList.remove('opacity-0', 'scale-95'); 
+            }, 100); 
         });
     </script>
 </body>

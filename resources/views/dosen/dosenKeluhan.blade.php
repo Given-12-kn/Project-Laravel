@@ -6,6 +6,7 @@
 @section('no-header', true)
 
 @section('content')
+<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 
 <div class="bg-gradient-to-r from-white via-[#f0e6fa] to-[#d2eaff]">
     
@@ -77,9 +78,13 @@
             const card = document.createElement('div');
             card.className = 'card bg-white p-4 shadow rounded fade-in';
             card.innerHTML = ` 
-            <a href="{{ url('/dosenKeluhan/dosenDetailKeluhan') }}" class="w-full h-full">
+            <a href="{{ url('/dosen/detail') }}" class="w-full h-full">
                 <div class="card">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum explicabo vero nostrum, iure repellendus perspiciatis non numquam eaque est ipsum quam similique nobis sit assumenda.</p>
+                    <div class="absolute top-2 right-2 bg-gradient-to-r from-blue-300 to-blue-500 text-white rounded-full px-3 py-1 flex items-center space-x-2 shadow-md">
+                        <ion-icon name="thumbs-up" class="text-xl"></ion-icon>
+                        <span class="text-sm font-bold">3</span>
+                    </div>
+                    <p class="mt-14">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum explicabo vero nostrum, iure repellendus perspiciatis non numquam eaque est ipsum quam similique nobis sit assumenda.</p>
                     <button class="btn-upvote bg-gradient-to-r from-blue-300 to-blue-500 rounded-full">Upvote</button>
                 </div>
             </a>
