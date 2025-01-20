@@ -10,7 +10,7 @@
     
     <div class="header-container flex justify-end items-center px-4 py-2">
         <div class="flex items-center gap-2 relative mt-8">
-            <button class="btn-add bg-blue-400 text-white px-4 py-2 rounded shadow">Add</button>
+            <button id="addButton" class="btn-add bg-blue-400 text-white px-4 py-2 rounded shadow">Tambah Keluhan</button>
             <button class="px-4 py-2 rounded shadow" id="dropdownBtn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-filter-right" viewBox="0 0 16 16">
                     <path d="M14 10.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5m0-3a.5.5 0 0 0-.5-.5h-7a.5.5 0 0 0 0 1h7a.5.5 0 0 0 .5-.5m0-3a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0 0 1h11a.5.5 0 0 0 .5-.5"/>
@@ -18,13 +18,54 @@
             </button>
             <div id="dropdownMenu" class="dropdown-menu mt-2">
                 <ul class="list-none p-2">
-                    <li><a href="#" class="block px-4 py-2">Latest</a></li>
-                    <li><a href="#" class="block px-4 py-2">Oldest</a></li>
-                    <li><a href="#" class="block px-4 py-2">Most Upvote</a></li>
+                    <li><a href="#" class="block px-4 py-2">Terbaru</a></li>
+                    <li><a href="#" class="block px-4 py-2">Terlama</a></li>
+                    <li><a href="#" class="block px-4 py-2">Vote terbanyak</a></li>
                 </ul>
             </div>
         </div>
     </div>
+
+
+
+    <div id="formContainer" class="mt-4 w-full hidden">
+        <div class="max-w-6xl mx-auto bg-white mx-auto transform transition-transform duration-300 ease-in-out p-8 rounded-lg">
+        <h2 class="text-2xl font-bold text-center mb-6 text-gray-800">Form Penambahan Keluhan</h2>
+        <form id="addComplaintForm">
+            <!-- Title -->
+            <div class="mb-6">
+                <label for="title" class="block text-lg font-semibold text-gray-700">Judul</label>
+                <input type="text" id="title" name="title" placeholder="Masukkan judul" class="mt-2 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-gray-800 sm:text-md px-4 py-2 bg-gray-50">
+            </div>
+
+            <!-- Description -->
+            <div class="mb-6">
+                <label for="description" class="block text-lg font-semibold text-gray-700">Deskripsi</label>
+                <textarea id="description" name="description" placeholder="Jelaskan keluhan anda secara detail" rows="4" class="mt-2 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-gray-800 sm:text-md px-4 py-2 bg-gray-50"></textarea>
+            </div>
+
+            <!-- Category -->
+            <div class="mb-6">
+                <label for="category" class="block text-lg font-semibold text-gray-700">Kategori</label>
+                <select id="category" name="category" class="mt-2 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-gray-800 sm:text-md px-4 py-2 bg-gray-50">
+                    <option value="" disabled selected>Pilih Kategori</option>
+                    <option value="akademi">akademi</option>
+                    <option value="fasilitas">fasilitas</option>
+                    <option value="administrasi">administrasi</option>
+                    <option value="lainnya">lainnya</option>
+                </select>
+            </div>
+
+            <!-- Buttons -->
+            <div class="flex justify-end space-x-4">
+                <button type="button" id="cancelButton" class="bg-gray-400 text-white px-5 py-2 rounded-lg shadow hover:bg-gray-500 transition duration-300 ease-in-out">Cancel</button>
+                <button type="submit" class="bg-blue-500 text-white px-5 py-2 rounded-lg shadow hover:bg-blue-600 transition duration-300 ease-in-out">Submit</button>
+            </div>
+        </form>
+    </div>
+    </div>
+
+
 
     <div id="card-container" class="p-4"></div>
 </div>
@@ -82,6 +123,29 @@
         });
     });
     
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const addButton = document.getElementById("addButton");
+        const formContainer = document.getElementById("formContainer");
+        const cancelButton = document.getElementById("cancelButton");
+
+        addButton.addEventListener("click", () => {
+            formContainer.classList.remove("hidden");
+        });
+
+        cancelButton.addEventListener("click", () => {
+            formContainer.classList.add("hidden");
+        });
+
+        // Handle form submission (example behavior)
+        const form = document.getElementById("addComplaintForm");
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            alert("Form submitted!");
+            form.reset();
+            formContainer.classList.add("hidden");
+        });
+    });
 </script>
 
 <style>
