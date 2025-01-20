@@ -178,12 +178,16 @@
                 const card = document.createElement('div');
                 card.className = 'card bg-white p-4 shadow rounded fade-in';
                 card.innerHTML = ` 
-                <div class="card">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum explicabo vero nostrum, iure repellendus perspiciatis non numquam eaque est ipsum quam similique nobis sit assumenda, doloremque quasi fuga molestiae. Eligendi animi repellat deleniti maiores, fugit eaque ratione repudiandae omnis quae qui aliquam sunt illo reprehenderit unde quasi officia odio. Qui, asperiores itaque? At delectus nostrum dignissimos beatae obcaecati harum maxime quos, fugiat asperiores ipsam a suscipit esse, modi vero quaerat natus veritatis eum animi non rem dolore ipsum iusto exercitationem. Possimus, ipsum ad beatae quasi reprehenderit ex facilis dignissimos, rerum blanditiis nisi ea! Perferendis, nemo dolores eum ratione omnis doloremque.</p>
-                <button class="btn-upvote">Upvote</button>
-                </div> `;
+                <a href="{{ url('/keluhan/detailKeluhan') }}" class="w-full h-full">
+                    <div class="card">
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum explicabo vero nostrum, iure repellendus perspiciatis non numquam eaque est ipsum quam similique nobis sit assumenda, doloremque quasi fuga molestiae. Eligendi animi repellat deleniti maiores, fugit eaque ratione repudiandae omnis quae qui aliquam sunt illo reprehenderit unde quasi officia odio. Qui, asperiores itaque? At delectus nostrum dignissimos beatae obcaecati harum maxime quos, fugiat asperiores ipsam a suscipit esse, modi vero quaerat natus veritatis eum animi non rem dolore ipsum iusto exercitationem. Possimus, ipsum ad beatae quasi reprehenderit ex facilis dignissimos, rerum blanditiis nisi ea! Perferendis, nemo dolores eum ratione omnis doloremque.</p>
+                        <button class="btn-upvote">Upvote</button>
+                    </div>
+                </a>
+                `;
                 container.appendChild(card);
             }
+
             
             dropdownBtn.addEventListener('click', () => {
                 dropdownMenu.classList.toggle('active');
