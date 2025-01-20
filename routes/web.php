@@ -44,6 +44,7 @@ Route::prefix('home')->group(function () {
         Route::get('/admin/excel' , 'excel');
         Route::get('/admin/keluhan' , 'keluhan');
 
+        Route::post('/admin/editStatusSiswa', 'editStatusSiswa');
         Route::post('/admin/ImportExcel', 'importExcel');
         Route::post('/orders', 'store');
         Route::post('/admin/daftarSiswa', 'daftarSiswa');

@@ -10,7 +10,7 @@ class live_account extends Model
     public $table = 'live_account';
     public $primaryKey = 'id_live_account';
     public $incrementing = true;
-    public $timestamps = false;
+    public $timestamps = true;
     // protected $appends = ['role_text'];
     protected $hidden = ['password_siswa'];
 

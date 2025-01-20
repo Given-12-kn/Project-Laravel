@@ -17,6 +17,9 @@ class adminController extends Controller
 
     public function importExcel(Request $request){
 
+        if($request->file('excel') == null){
+            return back()->with('error', 'Data Gagal Diimport');
+        }
         $request->validate([
             'email' => 'email',
             'nrp' => 'integer',
@@ -24,7 +27,7 @@ class adminController extends Controller
             'is_active' => 'boolean',
         ]);
 
-       //Excel::import(new ImportExcel, $request->file('excel'));
+       Excel::import(new ImportExcel, $request->file('excel'));
        if($request->file('excel') == null){
            return back()->with('error', 'Data Gagal Diimport');
        }
@@ -98,5 +101,38 @@ class adminController extends Controller
             'success' => true,
             'message' => 'BLADE1_STATUS updated to ' . $status
         ]);
+    }
+
+    public function editStatusSiswa(Request $request){
+        $request->validate([
+            'liveAcId' => 'required|integer',
+            'action' => 'required|in:activate,deactivate',
+        ]);
+
+        $account = live_account::find($request->liveAcId);
+
+        if ($account) {
+            $account->is_active = ($request->action === 'activate') ? 1 : 0;
+            $account->update();
+
+            return response()->json(['success' => true]);
+        }
+
+        return response()->json(['success' => false], 404);
+    }
+
+    public function load(Request $request){
+        $idLa = $request->liveAcId;
+        if($request->Active){
+            $data = live_account::find($idLa);
+            $data->is_active = 1;
+            $data->update();
+        }
+        else if($request->Deactivate){
+            $data = live_account::find($idLa);
+            $data->is_active = 0;
+            $data->update();
+        }
+        return back();
     }
 }

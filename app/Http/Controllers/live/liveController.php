@@ -20,9 +20,9 @@ class liveController extends Controller
         }
 
         if($bladeStatus == 'false'){
-            return redirect('home/')->with('error', 'Live is not available');
+            return redirect('home/')->with('error', 'Live is not available yet');
         }
-        
+
         return view('live.live');
     }
 

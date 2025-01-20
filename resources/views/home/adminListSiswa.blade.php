@@ -29,26 +29,30 @@
                         </thead>
                         <tbody>
                             @if (isset($data) && count($data) > 0)
-                            @foreach ( $data as $key => $row )
-                            <form action="" method="post">
-                            <tr>
-                                <td class="border border-gray-300 px-2 py-1">{{ $key + 1}}</td>
-                                <td class="border border-gray-300 px-2 py-1">{{ $row->email }}</td>
-                                <td class="border border-gray-300 px-2 py-1">{{ optional($row->toSiswa)->nama }}</td>
-                                <td class="border border-gray-300 px-2 py-1">{{ $row->nrp }}</td>
-                                <td class="border border-gray-300 px-2 py-1">{{ $row->role_account }}</td>
-                                <td class="border border-gray-300 px-2 py-1">{{ $row->is_active ? 'Active' : 'Inactive' }}</td>
-                                <input type="hidden" name="id" value="{{ $row->id }}">
-                            </tr>
-                        </form>
-                            @endforeach
+                                @foreach ($data as $key => $row)
+                                    <tr data-id="{{ $row->id_live_account }}">
+                                        <td class="border border-gray-300 px-2 py-1">{{ $key + 1 }}</td>
+                                        <td class="border border-gray-300 px-2 py-1">{{ $row->email }}</td>
+                                        <td class="border border-gray-300 px-2 py-1">{{ optional($row->toSiswa)->nama }}</td>
+                                        <td class="border border-gray-300 px-2 py-1">{{ $row->nrp }}</td>
+                                        <td class="border border-gray-300 px-2 py-1">{{ $row->role_account }}</td>
+                                        <td class="border border-gray-300 px-2 py-1">
+                                            <button class="status-toggle btn-status"
+                                                data-id="{{ $row->id_live_account }}"
+                                                data-status="{{ $row->is_active ? 'deactivate' : 'activate' }}"
+                                                data-is-active="{{ $row->is_active }}">
+                                                {{ $row->is_active ? 'Deactivate' : 'Activate' }}
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             @else
                                 <tr>
-                                    <td  class="border border-gray-300 px-2 py-1"> No Data</td>
+                                    <td class="border border-gray-300 px-2 py-1" colspan="6">No Data</td>
                                 </tr>
                             @endif
-
                         </tbody>
+
                     </table>
                 </div>
             </div>
@@ -59,6 +63,8 @@
 
 
 @endsection
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
     function hideSidebar() {
         const sidebar = document.getElementById('sidebar');
@@ -84,6 +90,63 @@
         content.style.width = 'calc(100% - 16rem)'; // Kembalikan ukuran konten semula
 
     }
+
+    $(document).ready(function() {
+
+        $('.btn-status').each(function() {
+        var button = $(this);
+        var isActive = button.data('is-active');
+
+        // Set warna tombol berdasarkan status aktif
+        if (isActive) {
+            button.addClass('bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded');
+            button.text('Deactivate');
+        } else {
+            button.addClass('bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded');
+            button.text('Activate');
+        }
+    });
+    
+    $('.btn-status').on('click', function(e) {
+        e.preventDefault(); // Mencegah form untuk dikirim secara langsung
+
+        var button = $(this);
+        var accountId = button.data('id');
+        var action = button.data('status');
+
+        // Mengirim permintaan AJAX ke server
+        $.ajax({
+            url: '/home/admin/editStatusSiswa', // URL untuk memproses status
+            method: 'POST',
+            data: {
+                _token: '{{ csrf_token() }}',
+                liveAcId: accountId,
+                action: action
+            },
+            success: function(response) {
+                // Jika sukses, perbarui status tombol di UI
+                if (response.success) {
+                    var newStatus = action === 'activate' ? 'deactivate' : 'activate';
+                    var newText = newStatus === 'activate' ? 'Activate' : 'Deactivate';
+                    button.text(newText);
+                    button.data('status', newStatus);
+
+                    // Mengubah warna tombol sesuai status
+                    if (newStatus === 'activate') {
+                        button.removeClass('bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded').addClass('bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded');
+                    } else {
+                        button.removeClass('bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded').addClass('bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded');
+                    }
+                } else {
+                    alert('Failed to update status.');
+                }
+            },
+            error: function() {
+                alert('Error occurred while updating status.');
+            }
+        });
+    });
+});
 </script>
 
 @endsection

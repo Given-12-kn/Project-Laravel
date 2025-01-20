@@ -106,6 +106,7 @@
                     const worksheet = workbook.Sheets[firstSheetName];
                     const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 }); // Convert to 2D array
 
+                    console.log(jsonData);  
                     populateTable(jsonData);
                 };
                 reader.readAsArrayBuffer(file);

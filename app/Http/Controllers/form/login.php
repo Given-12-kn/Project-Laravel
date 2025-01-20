@@ -54,6 +54,7 @@ class login extends Controller
                     'nrp' => $nrp,
                     'password' => $password,
                 ];
+                
                 if(Auth::attempt($data)){
                     $cekAdmin = Auth::user()->toLa->role_account;
                     if($cekAdmin == 'admin'){

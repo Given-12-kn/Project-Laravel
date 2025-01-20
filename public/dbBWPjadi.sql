@@ -49,7 +49,7 @@ CREATE TABLE `jurusan` (
 
 /*Data for the table `jurusan` */
 
-insert  into `jurusan`(`id_jurusan`,`nama_jurusan`,`kode_jurusan`,`fakultas`) values 
+insert  into `jurusan`(`id_jurusan`,`nama_jurusan`,`kode_jurusan`,`fakultas`) values
 (1,'Teknik Informatika','TI','teknik');
 
 /*Table structure for table `kategori` */
@@ -99,14 +99,15 @@ CREATE TABLE `live_account` (
   `role_account` enum('siswa','admin','dosen') NOT NULL,
   `is_active` tinyint(1) DEFAULT 1,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id_live_account`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `live_account` */
 
-insert  into `live_account`(`id_live_account`,`email`,`nrp`,`role_account`,`is_active`,`created_at`) values 
+insert  into `live_account`(`id_live_account`,`email`,`nrp`,`role_account`,`is_active`,`created_at`) values
 (1,'siswa1@example.com',223117082,'siswa',1,'2025-01-10 22:07:56'),
-(2,'siswa1@example.com',223117073,'admin',1,'2025-01-10 22:08:24');
+(2,'siswa1@example.com',223117084,'admin',1,'2025-01-10 22:08:24');
 
 /*Table structure for table `live_session` */
 
@@ -127,7 +128,7 @@ CREATE TABLE `live_session` (
 
 /*Data for the table `live_session` */
 
-insert  into `live_session`(`id_live_session`,`id_live_account`,`content`,`periode`,`is_archive`,`is_acc`,`created_at`) values 
+insert  into `live_session`(`id_live_session`,`id_live_account`,`content`,`periode`,`is_archive`,`is_acc`,`created_at`) values
 (1,1,'gvn gay',2025,0,NULL,'2025-01-18 12:46:31');
 
 /*Table structure for table `respon_keluhan` */
@@ -170,7 +171,7 @@ CREATE TABLE `siswa` (
 
 /*Data for the table `siswa` */
 
-insert  into `siswa`(`id_siswa`,`id_jurusan`,`nama`,`password_siswa`,`nrp`,`jenis_kelamin`,`angkatan`,`is_active`,`updated_at`) values 
+insert  into `siswa`(`id_siswa`,`id_jurusan`,`nama`,`password_siswa`,`nrp`,`jenis_kelamin`,`angkatan`,`is_active`,`updated_at`) values
 (1,1,'Given Lee','$2y$12$BIZG.7Y8ACKgWlL8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa',223117082,'L',2025,1,NULL),
 (2,1,'Yoshi','$2y$12$BIZG.7Y8ACKgWlL8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa',223117083,'L',2025,0,NULL),
 (3,1,'Ayano','$2y$12$BIZG.7Y8ACKgWlL8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa',223117084,'P',2025,1,NULL);

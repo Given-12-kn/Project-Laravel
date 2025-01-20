@@ -24,18 +24,15 @@ class cekSudahLogin
             Log::info('User not authenticated. Redirecting to login.');
             return redirect(url('form/login'));
         }
-        $cek = false;
         foreach ($baru as $b) {
-            //dd(Auth::user()->toLa->role_account);
             if(Auth::user()->toLa?->role_account == $b){
+
+                if(Auth::user()->toLa?->is_active == false){
+                    abort(403, 'Unauthorized access');
+                }
+
                 return $next($request);
             }
-            else{
-                $cek = true;
-            }
-        }
-        if($cek){
-            abort(403, 'Unauthorized access.');
         }
        abort(403, 'Unauthorized action.');
     }

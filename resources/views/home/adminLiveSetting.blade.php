@@ -52,7 +52,6 @@
         content.style.marginLeft = '0'; // Hilangkan margin kiri konten
         content.style.width = '100%'; // Perluas konten sepenuhnya
 
-
     }
 
     function showSidebar() {
