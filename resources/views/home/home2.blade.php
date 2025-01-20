@@ -11,6 +11,10 @@
 
     <h1 class="text-5xl font-semibold text-center mb-4 mt-8">Open Talk</h1>
 
+    @if (Session::has('error'))
+        <p class="text-red-500 text-2xl">{{ Session::get('error') }}</p>
+    @endif
+
     <p class="text-center text-justify-center text-gray-600 mt-10 mb-20 mx-14 md:mx-24 lg:mx-56 font-semibold">
         Sebuah platform interaktif yang dirancang khusus untuk mahasiswa dalam menyampaikan keluhan, berbagi pandangan, dan berdiskusi secara konstruktif. Open Talk memberikan ruang bagi setiap suara untuk didengar, menjembatani komunikasi antara mahasiswa dan pihak terkait. Di sini, Anda dapat menyampaikan ide, menemukan solusi bersama, dan menciptakan perubahan positif bagi komunitas kampus. Kami percaya, dengan dialog yang terbuka dan saling mendukung, setiap tantangan dapat diatasi."
     </p>
@@ -29,9 +33,9 @@
             @endfor
         </div>
     </div>
-    
 
-    
+
+
     <div class="mt-8 mb-40 flex justify-center">
         <a href="/your-link-here" class="bg-blue-400 text-white font-bold py-2 px-4 rounded-full hover:bg-blue-500 transition-transform transform hover:scale-105 duration-300">Add Keluhan</a>
     </div>
@@ -45,7 +49,7 @@
         <div class="flex-shrink-0 mb-8 w-full lg:w-1/2 bg-white shadow-lg rounded-lg p-6" lg:mb-0>
             <img id="guide-image" src="{{ asset('step1.png') }}" alt="Guide Step" class="w-full rounded-lg ">
         </div>
-    
+
         <!-- Langkah-langkah -->
         <div class="lg:ml-6 lg:w-1/2 w-full">
             <!-- Langkah 1 -->
@@ -58,7 +62,7 @@
                     <p class="text-gray-500">Description for step 1: This is where you discover product opportunities by understanding the market and user needs.</p>
                 </div>
             </div>
-    
+
             <!-- Langkah 2 -->
             <div class="flex flex-col mb-4 step-container" data-step="2">
                 <div class="flex items-center cursor-pointer" onclick="activateStep(2)">
@@ -69,7 +73,7 @@
                     <p class="text-gray-500">Description for step 2: Leverage user feedback to improve and refine your product faster.</p>
                 </div>
             </div>
-    
+
             <!-- Langkah 3 -->
             <div class="flex flex-col mb-4 step-container" data-step="3">
                 <div class="flex items-center cursor-pointer" onclick="activateStep(3)">
@@ -80,7 +84,7 @@
                     <p class="text-gray-500">Description for step 3: Develop confidence in addressing complex challenges through structured analysis.</p>
                 </div>
             </div>
-    
+
             <!-- Langkah 4 -->
             <div class="flex flex-col mb-4 step-container" data-step="4">
                 <div class="flex items-center cursor-pointer" onclick="activateStep(4)">
@@ -93,17 +97,17 @@
             </div>
         </div>
     </div>
-    
-    
-    
+
+
+
 </div>
 
 
 <script>
     const slider = document.getElementById("card-slider");
     const cards = document.querySelectorAll(".card");
-    let currentIndex = 1; 
-    let autoSlideInterval; 
+    let currentIndex = 1;
+    let autoSlideInterval;
     let isDragging = false;
     let startX = 0;
     let currentX = 0;
@@ -125,21 +129,21 @@
             }
         });
 
-        const cardWidth = 100 / 3; 
+        const cardWidth = 100 / 3;
         slider.style.transform = `translateX(-${currentIndex * cardWidth - cardWidth}%)`;
     }
 
     function slideTo(newIndex) {
         currentIndex = newIndex;
-        if (currentIndex < 0) currentIndex = cards.length - 1; 
-        if (currentIndex > cards.length - 1) currentIndex = 1; 
+        if (currentIndex < 0) currentIndex = cards.length - 1;
+        if (currentIndex > cards.length - 1) currentIndex = 1;
         updateCards();
     }
 
     function autoSlide() {
         autoSlideInterval = setInterval(() => {
             slideTo(currentIndex + 1);
-        }, 3000); 
+        }, 3000);
     }
 
     function stopAutoSlide() {
@@ -157,9 +161,9 @@
     function handleTouchEnd() {
         const distance = currentX - startX;
         if (distance > 50) {
-            slideTo(currentIndex - 1); 
+            slideTo(currentIndex - 1);
         } else if (distance < -50) {
-            slideTo(currentIndex + 1); 
+            slideTo(currentIndex + 1);
         }
     }
 
@@ -178,9 +182,9 @@
         isDragging = false;
         const distance = currentX - startX;
         if (distance > 50) {
-            slideTo(currentIndex - 1); 
+            slideTo(currentIndex - 1);
         } else if (distance < -50) {
-            slideTo(currentIndex + 1); 
+            slideTo(currentIndex + 1);
         }
     }
 
@@ -198,9 +202,9 @@
     autoSlide();
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-   
+
     document.addEventListener("DOMContentLoaded", () => {
-    activateStep(1); 
+    activateStep(1);
     });
 
     function activateStep(step) {
@@ -223,14 +227,14 @@
             } else {
                 stepLine.classList.add("bg-gray-300");
                 stepLine.classList.remove("bg-black", "w-1");
-                
+
             }
         });
     }
 </script>
-  
-  
-  
+
+
+
 
 <style>
     #card-slider {
@@ -258,7 +262,7 @@
     border: none;
     border-radius: 25px;
     cursor: pointer;
-    text-decoration: none; 
+    text-decoration: none;
     transition: background-color 0.3s ease, transform 0.3s ease;
   }
 

@@ -16,7 +16,7 @@
                     <p class="text-xl">List of students who have registered</p>
                 </div>
                 <div class="card-body text-center">
-                    <table class="ttable-auto border-collapse border border-gray-300 w-full">
+                    <table class="table-auto border-collapse border border-gray-300 w-full">
                         <thead>
                             <tr>
                                 <th class="border border-gray-300 px-2 py-1">No</th>
@@ -24,12 +24,13 @@
                                 <th class="border border-gray-300 px-2 py-1">Nama</th>
                                 <th class="border border-gray-300 px-2 py-1">Nrp</th>
                                 <th class="border border-gray-300 px-2 py-1">Role</th>
-                                <th class="border border-gray-300 px-2 py-1">Aktif</th>
+                                <th class="border border-gray-300 px-2 py-1">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @if (isset($data) && count($data) > 0)
                             @foreach ( $data as $key => $row )
+                            <form action="" method="post">
                             <tr>
                                 <td class="border border-gray-300 px-2 py-1">{{ $key + 1}}</td>
                                 <td class="border border-gray-300 px-2 py-1">{{ $row->email }}</td>
@@ -37,7 +38,9 @@
                                 <td class="border border-gray-300 px-2 py-1">{{ $row->nrp }}</td>
                                 <td class="border border-gray-300 px-2 py-1">{{ $row->role_account }}</td>
                                 <td class="border border-gray-300 px-2 py-1">{{ $row->is_active ? 'Active' : 'Inactive' }}</td>
+                                <input type="hidden" name="id" value="{{ $row->id }}">
                             </tr>
+                        </form>
                             @endforeach
                             @else
                                 <tr>
@@ -83,24 +86,4 @@
     }
 </script>
 
-<style>
-    .btn-primary:hover, .btn-success:hover {
-    background-color: #2575fc;
-    transform: scale(1.05);
-    transition: all 0.3s ease;
-}
-
-/* Browse File Button Styling */
-.btn-primary {
-    background-color: #6a11cb;
-    border: none;
-    font-size: 16px;
-    transform: scale(1.05);
-    transition: all 0.3s ease;
-}
-
-.btn-success {
-    font-size: 16px;
-}
-</style>
 @endsection

@@ -11,6 +11,18 @@ class liveController extends Controller
 {
     public function index()
     {
+        $status = file_get_contents(base_path('.env'));
+
+        $bladeStatus = null;
+
+        if (preg_match('/^BLADE1_STATUS=(.*)$/m', $status, $matches)) {
+            $bladeStatus = trim($matches[1]);
+        }
+
+        if($bladeStatus == 'false'){
+            return redirect('home/')->with('error', 'Live is not available');
+        }
+        
         return view('live.live');
     }
 
@@ -19,16 +31,16 @@ class liveController extends Controller
         $request->validate([
             'content' => 'required|string',
         ]);
-    
+
         $liveSession = live_session::create([
-            'id_live_account' => Auth::id(), 
+            'id_live_account' => Auth::id(),
             'content' => $request->input('content'),
-            'periode' => now()->year, 
+            'periode' => now()->year,
             'is_archive' => 0,
-            'is_acc' => NULL, 
+            'is_acc' => NULL,
             'created_at' => now(),
         ]);
-    
+
         // Kembalikan respons JSON
         return response()->json([
             'status' => 'success',
@@ -36,5 +48,5 @@ class liveController extends Controller
             'data' => $liveSession,
         ]);
     }
-    
+
 }

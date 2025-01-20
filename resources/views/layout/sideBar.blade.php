@@ -37,7 +37,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center px-4 py-2 hover:bg-blue-500">
+                        <a href="{{ url('home/admin/liveSetting') }}" class="flex items-center px-4 py-2 hover:bg-blue-500">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A2 2 0 0020 6.18V4a2 2 0 00-2-2h-4.058A2 2 0 0012.295 3l-.817 1.639A2 2 0 019.945 5.5H5a2 2 0 00-2 2v8a2 2 0 002 2h4.5" />
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 13l4.553-2.276A2 2 0 0020 9.82v-1.64a2 2 0 00-1.053-1.764L15 5M15 17a2 2 0 100 4 2 2 0 000-4z" />
@@ -54,7 +54,6 @@
                 </ul>
             </nav>
         </aside>
-
 
         <!-- Content -->
         <div id="content" class="transition-all duration-300" style="width: calc(100% - 16rem);">

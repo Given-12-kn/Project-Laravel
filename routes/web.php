@@ -46,6 +46,8 @@ Route::prefix('home')->group(function () {
 
         Route::post('/admin/ImportExcel', 'importExcel');
         Route::post('/orders', 'store');
+        Route::post('/admin/daftarSiswa', 'daftarSiswa');
+        Route::post('/admin/turnLive', 'turnLive');
     });
 
 });
