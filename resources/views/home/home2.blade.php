@@ -3,6 +3,7 @@
 @section('title', 'Home')
 
 @section('no-headerAdmin', true)
+@section('no-headerDosen', true)
 
 @section('content')
 <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
