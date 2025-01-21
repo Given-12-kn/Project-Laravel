@@ -23,9 +23,15 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('home/admin/DataAcc') }}" class="flex items-center px-4 py-2 hover:bg-blue-500">
-                            <x-uiw-setting class="h-5 w-5 text-white" />
-                            <span class="ml-3 text-white">Acc Setting</span>
+                        <a href="{{ url('home/admin/DataSessionAcc') }}" class="flex items-center px-4 py-2 hover:bg-blue-500">
+                            <x-cri-fct class="h-5 w-5 text-white" />
+                            <span class="ml-3 text-white">Live Session Acc</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('home/admin/DataKeluhanAcc') }}" class="flex items-center px-4 py-2 hover:bg-blue-500">
+                            <x-forkawesome-tripadvisor class="h-5 w-5 text-white" />
+                            <span class="ml-3 text-white">Live Keluhan Acc</span>
                         </a>
                     </li>
                     <li>
@@ -49,6 +55,12 @@
                         <a href="{{ url('home/admin/excel') }}" class="flex items-center px-4 py-2 hover:bg-blue-500">
                             <x-fileicon-microsoft-excel class="h-5 w-5 text-white" />
                             <span class="ml-3 text-white">Add Excel Data</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('home/admin/listDataAcc') }}" class="flex items-center px-4 py-2 hover:bg-blue-500">
+                            <x-elemplus-list class="h-5 w-5 text-white" />
+                            <span class="ml-3 text-white">List Acc Reviews</span>
                         </a>
                     </li>
                 </ul>

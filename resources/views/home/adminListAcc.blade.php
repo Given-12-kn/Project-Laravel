@@ -27,44 +27,51 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @php
-                                    $data = 0;
-                                @endphp
+                              @if (isset($dataLs) && count($dataLs) > 0)
 
                                 @foreach ($dataLs as $row )
-                                @if ($row->is_acc == 2)
-                                @php $data = 1; @endphp
-
                                 <tr>
-                                    <td class="border border-gray-300 px-6 py-4 w-80">
-                                        <button data-id="{{ $row->id_live_session }}" data-action="accept"
-                                        class="action-button bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-xl">
-                                            Accept
-                                        </button>
-                                        <button data-id="{{ $row->id_live_session }}" data-action="decline"
-                                         class="action-button bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-xl">
-                                            Decline
-                                        </button>
+                                    @if ($row->is_acc == 1)
+                                    <td class="border border-gray-300 px-6 py-4 w-80"> <p class="action-button bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-xl"> Accepted </p> </td>
+                                    @elseif($row->is_acc == 0)
+                                    <td class="border border-gray-300 px-6 py-4 w-80"> <p class="action-button bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-xl"> Declined </p> </td>
+                                    @endif
+
+                                        <td class="border border-gray-300 px-6 py-4 w-80">{{$row->content }}</td>
+                                    </tr>
+                                @endforeach
+                              @else
+                                <tr>
+                                    <td class="border border-gray-300 px-6 py-4 text-gray-700 text-lg">
+                                        No Data Available
                                     </td>
                                     <td class="border border-gray-300 px-6 py-4 text-gray-700 text-lg">
-                                        {{-- {{optional($row->toLa->toSiswa)->nama}} :  --}}
-                                        {{$row->content}}
+                                        No Data Available
                                     </td>
                                 </tr>
-                                @endif
+                              @endif
 
+                              @if(isset($dataKl) && count($dataKl) > 0)
+                                @foreach ($dataLs as $row2 )
+                                <tr>
+                                @if ($row2->status_keluhan == 1)
+                                <td class="border border-gray-300 px-6 py-4 w-80"> <p class="action-button bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-xl"> Accepted </p> </td>
+                                @elseif($row2->status_keluhan == 0)
+                                <td class="border border-gray-300 px-6 py-4 w-80"> <p class="action-button bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-xl"> Declined </p> </td>
+                                @endif
+                                    <td class="border border-gray-300 px-6 py-4 w-80">{{$row2->content }}</td>
+                                </tr>
                                 @endforeach
-                                @if ($data == 0)
-                                    <tr>
-                                        <td class="border border-gray-300 px-6 py-4 text-gray-700 text-lg">
-                                            No Data Available
-                                        </td>
-
-                                        <td class="border border-gray-300 px-6 py-4 text-gray-700 text-lg">
-                                            No Data Available
-                                        </td>
-                                    </tr>
-                                @endif
+                                @else
+                                <tr>
+                                    <td class="border border-gray-300 px-6 py-4 text-gray-700 text-lg">
+                                        No Data Available
+                                    </td>
+                                    <td class="border border-gray-300 px-6 py-4 text-gray-700 text-lg">
+                                        No Data Available
+                                    </td>
+                                </tr>
+                              @endif
                             </tbody>
                         </table>
                     </div>
@@ -80,48 +87,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-
-    var myurl = "<?php echo URL::to('/'); ?>";
-    $(document).ready(function () {
-        $('.action-button').on('click', function (e) {
-            e.preventDefault();
-
-            const id = $(this).data('id');
-            const action = $(this).data('action');
-            const row = $(this).closest('tr');
-            const tableBody = row.closest('tbody');
-
-            $.ajax({
-                type: "post",
-                url: myurl + "/home/admin/accSession",
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    id: id,
-                    action: action
-                },
-                success: function (response) {
-                    console.log(response);
-                    row.remove();
-                    if (tableBody.children('tr').length === 0) {
-                        tableBody.append(`
-                            <tr>
-                               <td class="border border-gray-300 px-6 py-4 text-gray-700 text-lg">
-                                            No Data Available
-                                        </td>
-
-                                        <td class="border border-gray-300 px-6 py-4 text-gray-700 text-lg">
-                                            No Data Available
-                                        </td>
-                            </tr>
-                        `);
-                    }
-                },
-                error: function () {
-                    alert('Error occurred while updating status.');
-                }
-            });
-       });
-    });
 
     function hideSidebar() {
         const sidebar = document.getElementById('sidebar');

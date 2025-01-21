@@ -44,13 +44,17 @@ Route::prefix('home')->group(function () {
         Route::get('/admin/liveSetting' , 'liveSetting');
         Route::get('/admin/excel' , 'excel');
         Route::get('/admin/keluhan' , 'keluhan');
-        Route::get('/admin/DataAcc', 'accView');
+        Route::get('/admin/DataSessionAcc', 'accView');
+        Route::get('/admin/DataKeluhanAcc', 'accView2');
+        Route::get('/admin/listDataAcc', 'accView3');
 
         Route::post('/admin/editStatusSiswa', 'editStatusSiswa');
         Route::post('/admin/ImportExcel', 'importExcel');
         Route::post('/admin/checkAcc', 'checkAcc');
         Route::post('/admin/daftarSiswa', 'daftarSiswa');
         Route::post('/admin/turnLive', 'turnLive');
+        Route::post('/admin/accSession', 'checkAcc');
+        Route::post('/admin/accKeluhan', 'checkAcc2');
     });
 
 });

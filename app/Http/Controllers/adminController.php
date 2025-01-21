@@ -139,8 +139,42 @@ class adminController extends Controller
     }
 
     public function accView(){
-        $dataKl = keluhan::all();
         $dataLs = live_session::all();
-        return view('home.adminAccViews', compact('dataKl', 'dataLs'));
+        return view('home.adminAccViews', compact('dataLs'));
+    }
+
+    public function accView2(){
+        $dataKl = keluhan::all();
+        return view('home.adminAccViews', compact('dataKl'));
+    }
+
+    public function accView3(){
+        $dataLs = live_session::all();
+        $dataKl = keluhan::all();
+        return view('home.adminListAcc', compact('dataLs', 'dataKl'));
+    }
+
+    public function checkAcc(Request $request){
+        $id = $request->id;
+        $action = $request->action;
+
+        if($action == 'accept'){
+            $data = live_session::find($id);
+            $data->is_acc = 1;
+
+            if($data->update()){
+                return response()->json(['success' => true]);
+            }
+        }
+        else{
+            $data = live_session::find($id);
+            $data->is_acc = 0;
+
+            if($data->update()){
+                return response()->json(['success' => true]);
+            }
+        }
+
+        return response()->json(['success' => false, 'message' => $action]);
     }
 }

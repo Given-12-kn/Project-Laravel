@@ -90,6 +90,8 @@
 
 <script>
 
+
+
 $(document).ready(function () {
     $('#status').on('change', function () {
         var status = $(this).val().toLowerCase();
@@ -168,17 +170,17 @@ $(document).ready(function() {
             button.text('Activate');
         }
     });
-
+    var myurl = "<?php echo URL::to('/'); ?>";
     $('.btn-status').on('click', function(e) {
-        e.preventDefault(); // Mencegah form untuk dikirim secara langsung
+        e.preventDefault();
 
         var button = $(this);
         var accountId = button.data('id');
         var action = button.data('status');
 
-        // Mengirim permintaan AJAX ke server
+
         $.ajax({
-            url: '/home/admin/editStatusSiswa', // URL untuk memproses status
+            url: myurl + '/home/admin/editStatusSiswa',
             method: 'POST',
             data: {
                 _token: '{{ csrf_token() }}',
@@ -186,14 +188,14 @@ $(document).ready(function() {
                 action: action
             },
             success: function(response) {
-                // Jika sukses, perbarui status tombol di UI
+
                 if (response.success) {
                     var newStatus = action === 'activate' ? 'deactivate' : 'activate';
                     var newText = newStatus === 'activate' ? 'Activate' : 'Deactivate';
                     button.text(newText);
                     button.data('status', newStatus);
 
-                    // Mengubah warna tombol sesuai status
+
                     if (newStatus === 'activate') {
                         button.removeClass('bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded').addClass('bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded');
                     } else {

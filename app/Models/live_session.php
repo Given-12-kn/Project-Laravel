@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class live_session extends Model
 {
     protected $table = 'live_session';
-    
+
     protected $primaryKey = 'id_live_session';
 
     protected $fillable = [
@@ -20,5 +20,10 @@ class live_session extends Model
     ];
 
     public $timestamps = false;
+
+    public function toLa()
+    {
+        return $this->hasOne(live_account::class, 'id_live_account', 'id_live_account');
+    }
 }
 
