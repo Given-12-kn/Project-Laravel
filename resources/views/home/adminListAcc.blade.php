@@ -99,33 +99,5 @@
 @endsection
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<script>
-
-    function hideSidebar() {
-        const sidebar = document.getElementById('sidebar');
-        const openSidebarBtn = document.getElementById('openSidebarBtn');
-        const content = document.getElementById('content');
-
-
-        sidebar.style.transform = 'translateX(-100%)'; // Geser sidebar ke kiri
-        openSidebarBtn.classList.remove('hidden'); // Tampilkan tombol buka
-        content.style.marginLeft = '0'; // Hilangkan margin kiri konten
-        content.style.width = '100%'; // Perluas konten sepenuhnya
-
-
-    }
-
-    function showSidebar() {
-        const sidebar = document.getElementById('sidebar');
-        const openSidebarBtn = document.getElementById('openSidebarBtn');
-        const content = document.getElementById('content');
-
-        sidebar.style.transform = 'translateX(0)'; // Kembalikan sidebar ke posisi awal
-        openSidebarBtn.classList.add('hidden'); // Sembunyikan tombol buka
-        content.style.width = 'calc(100% - 16rem)'; // Kembalikan ukuran konten semula
-
-    }
-
-</script>
 
 @endsection

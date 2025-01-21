@@ -8,15 +8,22 @@
             <nav class="flex-grow flex md:block flex-wrap">
                 <div class="w-full md:space-y-2 mt-4 flex flex-wrap justify-around md:block">
                     <div class="w-1/2 md:w-full">
-                        <a href="{{ url('home/admin/DataSessionAcc') }}" class="flex items-center px-4 py-2 hover:bg-blue-500">
+                        <a href="{{ url('home/admin/DataSessionAcc') }}" class="flex items-center px-4 py-2 hover:bg-blue-500 relative">
                             <x-cri-fct class="h-5 w-5 text-white" />
                             <span class="ml-3 text-white">Live Session Acc</span>
+                            <span id="unapproved-count" class="absolute top-0 right-0 mt-2 mr-2 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">
+                                0
+                            </span>
+
                         </a>
                     </div>
                     <div class="w-1/2 md:w-full">
-                        <a href="{{ url('home/admin/DataKeluhanAcc') }}" class="flex items-center px-4 py-2 hover:bg-blue-500">
+                        <a href="{{ url('home/admin/DataKeluhanAcc') }}" class="flex items-center px-4 py-2 hover:bg-blue-500 relative">
                             <x-forkawesome-tripadvisor class="h-5 w-5 text-white" />
                             <span class="ml-3 text-white">Keluhan Acc</span>
+                            <span id="unapproved-count2" class="absolute top-0 right-0 mt-2 mr-2 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">
+                                0
+                            </span>
                         </a>
                     </div>
                     <div class="w-1/2 md:w-full">
@@ -63,3 +70,67 @@
         </div>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+        var myurl = "<?php echo URL::to('/'); ?>";
+    $(document).ready(function () {
+        function countData(){
+            $.ajax({
+                url: myurl + "/home/admin/countData",
+                type: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                },
+                success: function (response) {
+
+                    $('#unapproved-count').text(response.count);
+                },
+                error: function () {
+                    alert('error occured');
+                }
+            });
+        }
+           function countData2(){
+            $.ajax({
+                url: myurl + "/home/admin/countData2",
+                type: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                },
+                success: function (response) {
+
+                    $('#unapproved-count2').text(response.count);
+                },
+                error: function () {
+                    alert('error occured');
+                }
+            });
+        }
+        countData();
+        setInterval(countData, 30000);
+    });
+
+    $(document).ready(function () {
+        function countData2(){
+            $.ajax({
+                url: myurl + "/home/admin/countData2",
+                type: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                },
+                success: function (response) {
+
+                    $('#unapproved-count2').text(response.count);
+                },
+                error: function () {
+                    alert('error occured');
+                }
+            });
+        }
+        countData2();
+        setInterval(countData2, 30000);
+    });
+
+
+</script>

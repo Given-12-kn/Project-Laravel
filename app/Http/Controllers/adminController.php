@@ -201,4 +201,22 @@ class adminController extends Controller
 
         return response()->json(['success' => false, 'message' => $action]);
     }
+
+    public function countData(Request $request){
+        // $dataLs = live_session::all();
+        $data = live_session::select('is_acc')->where('is_acc', 2)->get();
+        $count = count($data);
+        // $count = live_session::where('is_acc', 2)->count();
+
+        return response()->json(['success' => true, 'count' => $count]);
+    }
+
+    public function countData2(Request $request){
+        // $dataLs = live_session::all();
+        
+        $count = keluhan::where('status_keluhan', 2)->count();
+
+        return response()->json(['success' => true, 'count' => $count]);
+    }
+
 }

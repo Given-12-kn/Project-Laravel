@@ -55,6 +55,8 @@ Route::prefix('home')->group(function () {
         Route::post('/admin/turnLive', 'turnLive');
         Route::post('/admin/accSession', 'checkAcc');
         Route::post('/admin/accKeluhan', 'checkAcc2');
+        Route::post('/admin/countData', 'countData');
+        Route::post('/admin/countData2', 'countData2');
     });
 
 });
