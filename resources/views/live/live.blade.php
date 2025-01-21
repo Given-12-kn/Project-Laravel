@@ -31,31 +31,7 @@
 </div>
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
-
-<style>
-    #main-chat-box {
-        background-color: #fffbcc;
-        color: #333;
-        font-weight: bold;
-        border: 2px solid #ffc107;
-    }
-
-    #dynamic-chat-container div {
-        background-color: #f0f4f8;
-        color: #555;
-        font-size: 0.9rem;
-        border: 1px solid #ccc;
-        padding: 8px;
-        margin-bottom: 8px;
-        border-radius: 6px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    #dynamic-chat-container div:hover {
-        background-color: #e0e7ee;
-    }
-</style>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     const addButton = document.getElementById('add-button');
     const chatInput = document.getElementById('chat-input');
@@ -63,26 +39,50 @@
     const mainMessageText = document.getElementById('main-message-text');
     const upvoteButton = document.getElementById('upvote-button');
 
-    const sendMessage = (messageText) => {
-        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-        fetch("{{ route('live.store') }}", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': csrfToken,
+    // const sendMessage = (messageText) => {
+    //     fetch("{{ route('live.store') }}", {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'X-CSRF-TOKEN': {{ csrf_token() }},
+    //         },
+    //         body: JSON.stringify({
+    //             content: messageText
+    //         }),
+    //     })
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         console.log('Message stored:', data);
+    //     })
+    //     .catch(error => {
+    //         console.error('Error storing message:', error);
+    //     });
+    // };
+    var myurl = "<?php echo URL::to('/'); ?>";
+
+    $(document).ready(function () {
+        $('#add-button').on('click', function (e) {
+            e.preventDefault();
+            console.log('Button clicked' + chatInput.value);
+            $.ajax({
+            method: "POST",
+            url: myurl + "/live/store",
+            data: {
+                    _token: '{{ csrf_token() }}',
+                    content: chatInput.value
+                },
+            success: function (response) {
+                console.log('Message stored:', response);
+                chatInput.value = '';
             },
-            body: JSON.stringify({
-                content: messageText
-            }),
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Message stored:', data);
-        })
-        .catch(error => {
-            console.error('Error storing message:', error);
+            error: function () {
+                alert('Error storing message');
+            }
         });
-    };
+
+        });
+
+    });
 
     addButton.addEventListener('click', () => {
         const messageText = chatInput.value.trim();
@@ -108,9 +108,7 @@
             }, 600);
         }
 
-        sendMessage(messageText);
 
-        chatInput.value = '';
     });
 
     upvoteButton.addEventListener('click', () => {
@@ -130,4 +128,27 @@
     });
 </script>
 
+<style>
+    #main-chat-box {
+        background-color: #fffbcc;
+        color: #333;
+        font-weight: bold;
+        border: 2px solid #ffc107;
+    }
+
+    #dynamic-chat-container div {
+        background-color: #f0f4f8;
+        color: #555;
+        font-size: 0.9rem;
+        border: 1px solid #ccc;
+        padding: 8px;
+        margin-bottom: 8px;
+        border-radius: 6px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    #dynamic-chat-container div:hover {
+        background-color: #e0e7ee;
+    }
+</style>
 @endsection
