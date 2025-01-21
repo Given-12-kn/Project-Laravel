@@ -33,7 +33,7 @@
                                 @endphp
                                 @if (isset($dataKl) && count($dataKl) > 0)
                                 @foreach ($dataKl as $row )
-                                @if ($row->is_acc == 2)
+                                @if ($row->status_keluhan == 2)
                                 @php $data = 1; @endphp
 
                                 <tr>
@@ -102,10 +102,9 @@
             const action = $(this).data('action');
             const row = $(this).closest('tr');
             const tableBody = row.closest('tbody');
-
             $.ajax({
                 type: "post",
-                url: myurl + "/home/admin/accSession",
+                url: myurl + "/home/admin/accKeluhan",
                 data: {
                     _token: '{{ csrf_token() }}',
                     id: id,
@@ -134,31 +133,6 @@
             });
        });
     });
-
-    function hideSidebar() {
-        const sidebar = document.getElementById('sidebar');
-        const openSidebarBtn = document.getElementById('openSidebarBtn');
-        const content = document.getElementById('content');
-
-
-        sidebar.style.transform = 'translateX(-100%)'; // Geser sidebar ke kiri
-        openSidebarBtn.classList.remove('hidden'); // Tampilkan tombol buka
-        content.style.marginLeft = '0'; // Hilangkan margin kiri konten
-        content.style.width = '100%'; // Perluas konten sepenuhnya
-
-
-    }
-
-    function showSidebar() {
-        const sidebar = document.getElementById('sidebar');
-        const openSidebarBtn = document.getElementById('openSidebarBtn');
-        const content = document.getElementById('content');
-
-        sidebar.style.transform = 'translateX(0)'; // Kembalikan sidebar ke posisi awal
-        openSidebarBtn.classList.add('hidden'); // Sembunyikan tombol buka
-        content.style.width = 'calc(100% - 16rem)'; // Kembalikan ukuran konten semula
-
-    }
 
 </script>
 

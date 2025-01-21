@@ -44,34 +44,7 @@
     </div>
 </nav>
 
-<script>
-    //hamburger menu
-    const menuToggleButton = document.querySelector('[aria-controls="mobile-menu"]');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const icons = menuToggleButton.querySelectorAll('svg');
-
-    menuToggleButton.addEventListener('click', () => {
-      const isExpanded = menuToggleButton.getAttribute('aria-expanded') === 'true';
-
-      if (isExpanded) {
-        mobileMenu.classList.add('scale-y-0');
-        mobileMenu.classList.remove('scale-y-100');
-        setTimeout(() => {
-          mobileMenu.classList.add('hidden');
-        }, 100);
-      } else {
-        mobileMenu.classList.remove('hidden');
-        setTimeout(() => {
-          mobileMenu.classList.remove('scale-y-0');
-          mobileMenu.classList.add('scale-y-100');
-        }, 0);
-      }
-
-      icons.forEach(icon => icon.classList.toggle('hidden'));
-
-      menuToggleButton.setAttribute('aria-expanded', !isExpanded);
-    });
-
+<script>    
     //profile
     const userMenuButton = document.getElementById('user-menu-button');
     const dropdownMenu = userMenuButton.nextElementSibling;

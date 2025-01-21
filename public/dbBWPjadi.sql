@@ -71,7 +71,7 @@ DROP TABLE IF EXISTS `keluhan`;
 CREATE TABLE `keluhan` (
   `id_keluhan` int(11) NOT NULL AUTO_INCREMENT,
   `id_kategori` int(11) NOT NULL,
-  `id_siswa` int(11) NOT NULL,
+  `id_live_account` int(11) NOT NULL,
   `judul_keluhan` varchar(255) NOT NULL,
   `deskripsi` text NOT NULL,
   `upvote` int(11) DEFAULT 0,
@@ -83,11 +83,11 @@ CREATE TABLE `keluhan` (
   KEY `id_kategori` (`id_kategori`),
   KEY `id_siswa` (`id_siswa`),
   CONSTRAINT `keluhan_ibfk_1` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`),
-  CONSTRAINT `keluhan_ibfk_2` FOREIGN KEY (`id_siswa`) REFERENCES `siswa` (`id_siswa`)
+  CONSTRAINT `keluhan_ibfk_2` FOREIGN KEY (`id_live_account`) REFERENCES `live_account` (`id_live_account`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `keluhan` */
-insert  into `kategori`(`id_kategori`,`nama_kategori`) values 
+insert  into `kategori`(`id_kategori`,`nama_kategori`) values
 (1,'administrasi'),
 (2,'fasilitas'),
 (3,'akadedmis');

@@ -177,4 +177,28 @@ class adminController extends Controller
 
         return response()->json(['success' => false, 'message' => $action]);
     }
+
+    public function checkAcc2(Request $request){
+        $id = $request->id;
+        $action = $request->action;
+
+        if($action == 'accept'){
+            $data = keluhan::find($id);
+            $data->status_keluhan = 1;
+
+            if($data->update()){
+                return response()->json(['success' => true]);
+            }
+        }
+        else{
+            $data = live_session::find($id);
+            $data->status_keluhan = 0;
+
+            if($data->update()){
+                return response()->json(['success' => true]);
+            }
+        }
+
+        return response()->json(['success' => false, 'message' => $action]);
+    }
 }

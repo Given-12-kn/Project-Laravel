@@ -44,12 +44,12 @@
                                 @foreach ($dataLs as $row )
                                 <tr>
                                     @if ($row->is_acc == 1)
-                                    <td class="border border-gray-300 px-6 py-4 w-80"> <p class="action-button bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-xl"> Accepted </p> </td>
+                                    <td class="border border-gray-300 px-6 py-4 w-80"> <p class="action-button bg-green-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-xl"> Accepted </p> </td>
+                                    <td class="border border-gray-300 px-6 py-4 w-80">{{$row->content }}</td>
                                     @elseif($row->is_acc == 0)
                                     <td class="border border-gray-300 px-6 py-4 w-80"> <p class="action-button bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-xl"> Declined </p> </td>
+                                    <td class="border border-gray-300 px-6 py-4 w-80">{{$row->content }}</td>
                                     @endif
-
-                                        <td class="border border-gray-300 px-6 py-4 w-80">{{$row->content }}</td>
                                     </tr>
                                 @endforeach
                               @else
@@ -64,14 +64,15 @@
                               @endif
 
                               @if(isset($dataKl) && count($dataKl) > 0)
-                                @foreach ($dataLs as $row2 )
+                                @foreach ($dataKl as $row2 )
                                 <tr>
                                 @if ($row2->status_keluhan == 1)
-                                    <td class="border border-gray-300 px-6 py-4 w-80"> <p class="action-button bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-xl"> Accepted </p> </td>
+                                    <td class="border border-gray-300 px-6 py-4 w-80"> <p class="action-button bg-green-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-xl"> Accepted </p> </td>
+                                    <td class="border border-gray-300 px-6 py-4 w-80">{{$row2->deskripsi }}</td>
                                     @elseif($row2->status_keluhan == 0)
                                     <td class="border border-gray-300 px-6 py-4 w-80"> <p class="action-button bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-xl"> Declined </p> </td>
+                                    <td class="border border-gray-300 px-6 py-4 w-80">{{$row2->deskripsi }}</td>
                                     @endif
-                                        <td class="border border-gray-300 px-6 py-4 w-80">{{$row2->content }}</td>
                                     </tr>
                                     @endforeach
                                 @else
