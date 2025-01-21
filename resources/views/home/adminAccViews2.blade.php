@@ -2,7 +2,7 @@
 
 @section('title', 'Home')
 @section('no-header', true)
-
+@section('no-headerDosen', true)
 @section('content')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
@@ -13,7 +13,7 @@
         <div class="col-md-6 mx-auto">
             <div class="card shadow" style="border-radius: 10px; overflow: hidden;">
                 <div class="card-header text-center h-16 align-items-center pt-4" style="background: linear-gradient(45deg, #6a11cb, #2575fc); color: white;">
-                    <p class="text-xl">List Live Session Acc</p>
+                    <p class="text-xl">List Keluhan Session Acc</p>
                 </div>
                 <div class="card-body text-center">
                     <div class="row flex flex-col sm:flex-row items-center justify-center p-3 space-y-3 sm:space-y-0 sm:space-x-4 shadow-xl">
@@ -27,30 +27,55 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                    $data = 0;
+                                @endphp
+                                @if (isset($dataKl) && count($dataKl) > 0)
+                                @foreach ($dataKl as $row )
+                                @if ($row->is_acc == 2)
+                                @php $data = 1; @endphp
+
                                 <tr>
-                                    <td class="border border-gray-300 px-6 py-4">
-                                        <div class="p-3 rounded-xl shadow-lg" ">
-                                            <div class="text-white text-lg font-semibold">
-                                                Live Session
-                                            </div>
-                                        </div>
+                                    <td class="border border-gray-300 px-6 py-4 w-80">
+                                        <button data-id="{{ $row->id_keluhan }}" data-action="accept"
+                                        class="action-button bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-xl">
+                                            Accept
+                                        </button>
+                                        <button data-id="{{ $row->id_keluhan }}" data-action="decline"
+                                         class="action-button bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-xl">
+                                            Decline
+                                        </button>
                                     </td>
                                     <td class="border border-gray-300 px-6 py-4 text-gray-700 text-lg">
-                                        Teks tambahan di bawah yang terpisah dari latar belakang gradien.
+                                        {{-- {{optional($row->toLa->toSiswa)->nama}} :  --}}
+                                        {{$row->deskripsi}}
                                     </td>
                                 </tr>
+                                @endif
+
+                                @endforeach
+                                @if ($data == 0)
+                                    <tr>
+                                        <td class="border border-gray-300 px-6 py-4 text-gray-700 text-lg">
+                                            No Data Available
+                                        </td>
+
+                                        <td class="border border-gray-300 px-6 py-4 text-gray-700 text-lg">
+                                            No Data Available
+                                        </td>
+                                    </tr>
+                                @endif
+                                @else
                                 <tr>
-                                    <td class="border border-gray-300 px-6 py-4">
-                                        <div class="p-3 rounded-xl shadow-lg" >
-                                            <div class="text-white text-lg font-semibold">
-                                                Keluhan
-                                            </div>
-                                        </div>
-                                    </td>
                                     <td class="border border-gray-300 px-6 py-4 text-gray-700 text-lg">
-                                        Teks tambahan untuk kolom kedua.
+                                        No Data Available
+                                    </td>
+
+                                    <td class="border border-gray-300 px-6 py-4 text-gray-700 text-lg">
+                                        No Data Available
                                     </td>
                                 </tr>
+                                @endif
                             </tbody>
                         </table>
                     </div>
@@ -66,6 +91,48 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
+
+    var myurl = "<?php echo URL::to('/'); ?>";
+    $(document).ready(function () {
+        $('.action-button').on('click', function (e) {
+            e.preventDefault();
+
+            const id = $(this).data('id');
+            const action = $(this).data('action');
+            const row = $(this).closest('tr');
+            const tableBody = row.closest('tbody');
+
+            $.ajax({
+                type: "post",
+                url: myurl + "/home/admin/accSession",
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: id,
+                    action: action
+                },
+                success: function (response) {
+                    console.log(response);
+                    row.remove();
+                    if (tableBody.children('tr').length === 0) {
+                        tableBody.append(`
+                            <tr>
+                               <td class="border border-gray-300 px-6 py-4 text-gray-700 text-lg">
+                                            No Data Available
+                                        </td>
+
+                                        <td class="border border-gray-300 px-6 py-4 text-gray-700 text-lg">
+                                            No Data Available
+                                        </td>
+                            </tr>
+                        `);
+                    }
+                },
+                error: function () {
+                    alert('Error occurred while updating status.');
+                }
+            });
+       });
+    });
 
     function hideSidebar() {
         const sidebar = document.getElementById('sidebar');

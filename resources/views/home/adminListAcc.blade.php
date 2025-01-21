@@ -13,15 +13,26 @@
         <div class="col-md-6 mx-auto">
             <div class="card shadow" style="border-radius: 10px; overflow: hidden;">
                 <div class="card-header text-center h-16 align-items-center pt-4" style="background: linear-gradient(45deg, #6a11cb, #2575fc); color: white;">
-                    <p class="text-xl">List Live Session Acc</p>
+                    <p class="text-xl">List Acc/NonAcc Session</p>
                 </div>
+                {{-- <div class="flex flex-col sm:flex-row items-center justify-center p-3 space-y-3 sm:space-y-0 sm:space-x-4 shadow-xl">
+                    <select
+                    name="status"
+                    id="status"
+                    class="w-full sm:w-48 p-3 rounded-lg border-2 border-transparent focus:outline-none focus:ring-4 focus:ring-blue-400 text-gray-800 bg-white"
+                    >
+                    <option value="All">All</option>
+                        <option value="Activate">Active</option>
+                        <option value="Deactivate">Deactivate</option>
+                        </select>
+                </div> --}}
                 <div class="card-body text-center">
                     <div class="row flex flex-col sm:flex-row items-center justify-center p-3 space-y-3 sm:space-y-0 sm:space-x-4 shadow-xl">
                         <table class="table-auto border-collapse border border-gray-300 w-full">
                             <thead>
                                 <tr class="bg-gray-100">
                                     <th class="border border-gray-300 px-6 py-4 text-left text-center text-white text-xl"
-                                    style="background: linear-gradient(to right, #f9af98, #ebb67b, #ffd700);" >Action</th>
+                                    style="background: linear-gradient(to right, #f9af98, #ebb67b, #ffd700);" >Status</th>
                                     <th class="border border-gray-300 px-6 py-4 text-left text-center text-white text-xl"
                                     style="background: linear-gradient(to right, #ffdd00,#00c6ff);">Text</th>
                                 </tr>
@@ -55,13 +66,13 @@
                                 @foreach ($dataLs as $row2 )
                                 <tr>
                                 @if ($row2->status_keluhan == 1)
-                                <td class="border border-gray-300 px-6 py-4 w-80"> <p class="action-button bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-xl"> Accepted </p> </td>
-                                @elseif($row2->status_keluhan == 0)
-                                <td class="border border-gray-300 px-6 py-4 w-80"> <p class="action-button bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-xl"> Declined </p> </td>
-                                @endif
-                                    <td class="border border-gray-300 px-6 py-4 w-80">{{$row2->content }}</td>
-                                </tr>
-                                @endforeach
+                                    <td class="border border-gray-300 px-6 py-4 w-80"> <p class="action-button bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-xl"> Accepted </p> </td>
+                                    @elseif($row2->status_keluhan == 0)
+                                    <td class="border border-gray-300 px-6 py-4 w-80"> <p class="action-button bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-xl"> Declined </p> </td>
+                                    @endif
+                                        <td class="border border-gray-300 px-6 py-4 w-80">{{$row2->content }}</td>
+                                    </tr>
+                                    @endforeach
                                 @else
                                 <tr>
                                     <td class="border border-gray-300 px-6 py-4 text-gray-700 text-lg">

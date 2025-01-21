@@ -30,7 +30,7 @@
                                 @php
                                     $data = 0;
                                 @endphp
-
+                                @if (isset($dataLs) && count($dataLs) > 0)
                                 @foreach ($dataLs as $row )
                                 @if ($row->is_acc == 2)
                                 @php $data = 1; @endphp
@@ -64,6 +64,17 @@
                                             No Data Available
                                         </td>
                                     </tr>
+                                @endif
+                                @else
+                                <tr>
+                                    <td class="border border-gray-300 px-6 py-4 text-gray-700 text-lg">
+                                        No Data Available
+                                    </td>
+
+                                    <td class="border border-gray-300 px-6 py-4 text-gray-700 text-lg">
+                                        No Data Available
+                                    </td>
+                                </tr>
                                 @endif
                             </tbody>
                         </table>

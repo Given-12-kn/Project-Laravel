@@ -145,7 +145,7 @@ class adminController extends Controller
 
     public function accView2(){
         $dataKl = keluhan::all();
-        return view('home.adminAccViews', compact('dataKl'));
+        return view('home.adminAccViews2', compact('dataKl'));
     }
 
     public function accView3(){
