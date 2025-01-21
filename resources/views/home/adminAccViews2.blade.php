@@ -3,12 +3,13 @@
 @section('title', 'Home')
 @section('no-header', true)
 @section('no-headerDosen', true)
+
 @section('content')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 @section('content-sidebar')
 
-<div class="container d-flex align-items-center justify-content-center min-h-screen" style="background-color: #f8f9fa;">
+<div class="containerAccViews2 d-flex align-items-center justify-content-center min-h-screen" style="background-color: #f8f9fa;">
     <div class="row">
         <div class="col-md-6 mx-auto">
             <div class="card shadow" style="border-radius: 10px; overflow: hidden;">

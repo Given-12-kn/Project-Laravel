@@ -2,13 +2,14 @@
 
 @section('title', 'Home')
 @section('no-header', true)
+@section('no-headerDosen', true)
 
 @section('content')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 @section('content-sidebar')
 
-<div class="container d-flex align-items-center justify-content-center min-h-screen" style="background-color: #f8f9fa;">
+<div class="containerExcel d-flex align-items-center justify-content-center min-h-screen" style="background-color: #f8f9fa;">
     <div class="row">
         <div class="col-md-6 mx-auto">
             <div class="card shadow" style="border-radius: 10px; overflow: hidden;">
@@ -19,12 +20,12 @@
                     <form action="{{ url('home/admin/ImportExcel') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <!-- Input File and Browse Button Inline -->
-                        <div class="form-group d-flex justify-content-center align-items-center mb-4">
+                        <div class="form-group d-flex justify-content-center align-items-center mt-4">
                             <label for="excel" class="mr-2" style="font-weight: bold;">Select Excel File:</label>
                             <input type="file" name="excel" id="excel"  accept=".xls, .xlsx, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="form-control" style="width: auto;">
                         </div>
                         <!-- Upload Button -->
-                        <button type="submit" class="btn w-60 h-8 mt-5 bg-purple-600 text-white font-bold rounded transition duration-300 ease-in-out hover:bg-blue-500 hover:scale-105 ">
+                        <button type="submit" class="btn w-60 h-8 mt-5 bg-purple-600 text-white font-bold rounded transition duration-300 ease-in-out hover:bg-blue-500 hover:scale-105 mb-4">
                             <i class="fas fa-cloud-upload-alt"></i> Upload
                         </button>
                     </form>

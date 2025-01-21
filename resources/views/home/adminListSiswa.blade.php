@@ -2,13 +2,14 @@
 
 @section('title', 'Home')
 @section('no-header', true)
+@section('no-headerDosen', true)
 
 @section('content')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 @section('content-sidebar')
 
-<div class="container d-flex align-items-center justify-content-center min-h-screen" style="background-color: #f8f9fa;">
+<div class="containerListSiswa d-flex align-items-center justify-content-center min-h-screen" style="background-color: #f8f9fa;">
     <div class="row">
         <div class="col-md-6 mx-auto">
             <div class="card shadow" style="border-radius: 10px; overflow: hidden;">
@@ -16,7 +17,7 @@
                     <p class="text-xl">List of students who have registered</p>
                 </div>
                 <div class="card-body text-center">
-                    <form action="" method="post" class="flex flex-col sm:flex-row items-center justify-center p-3 space-y-3 sm:space-y-0 sm:space-x-4 shadow-xl">
+                    <form action="" method="post" class="flex flex-col sm:flex-row items-center justify-center p-3 space-y-3 sm:space-y-0 sm:space-x-4">
                         <div class="flex items-center justify-center w-full sm:w-96 p-1 ">
                             <x-zondicon-search class="text-dark w-8 h-8 mr-5 " />
                             <input
