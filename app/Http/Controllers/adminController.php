@@ -14,7 +14,7 @@ use Maatwebsite\Excel\Facades\Excel;
 class adminController extends Controller
 {
     public function index(){
-        return view('home.adminPage');
+        return view('home.adminAccViews');
     }
 
     public function importExcel(Request $request){

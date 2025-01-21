@@ -1,6 +1,6 @@
 @extends('layout.template')
 
-@section('title', 'Keluhan')
+@section('title', 'dosen keluhan')
 
 @section('no-headerAdmin', true)
 @section('no-header', true)

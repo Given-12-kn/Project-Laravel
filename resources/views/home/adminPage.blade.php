@@ -8,7 +8,7 @@
 <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 @section('content-sidebar')
 
-<div class="container d-flex align-items-center justify-content-center min-h-screen" style="background-color: #f8f9fa;">
+<div class="containerAdminPage d-flex align-items-center justify-content-center min-h-screen" style="background-color: #f8f9fa;">
     <div class="row">
         <div class="col-md-6 mx-auto">
             <div class="card shadow" style="border-radius: 10px; overflow: hidden;">
