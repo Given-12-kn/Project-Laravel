@@ -81,7 +81,7 @@ CREATE TABLE `keluhan` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id_keluhan`),
   KEY `id_kategori` (`id_kategori`),
-  KEY `id_siswa` (`id_siswa`),
+  KEY `id_live_account` (`id_live_account`),
   CONSTRAINT `keluhan_ibfk_1` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`),
   CONSTRAINT `keluhan_ibfk_2` FOREIGN KEY (`id_live_account`) REFERENCES `live_account` (`id_live_account`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
