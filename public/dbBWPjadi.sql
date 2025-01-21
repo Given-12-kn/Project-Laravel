@@ -87,7 +87,10 @@ CREATE TABLE `keluhan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `keluhan` */
-
+insert  into `kategori`(`id_kategori`,`nama_kategori`) values 
+(1,'administrasi'),
+(2,'fasilitas'),
+(3,'akadedmis');
 /*Table structure for table `live_account` */
 
 DROP TABLE IF EXISTS `live_account`;
