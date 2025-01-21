@@ -15,7 +15,13 @@ class login extends Controller
 {
     public function index()
     {
-        return view('form.login');
+        $remembered_nrp = request()->cookie('remember_nrp');
+        $remembered_password = request()->cookie('remember_password');
+
+        return view('form.login', [
+            'remembered_nrp' => $remembered_nrp,
+            'remembered_password' => $remembered_password,
+        ]);
     }
 
     public function cekLogin(Request $request){
@@ -45,19 +51,26 @@ class login extends Controller
         // Auth::login($siswa->toUsers);
         // return redirect(url('/home'));
         $siswa = siswa::where('nrp', $nrp)->first();
-        if($siswa){
-            if($siswa->is_active == 0){
+
+        if ($siswa) {
+            if ($siswa->is_active == 0) {
                 return redirect(url('form/login'))->with('fail', 'Akun Anda Belum Aktif!');
-            }
-            else{
-                $data = [
+            } else {
+                $credentials = [
                     'nrp' => $nrp,
                     'password' => $password,
                 ];
-                
-                if(Auth::attempt($data)){
+
+                if (Auth::attempt($credentials)) {
+                    // Simpan remember me ke cookie
+                    if ($request->has('remember')) {
+                        $cookie_nrp = cookie('remember_nrp', $nrp, 43200); // 30 hari
+                        $cookie_password = cookie('remember_password', $password, 43200);
+                        return redirect(url('/home'))->withCookies([$cookie_nrp, $cookie_password]);
+                    }
+
                     $cekAdmin = Auth::user()->toLa->role_account;
-                    if($cekAdmin == 'admin'){
+                    if ($cekAdmin == 'admin') {
                         return redirect(url('/home/admin'));
                     }
                     return redirect(url('/home'));
