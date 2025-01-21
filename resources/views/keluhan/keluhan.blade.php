@@ -48,10 +48,9 @@
                     <label for="category" class="block text-lg font-semibold text-gray-700">Kategori</label>
                     <select id="category" name="category" class="mt-2 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-gray-800 sm:text-md px-4 py-2 bg-gray-50">
                         <option value="" disabled selected>Pilih Kategori</option>
-                        <option value="akademi">akademi</option>
-                        <option value="fasilitas">fasilitas</option>
-                        <option value="administrasi">administrasi</option>
-                        <option value="lainnya">lainnya</option>
+                        @foreach ($kategori as $item)
+                            <option value="{{ $item->id_kategori }}">{{ $item->nama_kategori }}</option>
+                        @endforeach
                     </select>
                 </div>
     
