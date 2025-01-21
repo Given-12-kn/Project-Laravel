@@ -21,17 +21,17 @@
                     <label for="nrp" class="block text-gray-700 font-medium mb-2">Nrp</label>
                     <input type="number" id="nrp" name="nrp"
                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                           placeholder="Enter Your Nrp" value="{{ old('nrp') }}">
+                           placeholder="Enter Your Nrp" value="{{ old('nrp', $remembered_nrp) }}">
                 </div>
                 <div class="mb-4">
                     <label for="password" class="block text-gray-700 font-medium mb-2">Password</label>
                     <input type="password" id="password" name="password"
                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                           placeholder="Enter Your Password">
+                           placeholder="Enter Your Password" value="{{ old('password', $remembered_password) }}">
                 </div>
 
                 <div class="mb-4 flex items-center">
-                    <input type="checkbox" id="remember" name="remember" class="mr-2" > <!-- lek mau checkbox e agak besar pake o class iki class="w-6 h-6 mr-2" -->
+                    <input type="checkbox" id="remember" name="remember" class="mr-2" {{ $remembered_nrp ? 'checked' : '' }}>
 
                     <label for="remember" class="text-gray-700">Remember Me</label>
                 </div>
