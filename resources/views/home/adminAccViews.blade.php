@@ -16,8 +16,25 @@
                     <p class="text-xl">List Acc</p>
                 </div>
                 <div class="card-body text-center">
+                    <div class="row flex flex-col sm:flex-row items-center justify-center p-3 space-y-3 sm:space-y-0 sm:space-x-4 shadow-xl">
+                        <div class="col-md-3 w-1/2 p-3 ">
+                            <div class="p-3" style="background: linear-gradient(to right, #f9af98, #ebb67b, #ffd700);">
+                                <div class="text-white text-lg font-semibold">
+                                    Live Session
+                                </div>
+                            </div>
 
+                            <div class="mt-4 text-gray-700 text-lg">
+                                Teks tambahan di bawah yang terpisah dari latar belakang gradien.
+                            </div>
+                        </div>
 
+                        <div class="col-md-3 w-1/2 p-3 rounded-xl shadow-lg" style="background: linear-gradient(to right, #00c6ff, #ffdd00);">
+                            <div class="text-white text-xl font-semibold">
+                                Keluhan
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
