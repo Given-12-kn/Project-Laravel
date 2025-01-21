@@ -16,6 +16,11 @@
         @include('layout.headerAdmin')
     @endif
 
+    @hasSection('no-headerDosen')
+    @else
+        @include('layout.headerDosen')
+    @endif
+
   @hasSection('no-header')
         {{-- kalo g ada header g ngelakuin apa apa --}}
   @else

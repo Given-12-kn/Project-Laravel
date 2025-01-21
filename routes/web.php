@@ -78,3 +78,15 @@ Route::prefix('keluhan')->group(function () {
         return view('keluhan.detailKeluhan');
     });
 });
+
+Route::prefix('dosen')->group(function () {
+    Route::get('/', function () {
+        return view('dosen.dosenKeluhan');
+    });
+    Route::get('/detail', function(){
+        return view('dosen.dosenDetailKeluhan');
+    });
+    Route::get('/live', function(){
+        return view('dosen.dosenLive');
+    });
+});

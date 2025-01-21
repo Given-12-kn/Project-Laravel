@@ -1,12 +1,12 @@
 @extends('layout.template')
+
 @section('no-headerAdmin', true)
+
 @section('no-headerDosen', true)
-@section('title', 'Live Session')
+
+@section('title', 'Live Session Dosen')
 
 @section('content')
-
-
-
 <div class="bg-gradient-to-r from-white via-[#f0e6fa] to-[#d2eaff] flex w-full" style="min-height: calc(100vh - 50px)">
     <div class="w-3/4 mx-auto">
         <div class="flex-1 p-4">

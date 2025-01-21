@@ -3,15 +3,16 @@
 @section('title', 'Keluhan')
 
 @section('no-headerAdmin', true)
-@section('no-headerDosen', true)
+@section('no-header', true)
 
 @section('content')
+<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 
 <div class="bg-gradient-to-r from-white via-[#f0e6fa] to-[#d2eaff]">
     
     <div class="header-container flex justify-end items-center px-4 py-2">
         <div class="flex items-center gap-2 relative mt-8">
-            <button id="addButton" class="btn-add bg-blue-400 text-white px-4 py-2 rounded shadow">Tambah Keluhan</button>
+           
             <button class="px-4 py-2 rounded shadow" id="dropdownBtn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-filter-right" viewBox="0 0 16 16">
                     <path d="M14 10.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5m0-3a.5.5 0 0 0-.5-.5h-7a.5.5 0 0 0 0 1h7a.5.5 0 0 0 .5-.5m0-3a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0 0 1h11a.5.5 0 0 0 .5-.5"/>
@@ -77,9 +78,13 @@
             const card = document.createElement('div');
             card.className = 'card bg-white p-4 shadow rounded fade-in';
             card.innerHTML = ` 
-            <a href="{{ url('/keluhan/detailKeluhan') }}" class="w-full h-full">
+            <a href="{{ url('/dosen/detail') }}" class="w-full h-full">
                 <div class="card">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum explicabo vero nostrum, iure repellendus perspiciatis non numquam eaque est ipsum quam similique nobis sit assumenda.</p>
+                    <div class="absolute top-2 right-2 bg-gradient-to-r from-blue-300 to-blue-500 text-white rounded-full px-3 py-1 flex items-center space-x-2 shadow-md">
+                        <ion-icon name="thumbs-up" class="text-xl"></ion-icon>
+                        <span class="text-sm font-bold">3</span>
+                    </div>
+                    <p class="mt-14">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum explicabo vero nostrum, iure repellendus perspiciatis non numquam eaque est ipsum quam similique nobis sit assumenda.</p>
                     <button class="btn-upvote bg-gradient-to-r from-blue-300 to-blue-500 rounded-full">Upvote</button>
                 </div>
             </a>
@@ -134,7 +139,6 @@
             formContainer.classList.add("hidden");
         });
 
-        // Handle form submission (example behavior)
         const form = document.getElementById("addComplaintForm");
         form.addEventListener("submit", (e) => {
             e.preventDefault();
