@@ -16,7 +16,30 @@
                     <p class="text-xl">List of students who have registered</p>
                 </div>
                 <div class="card-body text-center">
-                    <table class="table-auto border-collapse border border-gray-300 w-full">
+                    <form action="" method="post" class="flex flex-col sm:flex-row items-center justify-center p-3 space-y-3 sm:space-y-0 sm:space-x-4 shadow-xl">
+                        <div class="flex items-center justify-center w-full sm:w-96 p-1 ">
+                            <x-zondicon-search class="text-dark w-8 h-8 mr-5 " />
+                            <input
+                                type="text"
+                                id="searchInput"
+                                placeholder="Search Name/Nrp...."
+                                class="w-full p-2 rounded-lg border-2 border-transparent focus:outline-none focus:ring-4 focus:ring-blue-300 placeholder-gray-500 text-gray-800 transition duration-300 ease-in-out transform focus:scale-105"
+                            >
+                        </div>
+                        <select
+                        name="status"
+                        id="status"
+                        class="w-full sm:w-48 p-3 rounded-lg border-2 border-transparent focus:outline-none focus:ring-4 focus:ring-blue-400 text-gray-800 bg-white"
+                        >
+                        <option value="All">All</option>
+                        <option value="Activate">Active</option>
+                        <option value="Deactivate">Deactivate</option>
+                        <option value="admin">Admin</option>
+                        <option value="siswa">Siswa</option>
+
+                        </select>
+                    </form>
+                    <table class="table-auto border-collapse border border-gray-300 w-full" id="dataTable">
                         <thead>
                             <tr>
                                 <th class="border border-gray-300 px-2 py-1">No</th>
@@ -66,6 +89,45 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
+
+$(document).ready(function () {
+    $('#status').on('change', function () {
+        var status = $(this).val().toLowerCase();
+        // alert(status);
+        $('#dataTable tbody tr').each(function () {
+            var rowText = $(this).find('td:nth-child(5)').text().toLowerCase();
+            var rowText2 = $(this).find('td:nth-child(6)').text().toLowerCase().trim();
+            if (status === 'all') {
+                $(this).show();
+            } else if (rowText.indexOf(status) > -1) {
+                $(this).show();
+            }else if (rowText2 == status) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    });
+});
+
+$(document).ready(function() {
+    // Tangkap input pencarian
+    $('#searchInput').on('keyup', function() {
+        var searchTerm = $(this).val().toLowerCase();
+
+        // Filter baris tabel berdasarkan nama
+        $('#dataTable tbody tr').each(function() {
+            var rowText = $(this).find('td:nth-child(3)').text().toLowerCase();
+            var rowText2 = $(this).find('td:nth-child(4)').text().toLowerCase();
+            if (rowText.indexOf(searchTerm) > -1 || rowText2.indexOf(searchTerm) > -1) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    });
+});
+
     function hideSidebar() {
         const sidebar = document.getElementById('sidebar');
         const openSidebarBtn = document.getElementById('openSidebarBtn');
@@ -106,7 +168,7 @@
             button.text('Activate');
         }
     });
-    
+
     $('.btn-status').on('click', function(e) {
         e.preventDefault(); // Mencegah form untuk dikirim secara langsung
 

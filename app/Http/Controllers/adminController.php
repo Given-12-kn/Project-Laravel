@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Imports\ImportExcel;
+use App\Models\keluhan;
 use App\Models\live_account;
+use App\Models\live_session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
@@ -27,7 +29,7 @@ class adminController extends Controller
             'is_active' => 'boolean',
         ]);
 
-       Excel::import(new ImportExcel, $request->file('excel'));
+       //Excel::import(new ImportExcel, $request->file('excel'));
        if($request->file('excel') == null){
            return back()->with('error', 'Data Gagal Diimport');
        }
@@ -134,5 +136,11 @@ class adminController extends Controller
             $data->update();
         }
         return back();
+    }
+
+    public function accView(){
+        $dataKl = keluhan::all();
+        $dataLs = live_session::all();
+        return view('home.adminAccViews', compact('dataKl', 'dataLs'));
     }
 }

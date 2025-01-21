@@ -23,7 +23,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('home/admin/excel') }}" class="flex items-center px-4 py-2 hover:bg-blue-500">
+                        <a href="{{ url('home/admin/DataAcc') }}" class="flex items-center px-4 py-2 hover:bg-blue-500">
                             <x-uiw-setting class="h-5 w-5 text-white" />
                             <span class="ml-3 text-white">Acc Setting</span>
                         </a>
