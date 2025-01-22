@@ -29,7 +29,7 @@ class adminController extends Controller
             'is_active' => 'boolean',
         ]);
 
-       //Excel::import(new ImportExcel, $request->file('excel'));
+       Excel::import(new ImportExcel, $request->file('excel'));
        if($request->file('excel') == null){
            return back()->with('error', 'Data Gagal Diimport');
        }
@@ -216,7 +216,7 @@ class adminController extends Controller
 
     public function countData2(Request $request){
         // $dataLs = live_session::all();
-        
+
         $count = keluhan::where('status_keluhan', 2)->count();
 
         return response()->json(['success' => true, 'count' => $count]);
