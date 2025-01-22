@@ -62,25 +62,83 @@
     // };
     var myurl = "<?php echo URL::to('/'); ?>";
 
+
+
     $(document).ready(function () {
 
-       $.ajax({
-        type: "POST",
-        url: myurl + "/live/store",
-        data: {
-            _token: '{{ csrf_token() }}',
-        },
-        success: function (response) {
-            console.log('Message stored:', response);
-        },
-        error: function () {
-            alert('Error storing message');
+        loadChat();
+
+        function loadChat(){
+        $.ajax({
+            type: "POST",
+            url: myurl + "/live/getDataChat",
+            data: {
+                _token: '{{ csrf_token() }}',
+            },
+            success: function (response) {
+                console.log('Message stored:', response.data);
+                if (response.status === 'success' && response.data.length > 0) {
+                    //clear
+                    mainMessageText.textContent = '';
+                    dynamicChatContainer.textContent = '';
+                    for (let i = 0; i < response.data.length; i++) {
+
+                        const messageElement = document.createElement('div');
+                        messageElement.textContent = response.data[i].content; // Perbaiki akses ke response.data
+                        messageElement.style.opacity = '0';
+                        messageElement.style.transform = 'translateY(20px)';
+
+                        if(response.data[i].is_acc == 1){
+                            mainMessageText.appendChild(messageElement);
+
+                            setTimeout(() => {
+                                messageElement.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+                                messageElement.style.opacity = '1';
+                                messageElement.style.transform = 'translateY(0)';
+                            }, 50);
+
+                            // Atur pesan utama jika kontainer kosong
+                            if (mainMessageText.children.length === 1 && mainMessageText.textContent === '') {
+                                setTimeout(() => {
+                                    mainMessageText.textContent = response.data[i].content; // Ambil dari response.data
+                                    mainMessageText.removeChild(messageElement);
+                                }, 600);
+                            } else {
+                                mainMessageText.appendChild(messageElement);
+                            }
+                        }
+                        else if(response.data[i].is_acc == 2){
+                            dynamicChatContainer.appendChild(messageElement);
+
+                            setTimeout(() => {
+                                messageElement.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+                                messageElement.style.opacity = '1';
+                                messageElement.style.transform = 'translateY(0)';
+                            }, 50);
+
+                            // Atur pesan utama jika kontainer kosong
+                            if (dynamicChatContainer.children.length === 1 && dynamicChatContainer.textContent === '') {
+                                setTimeout(() => {
+                                    dynamicChatContainer.textContent = response.data[i].content; // Ambil dari response.data
+                                    dynamicChatContainer.removeChild(messageElement);
+                                }, 600);
+                            }
+                        }
+                    }
+
+
+                } else {
+                    console.warn('No messages found or invalid response.');
+                }
+            },
+            error: function () {
+                alert('Error storing message');
+            }
+            });
         }
-       });
-    });
+        setInterval(loadChat, 45000);
 
 
-    $(document).ready(function () {
         $('#add-button').on('click', function (e) {
             e.preventDefault();
             console.log('Button clicked' + chatInput.value);

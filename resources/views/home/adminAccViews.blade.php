@@ -129,7 +129,7 @@
                     }
                 },
                 error: function () {
-                    alert('Error occurred while updating status.');
+                    console.log('Error: Failed to update status');
                 }
             });
        });
@@ -175,7 +175,7 @@
 
     .action-button {
         display: inline-block;
-        padding: 8px 20px; 
+        padding: 8px 20px;
         text-align: center;
         font-weight: bold;
         border-radius: 10px;
@@ -192,14 +192,14 @@
 
     .table-auto td:first-child {
         vertical-align: middle;
-        text-align: center; 
+        text-align: center;
         padding: 12px;
     }
 
     .table-auto td:nth-child(2) {
         word-wrap: break-word;
         white-space: normal;
-        max-width: calc(100% - 150px); 
+        max-width: calc(100% - 150px);
     }
 
     .table-auto td {
@@ -207,7 +207,7 @@
     }
 
     .table-auto td .action-button {
-        width: auto; 
+        width: auto;
         margin: 5px;
     }
 
@@ -216,11 +216,11 @@
     }
 
     .table-auto td .action-button.bg-red-500 {
-        background-color: #e53e3e; 
+        background-color: #e53e3e;
     }
 
     .action-button:hover {
-        opacity: 0.9; 
+        opacity: 0.9;
     }
 </style>
 

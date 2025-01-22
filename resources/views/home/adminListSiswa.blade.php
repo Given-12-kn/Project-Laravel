@@ -203,11 +203,11 @@ $(document).ready(function() {
                         button.removeClass('bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded').addClass('bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded');
                     }
                 } else {
-                    alert('Failed to update status.');
+                    console.log('Error: Failed to update status');
                 }
             },
             error: function() {
-                alert('Error occurred while updating status.');
+                console.log('Error: Failed to update status');
             }
         });
     });

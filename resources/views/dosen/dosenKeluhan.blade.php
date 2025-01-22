@@ -210,14 +210,6 @@
         const formContainer = document.getElementById("formContainer");
         const cancelButton = document.getElementById("cancelButton");
 
-        addButton.addEventListener("click", () => {
-            formContainer.classList.remove("hidden");
-        });
-
-        cancelButton.addEventListener("click", () => {
-            formContainer.classList.add("hidden");
-        });
-
         // Handle form submission (example behavior)
         // const form = document.getElementById("addComplaintForm");
         // form.addEventListener("submit", (e) => {

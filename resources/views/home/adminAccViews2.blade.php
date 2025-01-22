@@ -128,7 +128,7 @@
                     }
                 },
                 error: function () {
-                    alert('Error occurred while updating status.');
+                    console.log('Error: Failed to update status');
                 }
             });
        });

@@ -65,8 +65,13 @@ class liveController extends Controller
     }
 
     public function dataChat(){
-        $data = live_session::get(100);
-        return response()->json($data);
+        $data = live_session::orderBy('id_live_session', 'desc')
+        ->take(200)
+        ->get();
+        return response()->json([
+            'status' => 'success',
+            'data' => $data,
+        ]);
     }
 
 }

@@ -24,11 +24,11 @@ Route::prefix('form')->group(function () {
 });
 
 
-Route::prefix('home')->middleware('cekRole:web')->group(function () {
+Route::prefix('home')->group(function () {
     Route::controller(homeController::class)->group(function () {
-        Route::get('/', 'index');
-        Route::post('/kirim', 'sendChat');
-        Route::get('/loadMessage', 'loadMessage');
+        Route::get('/', 'index')->middleware('cekRole:web');
+        Route::post('/kirim', 'sendChat')->middleware('cekRole:web');
+        Route::get('/loadMessage', 'loadMessage')->middleware('cekRole:web');
         Route::get('/logout', 'logout');
     });
 
@@ -68,15 +68,15 @@ Route::prefix('live')->middleware('cekRole:web','cekSudahLogin:admin,siswa')->gr
         });
 });
 
-Route::prefix('keluhan')->middleware('cekRole:web','cekSudahLogin:admin,siswa')->group(function () {
+Route::prefix('keluhan')->group(function () {
     Route::controller(keluhanController::class)->group(function () {
         Route::get('/', 'index');
         // Route::get('/detail', 'detailKeluhan');
 
-        Route::post('/detail/add', 'addKeluhan');
-        Route::post('/detail/keluhanAjax', 'keluhanAjax');
-        Route::post('/detail/upvote', 'upvoteKeluhan');
-        Route::get('/detailKeluhan/{id}', 'detailKeluhan');
+        Route::post('/detail/add', 'addKeluhan')->middleware('cekRole:web','cekSudahLogin:admin,siswa');
+        Route::post('/detail/keluhanAjax', 'keluhanAjax')->middleware('cekRole:dosen');
+        Route::post('/detail/upvote', 'upvoteKeluhan')->middleware('cekRole:web','cekSudahLogin:admin,siswa');
+        Route::get('/detailKeluhan/{id}', 'detailKeluhan')->middleware('cekRole:dosen');
     });
 });
 
