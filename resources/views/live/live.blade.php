@@ -112,7 +112,12 @@
 
     upvoteButton.addEventListener('click', () => {
         const firstMessage = dynamicChatContainer.firstElementChild;
-        if (!firstMessage) return;
+        if (!firstMessage){
+            setTimeout(() => {
+                mainMessageText.textContent = "";
+            }, 500);
+            return;
+        }
 
         const messageText = firstMessage.textContent;
 
@@ -151,11 +156,3 @@
     }
 </style>
 @endsection
-
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-  setInterval(function() {
-    window.location.reload();
-  }, 90000);
-</script>
