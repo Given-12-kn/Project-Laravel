@@ -111,6 +111,11 @@ CREATE TABLE upvote (
     CONSTRAINT `upvote_ibfk_1` FOREIGN KEY (`id_keluhan`) REFERENCES `keluhan` (`id_keluhan`)
 );
 
+INSERT INTO upvote (id_keluhan, username, created_at, updated_at)
+VALUES
+(1, 'Given Lee', '2025-01-22 12:09:54', NULL),
+(2, 'Given Lee', '2025-01-22 12:19:05', NULL);
+
 /*Table structure for table `live_account` */
 
 DROP TABLE IF EXISTS `live_account`;
