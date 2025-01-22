@@ -33,6 +33,14 @@ CREATE TABLE `dosen` (
 
 /*Data for the table `dosen` */
 
+INSERT INTO `dosen` (`nama`, `password_dosen`, `nrp`, `jenis_kelamin`, `is_active`, `updated_at`) 
+VALUES 
+('John Doe', 'password123', 12345, 'M', 1, NOW()),
+('Jane Smith', 'securepass', 67890, 'F', 1, NULL),
+('Ahmad Ali', 'mypassword', 11223, 'M', 0, NULL),
+('Rina Ayu', 'strongpass', 33456, 'F', 1, NULL),
+('Budi Hartono', 'adminpass', 55678, 'M', 1, NULL);
+
 /*Table structure for table `jurusan` */
 
 DROP TABLE IF EXISTS `jurusan`;
@@ -68,6 +76,11 @@ CREATE TABLE `kategori` (
 
 /*Data for the table `kategori` */
 
+INSERT INTO kategori (id_kategori, nama_kategori) VALUES 
+(1,'fasilitas'),
+(2,'akademis'),
+(3,'administrasi');
+
 /*Table structure for table `keluhan` */
 
 DROP TABLE IF EXISTS `keluhan`;
@@ -100,10 +113,6 @@ VALUES
 (2, 1, 'Open Talk 2024', 'Menurut saya lumayan menarik open talk 2024 ini karena ba...', '2', 0, '2025-01-22 10:27:40', NULL);
 
 /*Data for the table `keluhan` */
-INSERT  INTO `kategori`(`id_kategori`,`nama_kategori`) VALUES
-(1,'administrasi'),
-(2,'fasilitas'),
-(3,'akadedmis');
 
 DROP TABLE IF EXISTS `upvote`;
 
@@ -116,6 +125,10 @@ CREATE TABLE upvote (
     PRIMARY KEY (`id_upvote`),
     CONSTRAINT `upvote_ibfk_1` FOREIGN KEY (`id_keluhan`) REFERENCES `keluhan` (`id_keluhan`)
 );
+
+INSERT  INTO `upvote`(`id_upvote`,`id_keluhan`,`username`,`created_at`,`updated_at`) VALUES
+(1, 1, 'gvn', '010-01-10', NULL),
+(2, 3, 'gvn', '011-01-10', NULL);
 
 /*Table structure for table `live_account` */
 
@@ -135,8 +148,8 @@ CREATE TABLE `live_account` (
 /*Data for the table `live_account` */
 
 INSERT  INTO `live_account`(`id_live_account`,`email`,`nrp`,`role_account`,`is_active`,`created_at`) VALUES
-(1,'siswa1@example.com',223117082,'siswa',1,'2025-01-10 22:07:56'),
-(2,'siswa1@example.com',223117084,'admin',1,'2025-01-10 22:08:24');
+(1,'siswa1@example.com',223117082,'siswa',1,'22:07:56'),
+(2,'siswa1@example.com',223117084,'admin',1,'22:08:24');
 
 /*Table structure for table `live_session` */
 
@@ -157,7 +170,12 @@ CREATE TABLE `live_session` (
 /*Data for the table `live_session` */
 
 INSERT  INTO `live_session`(`id_live_session`,`id_live_account`,`content`,`periode`,`is_acc`,`created_at`) VALUES
-(1,1,'gvn gay',2025, 2,'2025-01-18 12:46:31');
+(1, 1, 'gvn gay', 2025, 2, '2025-01-18'),
+(2, 1, 'gvn suka cowok', 2025, 1, '2025-01-19'),
+(3, 1, 'gvn dewa', 2025, 0, '2025-01-20'),
+(4, 2, 'gvn rhyma', 2025, 1, '2025-01-21'),
+(5, 2, 'gvn punya kakak', 2025, 2, '2025-01-22'),
+(6, 2, 'gvn stress', 2025, 1, '2025-01-22');
 
 /*Table structure for table `respon_keluhan` */
 
@@ -177,6 +195,15 @@ CREATE TABLE `respon_keluhan` (
 ) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `respon_keluhan` */
+
+INSERT INTO `respon_keluhan` (`id_respon`, `id_keluhan`, `id_dosen`, `respon`, `created_at`) 
+VALUES
+(1, 1, 1, 'iya mana ada', '2025-01-21'),
+(2, 2, 2, 'mendingan pulang', '2025-01-21'),
+(3, 3, 3, 'besok ku bawa nuklir.', '2025-01-22'),
+(4, 4, 1, 'saya ini cupu bang', '2025-01-22'),
+(5, 5, 2, 'maaf tidak minatmu', '2025-01-22');
+
 
 /*Table structure for table `siswa` */
 
