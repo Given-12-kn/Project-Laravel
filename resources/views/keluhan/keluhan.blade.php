@@ -147,6 +147,16 @@
                         console.log(response.success);
                         console.log(response);
                         container.innerHTML = '';
+
+
+                        const bgContainer = document.querySelector('.bg-gradient-to-r');
+                        if (response.jumlahData < 5) {
+                            bgContainer.style.height = "100vh";
+                        } else {
+                            bgContainer.style.height = "auto";
+                        }
+
+
                         for (var i = 0; i < response.dataKeluhan.length; i++) {
                             var sudahUpvote = false;
                             for (var j = 0; j < response.dataKeluhan[i].newData.length; j++) {

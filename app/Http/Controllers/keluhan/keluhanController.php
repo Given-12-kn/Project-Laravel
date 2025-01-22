@@ -12,7 +12,7 @@ class keluhanController extends Controller
 {
     public function index(){
         $kategori = DB::table('kategori')->get();
-        $keluhan = keluhan::with('toKategori')->orderBy('id_keluhan', 'desc')->get();
+        $keluhan = keluhan::with('toKategori')->where('status_keluhan', 1)->orderBy('id_keluhan', 'desc')->get();
         foreach($keluhan as $item){
             $item->daftarUpvote = $item->toUpvote;
             $item->nama_kategori = $item->toKategori->nama_kategori;
@@ -52,13 +52,13 @@ class keluhanController extends Controller
         $status = $request->status;
 
         if($status == 'lama'){
-            $dataKeluhan = keluhan::withCount('toUpvote')->orderBy('id_keluhan', 'asc')->get();
+            $dataKeluhan = keluhan::withCount('toUpvote')->where('status_keluhan', 1)->orderBy('id_keluhan', 'asc')->get();
         }
         else if($status == 'baru'){
-            $dataKeluhan = keluhan::withCount('toUpvote')->orderBy('id_keluhan', 'desc')->get();
+            $dataKeluhan = keluhan::withCount('toUpvote')->where('status_keluhan', 1)->orderBy('id_keluhan', 'desc')->get();
         }
         else if($status == 'terbanyak'){
-            $dataKeluhan = keluhan::withCount('toUpvote')->orderBy('to_upvote_count', 'desc')->get();
+            $dataKeluhan = keluhan::withCount('toUpvote')->where('status_keluhan', 1)->orderBy('to_upvote_count', 'desc')->get();
         }
         foreach($dataKeluhan as $item){
             $item->daftarUpvote = $item->to_upvote_count;
@@ -66,7 +66,8 @@ class keluhanController extends Controller
             $item->nama_kategori = $item->toKategori->nama_kategori;
         }
 
-        return response()->json(['success' => true, 'dataKeluhan' => $dataKeluhan]);
+        $jumlahData = $dataKeluhan->count();
+        return response()->json(['success' => true, 'dataKeluhan' => $dataKeluhan, 'jumlahData' => $jumlahData]);
     }
 
     public function upvoteKeluhan(Request $request)

@@ -13,7 +13,7 @@
             <!-- Live Chat Section -->
             <h1 class="text-2xl font-bold mb-4 text-center mt-8 mb-8">Live Chat</h1>
             <div id="chat-container">
-                <div id="main-chat-box" class="border border-gray-300 rounded-md p-4 h-24 bg-white mb-4 flex justify-between items-center">
+                <div id="main-chat-box" class="border border-gray-300 rounded-md p-4 h-24 bg-white mb-4 flex flex-wrap overflow-auto max-h-[500px] justify-between items-center">
                     <!-- Main chat message will appear here -->
                     <span id="main-message-text">
 

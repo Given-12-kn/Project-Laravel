@@ -63,43 +63,54 @@
             <div class="flex flex-col mb-4 step-container" data-step="1" data-step-image="{{ asset('step1.png') }}">
                 <div class="flex items-center cursor-pointer" onclick="activateStep(1)">
                     <div class="w-0.5 h-16 bg-gray-300 mr-4 transition-all duration-500 ease-in-out step-line"></div>
-                    <p class="text-gray-600 font-medium step-title">Discover real product opportunities</p>
+                    <p class="text-gray-600 font-medium step-title">Tambah keluhan</p>
                 </div>
                 <div class="pl-6 border-l-2 border-transparent opacity-0 step-description" id="desc-1">
-                    <p class="text-gray-500">Description for step 1: This is where you discover product opportunities by understanding the market and user needs.</p>
+                    <p class="text-gray-500">Anda bisa navigasi ke button tambah keluhan di atas, dan masuk ke form untuk menambah keluhan.</p>
                 </div>
             </div>
 
             <!-- Langkah 2 -->
-            <div class="flex flex-col mb-4 step-container" data-step="2" data-step-image="{{ asset('step2.png') }}">
+            <div class="flex flex-col mb-4 step-container" data-step="2" data-step-image="{{ asset('step4.png') }}">
                 <div class="flex items-center cursor-pointer" onclick="activateStep(2)">
                     <div class="w-0.5 h-16 bg-gray-300 mr-4 transition-all duration-500 ease-in-out step-line"></div>
-                    <p class="text-gray-600 font-medium step-title">Accelerate product discovery with user feedback</p>
+                    <p class="text-gray-600 font-medium step-title">Tunggu di ACC</p>
                 </div>
                 <div class="pl-6 border-l-2 border-transparent opacity-0 step-description" id="desc-2">
-                    <p class="text-gray-500">Description for step 2: Leverage user feedback to improve and refine your product faster.</p>
+                    <p class="text-gray-500">Anda harus menunggu admin untuk meng-ACC keluhan anda agar dapat di tampilkan.</p>
                 </div>
             </div>
 
             <!-- Langkah 3 -->
-            <div class="flex flex-col mb-4 step-container" data-step="3" data-step-image="{{ asset('step3.png') }}">
+            <div class="flex flex-col mb-4 step-container" data-step="3" data-step-image="{{ asset('step2.png') }}">
                 <div class="flex items-center cursor-pointer" onclick="activateStep(3)">
                     <div class="w-0.5 h-16 bg-gray-300 mr-4 transition-all duration-500 ease-in-out step-line"></div>
-                    <p class="text-gray-600 font-medium step-title">Navigate problem spaces with confidence</p>
+                    <p class="text-gray-600 font-medium step-title">Keluhan Ditambah</p>
                 </div>
                 <div class="pl-6 border-l-2 border-transparent opacity-0 step-description" id="desc-3">
-                    <p class="text-gray-500">Description for step 3: Develop confidence in addressing complex challenges through structured analysis.</p>
+                    <p class="text-gray-500">Setelah di ACC admin, anda dapat melihat keluhan anda di halaman keluhan.</p>
                 </div>
             </div>
 
             <!-- Langkah 4 -->
-            <div class="flex flex-col mb-4 step-container" data-step="4" data-step-image="{{ asset('step4.png') }}">
+            <div class="flex flex-col mb-4 step-container" data-step="4" data-step-image="{{ asset('step3.png') }}">
                 <div class="flex items-center cursor-pointer" onclick="activateStep(4)">
                     <div class="w-0.5 h-16 bg-gray-300 mr-4 transition-all duration-500 ease-in-out step-line"></div>
-                    <p class="text-gray-600 font-medium step-title">Align solutions to genuine user desires</p>
+                    <p class="text-gray-600 font-medium step-title">Lihat detail keluhan</p>
                 </div>
                 <div class="pl-6 border-l-2 border-transparent h-0 opacity-0 step-description" id="desc-4">
-                    <p class="text-gray-500">Description for step 4: Ensure your solutions truly meet user needs and drive value.</p>
+                    <p class="text-gray-500">Anda dapat melihat detail keluhan anda dengan mengklik card keluhan-nya.</p>
+                </div>
+            </div>
+
+            <!-- Langkah 5 -->
+            <div class="flex flex-col mb-4 step-container" data-step="5" data-step-image="{{ asset('step5.png') }}">
+                <div class="flex items-center cursor-pointer" onclick="activateStep(5)">
+                    <div class="w-0.5 h-16 bg-gray-300 mr-4 transition-all duration-500 ease-in-out step-line"></div>
+                    <p class="text-gray-600 font-medium step-title">Tunggu respon keluhan</p>
+                </div>
+                <div class="pl-6 border-l-2 border-transparent h-0 opacity-0 step-description" id="desc-5">
+                    <p class="text-gray-500">Anda harus menunggu agar dosen dapat merespon keluhan anda, yang dapat anda dilihat di box di bawah detail keluhan anda.</p>
                 </div>
             </div>
         </div>
