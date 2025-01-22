@@ -90,6 +90,6 @@ Route::prefix('dosen')->group(function () {
     Route::controller(dosenController::class)->group(function () {
         Route::get('/', 'index');
         Route::get('/detail', 'detail');
-        Route::get('/live', 'lve');
+        Route::get('/live', 'live');
     });
 });

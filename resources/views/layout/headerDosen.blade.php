@@ -23,7 +23,7 @@
       <div class="flex flex-1 items-center justify-center">
           {{-- logo --}}
           <div class="flex md:absolute md:left-0 items-center">
-              <img src="logo.png" alt="logo" style="width: 60px; height: 60px">
+              <img src="{{asset('logo.png')}}" alt="logo" style="width: 60px; height: 60px">
               <span class="customHeaderLogo:hidden text-lg font-bold">Opentalk</span>
           </div>
 
@@ -58,7 +58,7 @@
               <button type="button" class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
               <span class="absolute -inset-1.5"></span>
               <span class="sr-only">Open user menu</span>
-              <img class="size-10 rounded-full" src="yoshi.png" alt="">
+              <img class="size-10 rounded-full" src="{{asset('yoshi.png')}}" alt="muka_yoshi.png">
               </button>
 
 
