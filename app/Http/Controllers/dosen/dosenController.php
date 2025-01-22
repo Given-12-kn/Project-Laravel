@@ -71,10 +71,9 @@ class dosenController extends Controller
         $request->validate([
             'response' => 'required',
         ]);
-        dd(auth::guard('dosen')->user());
         $response = new respon_keluhan();
         $response->respon = $request->response;
-        $response->id_keluhan = $i;
+        $response->id_keluhan = $id;
         $response->id_dosen = auth::guard('dosen')->user()->id_dosen;
         $response->save();
 
