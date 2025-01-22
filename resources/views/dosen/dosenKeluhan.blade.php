@@ -27,44 +27,6 @@
             </div>
         </div>
     </div>
-
-
-
-    <div id="formContainer" class="mt-4 w-full hidden">
-        <div class="max-w-6xl mx-auto bg-white transform transition-transform duration-300 ease-in-out p-8 rounded-lg">
-            <h2 class="text-2xl font-bold text-center mb-6 text-gray-800">Form Penambahan Keluhan</h2>
-            <form id="addComplaintForm">
-                <div class="mb-6">
-                    <label for="title" class="block text-lg font-semibold text-gray-700">Judul</label>
-                    <input type="text" id="title" name="title" placeholder="Masukkan judul" class="mt-2 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-gray-800 sm:text-md px-4 py-2 bg-gray-50">
-                </div>
-    
-                <div class="mb-6">
-                    <label for="description" class="block text-lg font-semibold text-gray-700">Deskripsi</label>
-                    <textarea id="description" name="description" placeholder="Jelaskan keluhan anda secara detail" rows="4" class="mt-2 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-gray-800 sm:text-md px-4 py-2 bg-gray-50"></textarea>
-                </div>
-    
-                <div class="mb-6">
-                    <label for="category" class="block text-lg font-semibold text-gray-700">Kategori</label>
-                    <select id="category" name="category" class="mt-2 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-gray-800 sm:text-md px-4 py-2 bg-gray-50">
-                        <option value="" disabled selected>Pilih Kategori</option>
-                        <option value="akademi">akademi</option>
-                        <option value="fasilitas">fasilitas</option>
-                        <option value="administrasi">administrasi</option>
-                        <option value="lainnya">lainnya</option>
-                    </select>
-                </div>
-    
-                <div class="flex justify-end space-x-4">
-                    <button type="button" id="cancelButton" class="bg-gray-400 text-white px-5 py-2 rounded-lg shadow transition duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-500">Cancel</button>
-                    <button type="submit" class="bg-blue-500 text-white px-5 py-2 rounded-lg shadow transition duration-300 ease-in-out transform hover:scale-105 hover:bg-blue-600">Submit</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-
-
     <div id="card-container" class="p-4"></div>
 </div>
 
@@ -106,7 +68,7 @@
 
         document.querySelectorAll('.card').forEach(card => {
             observer.observe(card);
-        });ssssssss
+        });
     });
 
 

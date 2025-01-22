@@ -31,7 +31,7 @@
                     <span class="text-sm font-bold">{{ $dataKeluhan[$i]->toUpvote->count() }}</span>
                 </div>
                 <h3 class="text-lg font-semibold text-center mb-2 mt-14">{{$dataKeluhan[$i]->judul_keluhan}}</h3>
-                <p class="text-sm text-gray-500 text-center break-words">{{$dataKeluhan[$i]->deskripsi}}</p>
+                <p class="text-sm text-gray-500 text-center break-words mb-12">{{$dataKeluhan[$i]->deskripsi}}</p>
             </div>
             @endfor
             @else

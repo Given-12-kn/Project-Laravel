@@ -30,7 +30,7 @@
 
 
 
-    <div id="formContainer" class="mt-4 w-full hidden">
+    <div id="formContainer" class="mt-4 w-full hidden mb-12">
         <div class="max-w-6xl mx-auto bg-white transform transition-transform duration-300 ease-in-out p-8 rounded-lg">
             <h2 class="text-2xl font-bold text-center mb-6 text-gray-800">Form Penambahan Keluhan</h2>
             <form id="addComplaintForm" action="{{url('keluhan/detail/add')}}" method="POST">
@@ -163,6 +163,7 @@
                                 card.innerHTML = `
                                 <a href="{{ url('/keluhan/detailKeluhan/${response.dataKeluhan[i].id_keluhan}') }}" class="w-full h-full">
                                     <div class="card">
+                                        <div> ` + response.dataKeluhan[i].nama_kategori + ` </div>
                                         <div class="absolute top-2 right-2 bg-gradient-to-r from-blue-300 to-blue-500 text-white rounded-full px-3 py-1 flex items-center space-x-2 shadow-md">
                                             <ion-icon name="thumbs-up" class="text-xl"></ion-icon>
                                             <span class="text-sm font-bold">` + response.dataKeluhan[i].daftarUpvote + `</span>
@@ -184,6 +185,7 @@
                             card.innerHTML = `
                             <a href="{{ url('/keluhan/detailKeluhan/${response.dataKeluhan[i].id_keluhan}') }}" class="w-full h-full">
                                 <div class="card">
+                                    <div> ` + response.dataKeluhan[i].nama_kategori + ` </div>
                                     <div class="absolute top-2 right-2 bg-gradient-to-r from-blue-300 to-blue-500 text-white rounded-full px-3 py-1 flex items-center space-x-2 shadow-md">
                                         <ion-icon name="thumbs-up" class="text-xl"></ion-icon>
                                         <span class="text-sm font-bold">` + response.dataKeluhan[i].daftarUpvote + `</span>
@@ -207,7 +209,7 @@
                 });
             });
         }
-        setInterval(loadCard, 60000)
+        // setInterval(loadCard, 60000)
         ;
 
         const observer = new IntersectionObserver((entries) => {

@@ -12,5 +12,8 @@ class kategori extends Model
     public $incrementing = true;
     public $timestamps = false;
 
-
+    public function toKeluhan()
+    {
+        return $this->hasMany(keluhan::class, 'id_kategori', 'id_kategori');
+    }
 }

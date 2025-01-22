@@ -12,9 +12,10 @@ class keluhanController extends Controller
 {
     public function index(){
         $kategori = DB::table('kategori')->get();
-        $keluhan = keluhan::orderBy('id_keluhan', 'desc')->get();
+        $keluhan = keluhan::with('toKategori')->orderBy('id_keluhan', 'desc')->get();
         foreach($keluhan as $item){
             $item->daftarUpvote = $item->toUpvote;
+            $item->nama_kategori = $item->toKategori->nama_kategori;
         }
         return view('keluhan.keluhan', compact('kategori', 'keluhan'));
     }
@@ -62,6 +63,7 @@ class keluhanController extends Controller
         foreach($dataKeluhan as $item){
             $item->daftarUpvote = $item->to_upvote_count;
             $item->newData = $item->toUpvote;
+            $item->nama_kategori = $item->toKategori->nama_kategori;
         }
 
         return response()->json(['success' => true, 'dataKeluhan' => $dataKeluhan]);
