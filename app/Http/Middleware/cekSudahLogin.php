@@ -24,6 +24,7 @@ class cekSudahLogin
             Log::info('User not authenticated. Redirecting to login.');
             return redirect(url('form/login'));
         }
+
         foreach ($baru as $b) {
             if(Auth::user()->toLa?->role_account == $b){
 

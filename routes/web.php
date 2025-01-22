@@ -10,6 +10,7 @@ use App\Http\Controllers\keluhan\keluhanController;
 use App\Http\Controllers\live\liveController;
 
 use App\Http\Controllers\resetPassword;
+use App\Http\Middleware\cekRole;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 
@@ -19,16 +20,11 @@ Route::prefix('form')->group(function () {
     Route::controller(login::class)->group(function () {
         Route::get('/login', 'index');
         Route::post('/login/cekLogin', 'cekLogin');
-        //Route::post('/resetPassword', 'resetPassword');
     });
-    // Route::controller(resetPassword::class)->group(function () {
-    //     Route::get('/resetPassword', 'index');
-    //     Route::post('/', '');
-    // });
 });
 
 
-Route::prefix('home')->group(function () {
+Route::prefix('home')->middleware('cekRole:web')->group(function () {
     Route::controller(homeController::class)->group(function () {
         Route::get('/', 'index');
         Route::post('/kirim', 'sendChat');
@@ -36,7 +32,7 @@ Route::prefix('home')->group(function () {
         Route::get('/logout', 'logout');
     });
 
-    Route::controller(adminController::class)->middleware('cekSudahLogin:admin')->group(function () {
+    Route::controller(adminController::class)->middleware('cekRole:web','cekSudahLogin:admin')->group(function () {
         Route::get('/admin', 'index');
         Route::get('/admin/daftarSiswa', 'daftarSiswa');
         Route::get('/admin/liveSetting' , 'liveSetting');
@@ -61,7 +57,7 @@ Route::prefix('home')->group(function () {
 
 });
 
-Route::prefix('live')->group(function () {
+Route::prefix('live')->middleware('cekRole:web','cekSudahLogin:admin,user')->group(function () {
     Route::controller(liveController::class)
         ->middleware('cekSudahLogin:siswa,admin,dosen')
         ->group(function () {
@@ -71,7 +67,7 @@ Route::prefix('live')->group(function () {
 });
 
 
-Route::prefix('keluhan')->group(function () {
+Route::prefix('keluhan')->middleware('cekRole:web','cekSudahLogin:admin,user')->group(function () {
     Route::controller(keluhanController::class)->group(function () {
         Route::get('/', 'index');
         // Route::get('/detail', 'detailKeluhan');
@@ -84,7 +80,7 @@ Route::prefix('keluhan')->group(function () {
 });
 
 
-Route::prefix('dosen')->group(function () {
+Route::prefix('dosen')->middleware('cekRole:dosen')->group(function () {
     Route::controller(dosenController::class)->group(function () {
         Route::get('/', 'index');
         Route::get('/detail/{id}', 'detailKeluhan');
