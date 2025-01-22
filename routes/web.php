@@ -89,6 +89,7 @@ Route::prefix('dosen')->group(function () {
         Route::get('/', 'index');
         Route::get('/detail/{id}', 'detailKeluhan');
         Route::get('/live', 'live');
+        Route::post('/answer/{id}', 'submitAnswer');
     });
 });
 

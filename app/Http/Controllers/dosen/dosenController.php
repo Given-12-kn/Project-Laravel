@@ -4,6 +4,7 @@ namespace App\Http\Controllers\dosen;
 
 use App\Http\Controllers\Controller;
 use App\Models\keluhan;
+use App\Models\respon_keluhan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -25,8 +26,8 @@ class dosenController extends Controller
     {
         $keluhan = DB::table('keluhan')->where('id_keluhan', $id)->first();
         $respon = DB::table('respon_keluhan')->where('id_keluhan', $id)->first();
-        return view('dosen.dosenDetailKeluhan', compact('keluhan', 'respon'));
-    }
+        return view('dosen.dosenDetailKeluhan', compact('keluhan', 'respon', 'id'));
+    } 
 
     public function keluhanAjax(){
         $dataKeluhan = keluhan::orderBy('id_keluhan', 'desc')->get();
@@ -63,5 +64,19 @@ class dosenController extends Controller
         $keluhan = Keluhan::where('showing', 1)->first();
 
         return view('dosen.dosenLive',compact('keluhan'));
+    }
+
+    public function submitAnswer(Request $request, $id){
+        $request->validate([
+            'response' => 'required',
+        ]);
+        dd(auth::user());
+        $response = new respon_keluhan();
+        $response->respon = $request->response; 
+        $response->id_keluhan = $id;
+        $response->id_dosen = Auth::user()->id_dosen;
+        $response->save();
+
+        return redirect()->back()->with('success', 'Respon berhasil disimpan');
     }
 }

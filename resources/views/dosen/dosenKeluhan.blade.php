@@ -123,7 +123,7 @@
                                 card.className = 'card fade-out';
                                 card.className = 'card bg-white p-4 shadow rounded fade-in';
                                 card.innerHTML = `
-                                <a href="{{ url('/dosen/detail/${response.dataKeluhan[i].id_keluhan}') }}" class="w-full h-full">
+                                <a href="{{ url('/dosen/detail/${response.dataKeluhan[i].id_keluhan}/') }}" class="w-full h-full">
                                     <div class="card">
                                         <div> ` + response.dataKeluhan[i].nama_kategori + ` </div>
                                         <div class="absolute top-2 right-2 bg-gradient-to-r from-blue-300 to-blue-500 text-white rounded-full px-3 py-1 flex items-center space-x-2 shadow-md">

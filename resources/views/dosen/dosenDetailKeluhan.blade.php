@@ -60,42 +60,54 @@
         </div>
     </div>
 
-    <div class="pl-8 pr-8 pb-8 flex justify-center items-center">
-        <div class="bg-white shadow-lg rounded-lg max-w-3xl w-full p-6 fade-in">
-          
-            <textarea id="replyInput" rows="4" class="w-full border border-gray-300 rounded-lg p-3 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Tulis jawaban Anda di sini..."></textarea>
+    @if($respon)
+        <div class="pl-8 pr-8 pb-8 flex justify-center items-center">
+            <div class="bg-white shadow-lg rounded-lg max-w-3xl w-full p-6 fade-in">
             
-            <button id="sendButton" class="btn-send bg-blue-500 text-white px-6 py-2 rounded shadow hover:bg-blue-400 transition-colors">
-                Send
-            </button>
+                <textarea id="replyInput" rows="4" class="w-full border border-gray-300 text-gray-500 rounded-lg p-3 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Tulis jawaban Anda di sini..." disabled>{{ $respon->respon}}</textarea>
+                
+                <button id="sendButton" class="bg-red-500 text-white px-6 py-2 rounded shadow opacity-20" disabled>
+                    Answered
+                </button>
+            </div>
         </div>
-    </div>
-
+    @else
+        <div class="pl-8 pr-8 pb-8 flex justify-center items-center">
+            <div class="bg-white shadow-lg rounded-lg max-w-3xl w-full p-6 fade-in">
+                <form action="{{ url('dosen/answer/' . $id)}}" method="POST">
+                    @csrf
+                    <textarea id="replyInput" name="response" rows="4" class="w-full border border-gray-300 rounded-lg p-3 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Tulis jawaban Anda di sini..."></textarea>
+                    
+                    <input type="submit" id="sendButton" class="btn-send bg-blue-500 text-white px-6 py-2 rounded shadow hover:bg-blue-400 transition-colors"></input>
+                </form>
+            </div>
+        </div>
+    @endif
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const sendButton = document.getElementById('sendButton');
-            const replyInput = document.getElementById('replyInput');
+        // document.addEventListener('DOMContentLoaded', () => {
+        //     const sendButton = document.getElementById('sendButton');
+        //     const replyInput = document.getElementById('replyInput');
 
-            sendButton.addEventListener('click', () => {
-                const replyContent = replyInput.value.trim();
+        //     sendButton.addEventListener('click', () => {
+        //         const replyContent = replyInput.value.trim();
 
-                if (!replyContent) {
-                    alert('Mohon isi jawaban terlebih dahulu.');
-                    return;
-                }
+        //         if (!replyContent) {
+        //             alert('Mohon isi jawaban terlebih dahulu.');
+        //             return;
+        //         }
 
-                sendButton.innerText = 'Sending...';
-                sendButton.disabled = true;
+        //         sendButton.innerText = 'Sending...';
+        //         sendButton.disabled = true;
 
-                setTimeout(() => {
+        //         setTimeout(() => {
                  
-                    alert('Jawaban berhasil dikirim!');
-                    sendButton.innerText = 'Send';
-                    sendButton.disabled = false;
-                    replyInput.value = '';
-                }, 2000);
-            });
-        });
+        //             alert('Jawaban berhasil dikirim!');
+        //             sendButton.innerText = 'Send';
+        //             sendButton.disabled = false;
+        //             replyInput.value = '';
+        //         }, 2000);
+        //     });
+        // });
 
         document.addEventListener('DOMContentLoaded', () => {
             const detailKeluhanCard = document.getElementById('detailKeluhanCard');
