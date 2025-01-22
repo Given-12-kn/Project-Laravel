@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\adminController;
+use App\Http\Controllers\dosen\dosen;
+use App\Http\Controllers\dosen\dosenController;
 use App\Http\Controllers\form\login;
 use App\Http\Controllers\form\register;
 use App\Http\Controllers\home\homeController;
@@ -70,29 +72,22 @@ Route::prefix('live')->group(function () {
         });
 });
 
-Route::get('/keluhan', function () {
-    return view('keluhan.keluhan');
-});
-
-Route::get('/keluhan/detailKeluhan', function () {
-    return view('keluhan.detailKeluhan');
-});
 
 Route::prefix('keluhan')->group(function () {
-    Route::get('/', [keluhanController::class, 'index']);
-    Route::get('/detail', function(){
-        return view('keluhan.detailKeluhan');
+    Route::controller(keluhanController::class)->group(function () {
+        Route::get('/', 'index');
+        Route::get('/detail', 'detailKeluhan');
+
+        Route::post('/detail/add', 'addKeluhan');
+        Route::post('/detail/keluhanAjax', 'keluhanAjax');
     });
 });
 
+
 Route::prefix('dosen')->group(function () {
-    Route::get('/', function () {
-        return view('dosen.dosenKeluhan');
-    });
-    Route::get('/detail', function(){
-        return view('dosen.dosenDetailKeluhan');
-    });
-    Route::get('/live', function(){
-        return view('dosen.dosenLive');
+    Route::controller(dosenController::class)->group(function () {
+        Route::get('/', 'index');
+        Route::get('/detail', 'detail');
+        Route::get('/live', 'lve');
     });
 });

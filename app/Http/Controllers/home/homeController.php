@@ -4,6 +4,7 @@ namespace App\Http\Controllers\home;
 
 use App\Http\Controllers\Controller;
 use App\Models\chat;
+use App\Models\keluhan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -13,7 +14,8 @@ class homeController extends Controller
 {
     public function index()
     {
-        return view('home.home2');
+        $dataKeluhan = keluhan::orderBy('id_keluhan', 'desc')->take(10)->get();
+        return view('home.home2', compact('dataKeluhan'));
     }
 
     public function sendChat(Request $request)

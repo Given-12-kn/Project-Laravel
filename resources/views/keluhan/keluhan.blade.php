@@ -9,7 +9,7 @@
 <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 
 <div class="bg-gradient-to-r from-white via-[#f0e6fa] to-[#d2eaff]">
-    
+
     <div class="header-container flex justify-end items-center px-4 py-2">
         <div class="flex items-center gap-2 relative mt-8">
             <button id="addButton" class="btn-add bg-blue-400 text-white px-4 py-2 rounded shadow">Tambah Keluhan</button>
@@ -33,17 +33,18 @@
     <div id="formContainer" class="mt-4 w-full hidden">
         <div class="max-w-6xl mx-auto bg-white transform transition-transform duration-300 ease-in-out p-8 rounded-lg">
             <h2 class="text-2xl font-bold text-center mb-6 text-gray-800">Form Penambahan Keluhan</h2>
-            <form id="addComplaintForm">
+            <form id="addComplaintForm" action="{{url('keluhan/detail/add')}}" method="POST">
+                @csrf
                 <div class="mb-6">
                     <label for="title" class="block text-lg font-semibold text-gray-700">Judul</label>
                     <input type="text" id="title" name="title" placeholder="Masukkan judul" class="mt-2 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-gray-800 sm:text-md px-4 py-2 bg-gray-50">
                 </div>
-    
+
                 <div class="mb-6">
                     <label for="description" class="block text-lg font-semibold text-gray-700">Deskripsi</label>
                     <textarea id="description" name="description" placeholder="Jelaskan keluhan anda secara detail" rows="4" class="mt-2 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-gray-800 sm:text-md px-4 py-2 bg-gray-50"></textarea>
                 </div>
-    
+
                 <div class="mb-6">
                     <label for="category" class="block text-lg font-semibold text-gray-700">Kategori</label>
                     <select id="category" name="category" class="mt-2 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-gray-800 sm:text-md px-4 py-2 bg-gray-50">
@@ -53,7 +54,7 @@
                         @endforeach
                     </select>
                 </div>
-    
+
                 <div class="flex justify-end space-x-4">
                     <button type="button" id="cancelButton" class="bg-gray-400 text-white px-5 py-2 rounded-lg shadow transition duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-500">Cancel</button>
                     <button type="submit" class="bg-blue-500 text-white px-5 py-2 rounded-lg shadow transition duration-300 ease-in-out transform hover:scale-105 hover:bg-blue-600">Submit</button>
@@ -68,28 +69,53 @@
 </div>
 
 
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+     var myurl = "<?php echo URL::to('/'); ?>";
     document.addEventListener("DOMContentLoaded", () => {
         const container = document.getElementById('card-container');
 
-        for (let i = 1; i <= 100; i++) {
-            const card = document.createElement('div');
-            card.className = 'card bg-white p-4 shadow rounded fade-in';
-            card.innerHTML = ` 
-            <a href="{{ url('/keluhan/detailKeluhan') }}" class="w-full h-full">
-                <div class="card">
-                    <div class="absolute top-2 right-2 bg-gradient-to-r from-blue-300 to-blue-500 text-white rounded-full px-3 py-1 flex items-center space-x-2 shadow-md">
-                        <ion-icon name="thumbs-up" class="text-xl"></ion-icon>
-                        <span class="text-sm font-bold">3</span>
-                    </div>
-                    <p class="mt-14">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum explicabo vero nostrum, iure repellendus perspiciatis non numquam eaque est ipsum quam similique nobis sit assumenda.</p>
-                    <button class="btn-upvote bg-gradient-to-r from-blue-300 to-blue-500 rounded-full">Upvote</button>
-                </div>
-            </a>
-            `;
-            container.appendChild(card);
-        }
+        $(document).ready(function () {
+            $('.btn-upvote').click(function () {
+                $(this).toggleClass('bg-blue-300 bg-blue-500');
+            });
+        });
+
+        $(document).ready(function () {
+            $.ajax({
+                type: "post",
+                url: myurl + "/keluhan/detail/keluhanAjax",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                },
+                success: function (response) {
+                    console.log(response.success);
+                    console.log(response);
+                    console.log(response.dataKeluhan[0].deskripsi);
+                    for (var i = 0; i < response.dataKeluhan.length; i++) {
+                        const card = document.createElement('div');
+                        card.className = 'card bg-white p-4 shadow rounded fade-in';
+                        card.innerHTML = `
+                        <a href="{{ url('/keluhan/detailKeluhan') }}" class="w-full h-full">
+                            <div class="card">
+                                <div class="absolute top-2 right-2 bg-gradient-to-r from-blue-300 to-blue-500 text-white rounded-full px-3 py-1 flex items-center space-x-2 shadow-md">
+                                    <ion-icon name="thumbs-up" class="text-xl"></ion-icon>
+                                    <span class="text-sm font-bold">3</span>
+                                </div>
+                                <p class="mt-14">` + response.dataKeluhan[i].deskripsi + `</p>
+                                    </p>
+                                <button class="btn-upvote bg-gradient-to-r from-blue-300 to-blue-500 rounded-full">Upvote</button>
+                            </div>
+                        </a>
+                        `;
+                        container.appendChild(card);
+                    }
+                },
+                error: function (response) {
+                    console.log(response);
+                }
+            });
+        });
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -123,7 +149,7 @@
             }
         });
     });
-    
+
 
     document.addEventListener("DOMContentLoaded", () => {
         const addButton = document.getElementById("addButton");
@@ -139,13 +165,13 @@
         });
 
         // Handle form submission (example behavior)
-        const form = document.getElementById("addComplaintForm");
-        form.addEventListener("submit", (e) => {
-            e.preventDefault();
-            alert("Form submitted!");
-            form.reset();
-            formContainer.classList.add("hidden");
-        });
+        // const form = document.getElementById("addComplaintForm");
+        // form.addEventListener("submit", (e) => {
+        //     e.preventDefault();
+        //     alert("Form submitted!");
+        //     form.reset();
+        //     formContainer.classList.add("hidden");
+        // });
     });
 </script>
 
@@ -182,18 +208,18 @@
 
     .card {
         background-color: white;
-        padding: 0.75rem; 
+        padding: 0.75rem;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         border-radius: 0.5rem;
-        width: 100%; 
+        width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
         text-align: center;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
-        max-width: 16rem; 
-        min-height: 10rem; 
+        max-width: 16rem;
+        min-height: 10rem;
         height: auto;
         overflow: hidden;
     }
@@ -214,26 +240,26 @@
 
     .btn-add:hover {
         transform: scale(1.05);
-        background-color: #3182ce; 
+        background-color: #3182ce;
     }
 
-    
+
 
     .header-container {
-        margin-bottom: 2rem; 
+        margin-bottom: 2rem;
     }
 
     #card-container {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 1.5rem; 
+        gap: 1.5rem;
         justify-items: center;
-        max-width: 1200px; 
-        margin: 0 auto; 
+        max-width: 1200px;
+        margin: 0 auto;
     }
 
     .dropdown-menu {
-        display: block; 
+        display: block;
         position: absolute;
         top: 100%;
         right: 0;
@@ -243,21 +269,21 @@
         min-width: 200px;
         z-index: 10;
 
-        max-height: 0; 
+        max-height: 0;
         opacity: 0;
-        overflow: hidden; 
-        transform: translateY(-10px); 
-        transition: all 0.3s ease; 
+        overflow: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
     }
 
     .dropdown-menu.active {
-        max-height: 500px; 
+        max-height: 500px;
     opacity: 1;
-    transform: translateY(0); 
+    transform: translateY(0);
     }
 
     .card {
-        position: relative; 
+        position: relative;
         background-color: white;
         padding: 1rem;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -266,7 +292,7 @@
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        text-align: left; 
+        text-align: left;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         max-width: 16rem;
         min-height: 10rem;
@@ -276,9 +302,9 @@
 
     .btn-upvote {
         position: absolute;
-        bottom: 1rem; 
-        right: 1rem; 
-        z-index: 1; 
+        bottom: 1rem;
+        right: 1rem;
+        z-index: 1;
         padding: 0.5rem 1rem;;
         color: rgb(41, 40, 40);
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -286,7 +312,7 @@
     }
 
     .card p {
-        margin-bottom: 4rem; 
+        margin-bottom: 4rem;
     }
 
 </style>

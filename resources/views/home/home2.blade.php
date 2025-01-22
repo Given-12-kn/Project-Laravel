@@ -22,24 +22,29 @@
 
     <div class="relative w-4/5 overflow-hidden">
         <div id="card-slider" class="flex items-center  transition-transform duration-500 ease-in-out">
-            @for ($i = 1; $i <= 10; $i++)
-            
+            @if (isset($dataKeluhan))
+            @for ($i = 0; $i < count($dataKeluhan); $i++)
+
             <div class="card relative flex-shrink-0 w-1/3 bg-white shadow-lg rounded-lg p-4 transform transition-all duration-500 ease-in-out">
                 <div class="absolute top-2 right-2 bg-gradient-to-r from-blue-300 to-blue-500 text-white rounded-full px-3 py-1 flex items-center space-x-2 shadow-md">
                     <ion-icon name="thumbs-up" class="text-xl"></ion-icon>
-                    <span class="text-sm font-bold">{{ $i }}</span>
+                    <span class="text-sm font-bold">{{ $dataKeluhan[$i]->upvote }}</span>
                 </div>
-                <h3 class="text-lg font-semibold text-center mb-2 mt-14">Judul keluhan {{ $i }}</h3>
-                <p class="text-sm text-gray-500 text-center break-words">ini hanyalah deskripsi, ini hanyalah deskripsi, ini hanyalah deskripsi, ini hanyalah deskripsi, ini hanyalah deskripsi</p>
+                <h3 class="text-lg font-semibold text-center mb-2 mt-14">{{$dataKeluhan[$i]->judul_keluhan}}</h3>
+                <p class="text-sm text-gray-500 text-center break-words">{{$dataKeluhan[$i]->deskripsi}}</p>
             </div>
             @endfor
+            @else
+
+            @endif
+
         </div>
     </div>
 
 
 
     <div class="mt-8 mb-40 flex justify-center">
-        <a href="/your-link-here" class="bg-blue-400 text-white font-bold py-2 px-4 rounded-full hover:bg-blue-500 transition-transform transform hover:scale-105 duration-300">Tambah Keluhan</a>
+        <a href="{{url('/keluhan')}}" class="bg-blue-400 text-white font-bold py-2 px-4 rounded-full hover:bg-blue-500 transition-transform transform hover:scale-105 duration-300">Tambah Keluhan</a>
     </div>
 
     <div>

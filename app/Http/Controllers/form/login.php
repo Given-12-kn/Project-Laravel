@@ -40,16 +40,6 @@ class login extends Controller
             'password.min' => 'Password terlalu pendek!',
         ]);
 
-        // $siswa = siswa::where('nrp', $nrp)->first();
-        // if(!$siswa){
-        //     return redirect(url('form/login'))->with('fail', 'Nrp tidak terdaftar!');
-        // }
-        // $pw = Hash::check($password, usersR::where('id', $siswa->id_users)->first()->password);
-        // if(!$pw){
-        //     return redirect(url('form/login'))->with('fail', 'Password salah!');
-        // }
-        // Auth::login($siswa->toUsers);
-        // return redirect(url('/home'));
         $siswa = siswa::where('nrp', $nrp)->first();
 
         if ($siswa) {
