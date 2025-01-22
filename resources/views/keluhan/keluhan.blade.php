@@ -75,7 +75,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("click", (event) => {
         if (event.target.classList.contains("btn-upvote")) {
-            event.preventDefault(); 
+            event.preventDefault();
             const idKeluhan = event.target.dataset.idKeluhan;
 
             fetch("{{ url('/keluhan/detail/upvote') }}", {
@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <ion-icon name="thumbs-up" class="text-xl"></ion-icon>
                 <span class="text-sm font-bold">` + response.dataKeluhan[i].daftarUpvote.length + `</span>
             </div>
-            <p class="mt-14">` + response.dataKeluhan[i].deskripsi + `</p>
+            <p class="mt-14">` + response.dataKeluhan[i].judul_keluhan + `</p>
             <button class="btn-upvote bg-gradient-to-r from-blue-300 to-blue-500 rounded-full" data-id-keluhan="` + response.dataKeluhan[i].id_keluhan + `">Upvote</button>
         </div>
     </a>
