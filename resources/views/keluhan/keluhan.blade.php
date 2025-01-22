@@ -20,9 +20,9 @@
             </button>
             <div id="dropdownMenu" class="dropdown-menu mt-2">
                 <ul class="list-none p-2">
-                    <li><a href="#" class="block px-4 py-2">Terbaru</a></li>
-                    <li><a href="#" class="block px-4 py-2">Terlama</a></li>
-                    <li><a href="#" class="block px-4 py-2">Vote terbanyak</a></li>
+                    <li><button id="baru"  class="block px-4 py-2">Terbaru</button></li>
+                    <li><button id="lama" class="block px-4 py-2">Terlama</button></li>
+                    <li><button id="terbanyak" class="block px-4 py-2">Vote terbanyak</button></li>
                 </ul>
             </div>
         </div>
@@ -105,9 +105,30 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-     var myurl = "<?php echo URL::to('/'); ?>";
+    var myurl = "<?php echo URL::to('/'); ?>";
     document.addEventListener("DOMContentLoaded", () => {
         const container = document.getElementById('card-container');
+        var status = 'lama';
+        loadCard();
+        
+        $(document).ready(function () {
+           $('#baru').click(function (e) {
+                e.preventDefault();
+                status = 'baru';
+                loadCard();
+            });
+            $('#lama').click(function (e) {
+                e.preventDefault();
+                status = 'lama';
+                loadCard();
+            });
+            $('#terbanyak').click(function (e) {
+                e.preventDefault();
+                status = 'terbanyak';
+                loadCard();
+            });
+
+        });
 
         $(document).ready(function () {
             $('.btn-upvote').click(function () {
@@ -115,35 +136,59 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
-        $(document).ready(function () {
-            $.ajax({
-                type: "post",
-                url: myurl + "/keluhan/detail/keluhanAjax",
-                data: {
-                    _token: "{{ csrf_token() }}",
-                },
-                success: function (response) {
-                    console.log(response.success);
-                    console.log(response);
-                    for (var i = 0; i < response.dataKeluhan.length; i++) {
-                        var sudahUpvote = false;
-                        for (var j = 0; j < response.dataKeluhan[i].daftarUpvote.length; j++) {
-                            console.log(response.dataKeluhan[i].daftarUpvote[j]);
-                            if (response.dataKeluhan[i].daftarUpvote[j].username == `{{Auth::user()->nama}}`) {
-                                sudahUpvote = true;
-                                break;
+        function loadCard(){
+            $(document).ready(function () {
+                $.ajax({
+                    type: "post",
+                    url: myurl + "/keluhan/detail/keluhanAjax",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        status: status
+                    },
+                    success: function (response) {
+                        console.log(response.success);
+                        console.log(response);
+                        container.innerHTML = '';
+                        for (var i = 0; i < response.dataKeluhan.length; i++) {
+                            var sudahUpvote = false;
+                            for (var j = 0; j < response.dataKeluhan[i].daftarUpvote.length; j++) {
+                                console.log(response.dataKeluhan[i].daftarUpvote[j]);
+                                if (response.dataKeluhan[i].daftarUpvote[j].username == `{{Auth::user()->nama}}`) {
+                                    sudahUpvote = true;
+                                    break;
+                                }
                             }
-                        }
-                        if(!sudahUpvote){
-                            const card = document.createElement('div');
-                            card.className = 'card fade-out';
+                            if(!sudahUpvote){
+                                const card = document.createElement('div');
+                                card.className = 'card fade-out';
+                                card.className = 'card bg-white p-4 shadow rounded fade-in';
+                                card.innerHTML = `
+                                <a href="{{ url('/keluhan/detailKeluhan/${response.dataKeluhan[i].id_keluhan}') }}" class="w-full h-full">
+                                    <div class="card">
+                                        <div class="absolute top-2 right-2 bg-gradient-to-r from-blue-300 to-blue-500 text-white rounded-full px-3 py-1 flex items-center space-x-2 shadow-md">
+                                            <ion-icon name="thumbs-up" class="text-xl"></ion-icon>
+                                            <span class="text-sm font-bold">` + response.dataKeluhan[i].daftarUpvote + `</span>
+                                        </div>
+                                        <div>
+                                            <h2 class="text-center font-semibold text-lg mt-14 mb-4 truncate">` + response.dataKeluhan[i].judul_keluhan + `</h2>
+                                            <div class="line-clamp-4">` + response.dataKeluhan[i].deskripsi + `</div>
+                                        </div>
+                                        <button class="btn-upvote bg-gradient-to-r from-blue-300 to-blue-500 rounded-full" data-id-keluhan="` + response.dataKeluhan[i].id_keluhan + `">Upvote</button>
+                                    </div>
+                                </a>
+                            `;
+                            container.appendChild(card);
+                            observer.observe(card);
+                            }
+                            else{
+                                const card = document.createElement('div');
                             card.className = 'card bg-white p-4 shadow rounded fade-in';
                             card.innerHTML = `
                             <a href="{{ url('/keluhan/detailKeluhan/${response.dataKeluhan[i].id_keluhan}') }}" class="w-full h-full">
                                 <div class="card">
                                     <div class="absolute top-2 right-2 bg-gradient-to-r from-blue-300 to-blue-500 text-white rounded-full px-3 py-1 flex items-center space-x-2 shadow-md">
                                         <ion-icon name="thumbs-up" class="text-xl"></ion-icon>
-                                        <span class="text-sm font-bold">` + response.dataKeluhan[i].daftarUpvote.length + `</span>
+                                        <span class="text-sm font-bold">` + response.dataKeluhan[i].daftarUpvote + `</span>
                                     </div>
                                     <div>
                                         <h2 class="text-center font-semibold text-lg mt-14 mb-4 truncate">` + response.dataKeluhan[i].judul_keluhan + `</h2>
@@ -152,39 +197,20 @@ document.addEventListener("DOMContentLoaded", () => {
                                     <button class="btn-upvote bg-gradient-to-r from-blue-300 to-blue-500 rounded-full" data-id-keluhan="` + response.dataKeluhan[i].id_keluhan + `">Upvote</button>
                                 </div>
                             </a>
-                        `;
-                        container.appendChild(card);
-                        observer.observe(card);
-                        }
-                        else{
-                            const card = document.createElement('div');
-                        card.className = 'card bg-white p-4 shadow rounded fade-in';
-                        card.innerHTML = `
-                        <a href="{{ url('/keluhan/detailKeluhan/${response.dataKeluhan[i].id_keluhan}') }}" class="w-full h-full">
-                            <div class="card">
-                                <div class="absolute top-2 right-2 bg-gradient-to-r from-blue-300 to-blue-500 text-white rounded-full px-3 py-1 flex items-center space-x-2 shadow-md">
-                                    <ion-icon name="thumbs-up" class="text-xl"></ion-icon>
-                                    <span class="text-sm font-bold">` + response.dataKeluhan[i].daftarUpvote.length + `</span>
-                                </div>
-                                <div>
-                                    <h2 class="text-center font-semibold text-lg mt-14 mb-4 truncate">` + response.dataKeluhan[i].judul_keluhan + `</h2>
-                                    <div class="line-clamp-4">` + response.dataKeluhan[i].deskripsi + `</div>
-                                </div>
-                                <button class="btn-upvote bg-gradient-to-r from-blue-300 to-blue-500 rounded-full" data-id-keluhan="` + response.dataKeluhan[i].id_keluhan + `">Upvote</button>
-                            </div>
-                        </a>
-                        `;
-                        container.appendChild(card);
-                        observer.observe(card);
-                        }
+                            `;
+                            container.appendChild(card);
+                            observer.observe(card);
+                            }
 
+                        }
+                    },
+                    error: function (response) {
+                        console.log(response);
                     }
-                },
-                error: function (response) {
-                    console.log(response);
-                }
+                });
             });
-        });
+        }
+        setInterval(loadCard, 60000);
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -345,9 +371,9 @@ document.addEventListener("DOMContentLoaded", () => {
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         max-width: 16rem;
         /* min-height: 10rem; */
-        width: 700px; 
-        max-height: 300px; 
-        min-height: 300px; 
+        width: 700px;
+        max-height: 300px;
+        min-height: 300px;
     }
 
     .btn-upvote {

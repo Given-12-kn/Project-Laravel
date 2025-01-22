@@ -18,7 +18,7 @@ class keluhanController extends Controller
         }
         return view('keluhan.keluhan', compact('kategori', 'keluhan'));
     }
-    
+
 
 
     public function detailKeluhan($id){
@@ -47,11 +47,22 @@ class keluhanController extends Controller
         }
     }
 
-    public function keluhanAjax(){
-        $dataKeluhan = keluhan::orderBy('id_keluhan', 'desc')->get();
-        foreach($dataKeluhan as $item){
-            $item->daftarUpvote = $item->toUpvote;
+    public function keluhanAjax(Request $request){
+        $status = $request->status;
+
+        if($status == 'lama'){
+            $dataKeluhan = keluhan::withCount('toUpvote')->orderBy('id_keluhan', 'asc')->get();
         }
+        else if($status == 'baru'){
+            $dataKeluhan = keluhan::withCount('toUpvote')->orderBy('id_keluhan', 'desc')->get();
+        }
+        else if($status == 'terbanyak'){
+            $dataKeluhan = keluhan::withCount('toUpvote')->orderBy('to_upvote_count', 'desc')->get();
+        }
+        foreach($dataKeluhan as $item){
+            $item->daftarUpvote = $item->to_upvote_count;
+        }
+
         return response()->json(['success' => true, 'dataKeluhan' => $dataKeluhan]);
     }
 
