@@ -46,20 +46,22 @@
                             </ul>
                         </div>
                     @endif
-                    <table class="table-auto border-collapse border border-gray-300 w-full border-spacing-0 mt-4">
-                        <thead>
-                            <tr class="bg-gray-100">
-                                <th class="border border-gray-300 px-2 py-1">Id</th>
-                                <th class="border border-gray-300 px-2 py-1">Email</th>
-                                <th class="border border-gray-300 px-2 py-1">Nrp</th>
-                                <th class="border border-gray-300 px-2 py-1">Role</th>
-                                <th class="border border-gray-300 px-2 py-1">Aktif</th>
-                            </tr>
-                        </thead>
-                        <tbody id="excel-data">
-                            <!-- Rows will be added dynamically -->
-                        </tbody>
-                    </table>
+                    <div class="table-wrapper">
+                        <table class="table-auto border-collapse border border-gray-300 w-full border-spacing-0 mt-4">
+                            <thead>
+                                <tr class="bg-gray-100">
+                                    <th class="border border-gray-300 px-2 py-1">Id</th>
+                                    <th class="border border-gray-300 px-2 py-1">Email</th>
+                                    <th class="border border-gray-300 px-2 py-1">Nrp</th>
+                                    <th class="border border-gray-300 px-2 py-1">Role</th>
+                                    <th class="border border-gray-300 px-2 py-1">Aktif</th>
+                                </tr>
+                            </thead>
+                            <tbody id="excel-data">
+                                <!-- Rows will be added dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -107,7 +109,7 @@
                     const worksheet = workbook.Sheets[firstSheetName];
                     const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 }); // Convert to 2D array
 
-                    console.log(jsonData);  
+                    console.log(jsonData);
                     populateTable(jsonData);
                 };
                 reader.readAsArrayBuffer(file);
@@ -140,11 +142,13 @@
 </script>
 
 <style>
-    .btn-primary:hover, .btn-success:hover {
-    background-color: #9000ff;
-    transform: scale(1.05);
-    transition: all 0.3s ease;
-    -webkit-animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+
+
+.btn-primary:hover, .btn-success:hover {
+background-color: #9000ff;
+transform: scale(1.05);
+transition: all 0.3s ease;
+-webkit-animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
 
 }
 
