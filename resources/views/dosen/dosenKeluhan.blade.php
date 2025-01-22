@@ -9,10 +9,10 @@
 <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 
 <div class="bg-gradient-to-r from-white via-[#f0e6fa] to-[#d2eaff]">
-    
+
     <div class="header-container flex justify-end items-center px-4 py-2">
         <div class="flex items-center gap-2 relative mt-8">
-           
+
             <button class="px-4 py-2 rounded shadow" id="dropdownBtn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-filter-right" viewBox="0 0 16 16">
                     <path d="M14 10.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5m0-3a.5.5 0 0 0-.5-.5h-7a.5.5 0 0 0 0 1h7a.5.5 0 0 0 .5-.5m0-3a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0 0 1h11a.5.5 0 0 0 .5-.5"/>
@@ -31,7 +31,7 @@
 </div>
 
 
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     var myurl = "<?php echo URL::to('/'); ?>";
     document.addEventListener("DOMContentLoaded", () => {
@@ -265,18 +265,18 @@
 
     .card {
         background-color: white;
-        padding: 0.75rem; 
+        padding: 0.75rem;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         border-radius: 0.5rem;
-        width: 100%; 
+        width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
         text-align: center;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
-        max-width: 16rem; 
-        min-height: 10rem; 
+        max-width: 16rem;
+        min-height: 10rem;
         height: auto;
         overflow: hidden;
     }
@@ -297,26 +297,26 @@
 
     .btn-add:hover {
         transform: scale(1.05);
-        background-color: #3182ce; 
+        background-color: #3182ce;
     }
 
-    
+
 
     .header-container {
-        margin-bottom: 2rem; 
+        margin-bottom: 2rem;
     }
 
     #card-container {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 1.5rem; 
+        gap: 1.5rem;
         justify-items: center;
-        max-width: 1200px; 
-        margin: 0 auto; 
+        max-width: 1200px;
+        margin: 0 auto;
     }
 
     .dropdown-menu {
-        display: block; 
+        display: block;
         position: absolute;
         top: 100%;
         right: 0;
@@ -326,21 +326,21 @@
         min-width: 200px;
         z-index: 10;
 
-        max-height: 0; 
+        max-height: 0;
         opacity: 0;
-        overflow: hidden; 
-        transform: translateY(-10px); 
-        transition: all 0.3s ease; 
+        overflow: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
     }
 
     .dropdown-menu.active {
-        max-height: 500px; 
+        max-height: 500px;
     opacity: 1;
-    transform: translateY(0); 
+    transform: translateY(0);
     }
 
     .card {
-        position: relative; 
+        position: relative;
         background-color: white;
         padding: 1rem;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -349,7 +349,7 @@
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        text-align: left; 
+        text-align: left;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         max-width: 16rem;
         min-height: 10rem;
@@ -359,9 +359,9 @@
 
     .btn-upvote {
         position: absolute;
-        bottom: 1rem; 
-        right: 1rem; 
-        z-index: 1; 
+        bottom: 1rem;
+        right: 1rem;
+        z-index: 1;
         padding: 0.5rem 1rem;;
         color: rgb(41, 40, 40);
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -369,7 +369,7 @@
     }
 
     .card p {
-        margin-bottom: 4rem; 
+        margin-bottom: 4rem;
     }
 
 </style>
