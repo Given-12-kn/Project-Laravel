@@ -76,11 +76,12 @@ Route::prefix('live')->group(function () {
 Route::prefix('keluhan')->group(function () {
     Route::controller(keluhanController::class)->group(function () {
         Route::get('/', 'index');
-        Route::get('/detail', 'detailKeluhan');
+        // Route::get('/detail', 'detailKeluhan');
 
         Route::post('/detail/add', 'addKeluhan');
         Route::post('/detail/keluhanAjax', 'keluhanAjax');
         Route::post('/detail/upvote', 'upvoteKeluhan');
+        Route::get('/detailKeluhan/{id}', 'detailKeluhan');
     });
 });
 

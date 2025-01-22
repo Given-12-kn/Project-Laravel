@@ -106,7 +106,7 @@
 
         document.querySelectorAll('.card').forEach(card => {
             observer.observe(card);
-        });
+        });ssssssss
     });
 
 

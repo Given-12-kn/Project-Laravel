@@ -21,9 +21,10 @@ class keluhanController extends Controller
     
 
 
-    public function detailKeluhan(){
-
-        return view('keluhan.detailKeluhan');
+    public function detailKeluhan($id){
+        $keluhan = DB::table('keluhan')->where('id_keluhan', $id)->first();
+        $respon = DB::table('respon_keluhan')->where('id_keluhan', $id)->first();
+        return view('keluhan.detailKeluhan', compact('keluhan', 'respon'));
     }
 
     public function addKeluhan(Request $request){

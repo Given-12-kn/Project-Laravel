@@ -8,7 +8,7 @@
 @section('content')
 <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 
-<div class="bg-gradient-to-r from-white via-[#f0e6fa] to-[#d2eaff]">
+<div class="bg-gradient-to-r from-white via-[#f0e6fa] to-[#d2eaff] pb-12">
 
     <div class="header-container flex justify-end items-center px-4 py-2">
         <div class="flex items-center gap-2 relative mt-8">
@@ -65,7 +65,7 @@
 
 
 
-    <div id="card-container" class="p-4"></div>
+    <div id="card-container"></div>
 </div>
 
 
@@ -136,37 +136,46 @@ document.addEventListener("DOMContentLoaded", () => {
                         }
                         if(!sudahUpvote){
                             const card = document.createElement('div');
-                        card.className = 'card bg-white p-4 shadow rounded fade-in';
-                        card.innerHTML = `
-                        <a href="{{ url('/keluhan/detailKeluhan') }}" class="w-full h-full">
-                            <div class="card">
-                                <div class="absolute top-2 right-2 bg-gradient-to-r from-blue-300 to-blue-500 text-white rounded-full px-3 py-1 flex items-center space-x-2 shadow-md">
-                                    <ion-icon name="thumbs-up" class="text-xl"></ion-icon>
-                                    <span class="text-sm font-bold">` + response.dataKeluhan[i].daftarUpvote.length + `</span>
+                            card.className = 'card fade-out';
+                            card.className = 'card bg-white p-4 shadow rounded fade-in';
+                            card.innerHTML = `
+                            <a href="{{ url('/keluhan/detailKeluhan/${response.dataKeluhan[i].id_keluhan}') }}" class="w-full h-full">
+                                <div class="card">
+                                    <div class="absolute top-2 right-2 bg-gradient-to-r from-blue-300 to-blue-500 text-white rounded-full px-3 py-1 flex items-center space-x-2 shadow-md">
+                                        <ion-icon name="thumbs-up" class="text-xl"></ion-icon>
+                                        <span class="text-sm font-bold">` + response.dataKeluhan[i].daftarUpvote.length + `</span>
+                                    </div>
+                                    <div>
+                                        <h2 class="text-center font-semibold text-lg mt-14 mb-4 truncate">` + response.dataKeluhan[i].judul_keluhan + `</h2>
+                                        <div class="line-clamp-4">` + response.dataKeluhan[i].deskripsi + `</div>
+                                    </div>
+                                    <button class="btn-upvote bg-gradient-to-r from-blue-300 to-blue-500 rounded-full" data-id-keluhan="` + response.dataKeluhan[i].id_keluhan + `">Upvote</button>
                                 </div>
-                                <p class="mt-14">` + response.dataKeluhan[i].deskripsi + `</p>
-                                <button class="btn-upvote bg-gradient-to-r from-blue-300 to-blue-500 rounded-full" data-id-keluhan="` + response.dataKeluhan[i].id_keluhan + `">Upvote</button>
-                            </div>
-                        </a>
-                    `;
-                    container.appendChild(card);
+                            </a>
+                        `;
+                        container.appendChild(card);
+                        observer.observe(card);
                         }
                         else{
                             const card = document.createElement('div');
                         card.className = 'card bg-white p-4 shadow rounded fade-in';
                         card.innerHTML = `
-                        <a href="{{ url('/keluhan/detailKeluhan') }}" class="w-full h-full">
+                        <a href="{{ url('/keluhan/detailKeluhan/${response.dataKeluhan[i].id_keluhan}') }}" class="w-full h-full">
                             <div class="card">
                                 <div class="absolute top-2 right-2 bg-gradient-to-r from-blue-300 to-blue-500 text-white rounded-full px-3 py-1 flex items-center space-x-2 shadow-md">
                                     <ion-icon name="thumbs-up" class="text-xl"></ion-icon>
-                                    <span class="text-sm font-bold">` + response.dataKeluhan[i].daftarUpvote.length + ` </span>
+                                    <span class="text-sm font-bold">` + response.dataKeluhan[i].daftarUpvote.length + `</span>
                                 </div>
-                                <p class="mt-14">` + response.dataKeluhan[i].deskripsi + `</p>
-                                    </p>
+                                <div>
+                                    <h2 class="text-center font-semibold text-lg mt-14 mb-4 truncate">` + response.dataKeluhan[i].judul_keluhan + `</h2>
+                                    <div class="line-clamp-4">` + response.dataKeluhan[i].deskripsi + `</div>
+                                </div>
+                                <button class="btn-upvote bg-gradient-to-r from-blue-300 to-blue-500 rounded-full" data-id-keluhan="` + response.dataKeluhan[i].id_keluhan + `">Upvote</button>
                             </div>
                         </a>
                         `;
                         container.appendChild(card);
+                        observer.observe(card);
                         }
 
                     }
@@ -266,24 +275,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    .card {
-        background-color: white;
-        padding: 0.75rem;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        border-radius: 0.5rem;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        text-align: center;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        max-width: 16rem;
-        min-height: 10rem;
-        height: auto;
-        overflow: hidden;
-    }
-
     .card:hover {
         transform: translateY(-10px);
         box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
@@ -311,8 +302,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     #card-container {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 1.5rem;
+        grid-template-columns: repeat(auto-fill, minmax(250px, auto));
+        gap: 3rem;
         justify-items: center;
         max-width: 1200px;
         margin: 0 auto;
@@ -338,8 +329,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     .dropdown-menu.active {
         max-height: 500px;
-    opacity: 1;
-    transform: translateY(0);
+        opacity: 1;
+        transform: translateY(0);
     }
 
     .card {
@@ -349,15 +340,14 @@ document.addEventListener("DOMContentLoaded", () => {
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         border-radius: 0.5rem;
         width: 100%;
-        display: flex;
-        flex-direction: column;
         justify-content: flex-start;
         text-align: left;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         max-width: 16rem;
-        min-height: 10rem;
-        height: auto;
-        overflow: hidden;
+        /* min-height: 10rem; */
+        width: 700px; 
+        max-height: 300px; 
+        min-height: 300px; 
     }
 
     .btn-upvote {
