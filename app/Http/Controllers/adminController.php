@@ -8,6 +8,7 @@ use App\Models\live_account;
 use App\Models\live_session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -224,7 +225,7 @@ class adminController extends Controller
 
     public function updateShowing(Request $request)
     {
-        $legth = keluhan::select('id_keluhan')->count();
+        $legth = keluhan::count();
 
         if($request->id_keluhan < $legth){
             $keluhan = Keluhan::findOrFail($request->id_keluhan);
@@ -235,6 +236,7 @@ class adminController extends Controller
             $keluhannext->showing = !$keluhannext->showing;
             $keluhannext->save();
         }
+        
         return redirect("/home/admin/liveSetting");
     }
 
@@ -250,7 +252,15 @@ class adminController extends Controller
             $keluhanprev->showing = !$keluhanprev->showing;
             $keluhanprev->save();
         }
+        
         return redirect("/home/admin/liveSetting");
+    }
+
+
+    public function setRefreshCookie(Request $request)
+    {
+        Cookie::queue('refresh_flag', true, 60); 
+        return response()->json(['success' => true]);
     }
 
 }
