@@ -192,14 +192,23 @@ CREATE TABLE `siswa` (
   PRIMARY KEY (`id_siswa`),
   KEY `id_jurusan` (`id_jurusan`),
   CONSTRAINT `siswa_ibfk_1` FOREIGN KEY (`id_jurusan`) REFERENCES `jurusan` (`id_jurusan`)
-) ENGINE=INNODB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=INNODB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `siswa` */
 
-INSERT  INTO `siswa`(`id_siswa`,`id_jurusan`,`nama`,`password_siswa`,`nrp`,`jenis_kelamin`,`angkatan`,`is_active`,`updated_at`) VALUES
-(1,1,'Given Lee','$2y$12$BIZG.7Y8ACKgWlL8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa',223117082,'L',2025,1,NULL),
-(2,1,'Yoshi','$2y$12$BIZG.7Y8ACKgWlL8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa',223117083,'L',2025,0,NULL),
-(3,1,'Ayano','$2y$12$BIZG.7Y8ACKgWlL8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa',223117084,'P',2025,1,NULL);
+INSERT  INTO `siswa`(`id_jurusan`,`nama`,`password_siswa`,`nrp`,`jenis_kelamin`,`angkatan`,`is_active`,`updated_at`) VALUES
+(1,'Given Lee','$2y$12$BIZG.7Y8ACKgWlL8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa',223117082,'L',2025,1,NULL),
+(1,'Ayano','$2y$12$BIZG.7Y8ACKgWlL8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa',223117084,'P',2025,1,NULL),
+( 1, 'Yoshi', '$2y$12$BIZG.7Y8ACKgWl8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa', 223117085, 'L', 2025, 1, NULL),
+( 1, 'Miyabi', '$2y$12$BIZG.7Y8ACKgWl8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa', 223117086, 'P', 2025, 1, NULL),
+( 1, 'Nael', '$2y$12$BIZG.7Y8ACKgWl8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa', 223117087, 'L', 2025, 1, NULL),
+( 1, 'Qingyi', '$2y$12$BIZG.7Y8ACKgWl8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa', 223117088, 'P', 2025, 1, NULL),
+( 1, 'Genji', '$2y$12$BIZG.7Y8ACKgWl8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa', 223117089, 'L', 2025, 1, NULL),
+( 1, 'Naomi', '$2y$12$BIZG.7Y8ACKgWl8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa', 223117090, 'P', 2025, 1, NULL),
+( 1, 'Jason', '$2y$12$BIZG.7Y8ACKgWl8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa', 223117091, 'L', 2025, 1, NULL),
+( 1, 'Astra', '$2y$12$BIZG.7Y8ACKgWl8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa', 223117092, 'P', 2025, 1, NULL),
+( 1, 'Rici', '$2y$12$BIZG.7Y8ACKgWl8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa', 223117093, 'L', 2025, 1, NULL),
+( 1, 'Anby', '$2y$12$BIZG.7Y8ACKgWl8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa', 223117094, 'P', 2025, 1, NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

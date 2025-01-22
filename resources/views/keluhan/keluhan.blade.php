@@ -207,7 +207,7 @@
                 });
             });
         }
-        // setInterval(loadCard, 60000)
+        setInterval(loadCard, 60000)
         ;
 
         const observer = new IntersectionObserver((entries) => {
