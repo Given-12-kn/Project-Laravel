@@ -37,7 +37,7 @@ class dosenController extends Controller
     }
 
     public function upvoteKeluhan(Request $request)
-    {
+{
     $request->validate([
         'id_keluhan' => 'required|integer|exists:keluhan,id_keluhan',
         'username' => 'required|string|max:255',
@@ -58,8 +58,6 @@ class dosenController extends Controller
 
     return response()->json(['success' => true, 'message' => 'Upvote added successfully']);
     }
-
-    
 
     public function live(){
         return view('dosen.dosenLive');
