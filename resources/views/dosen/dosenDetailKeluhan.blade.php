@@ -51,11 +51,11 @@
     <div class="p-8 flex justify-center items-center">
         <div id="detailKeluhanCard" class="bg-white shadow-lg rounded-lg max-w-3xl w-full p-6 opacity-0 scale-95 transition-all duration-500 ease-in-out">
             <!-- Judul Keluhan -->
-            <h2 class="text-2xl font-semibold mb-4 text-center">Judul Keluhan</h2>
+            <h2 class="text-2xl font-semibold mb-4 text-center">{{ $keluhan->judul_keluhan}}</h2>
             
             <!-- Isi Keluhan -->
             <p class="text-gray-700 leading-relaxed mb-4">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos incidunt maiores ullam fuga atque harum obcaecati officiis, ipsa ad dolorem.
+                {{ $keluhan->deskripsi}}
             </p>
         </div>
     </div>
