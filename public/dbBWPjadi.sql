@@ -50,7 +50,11 @@ CREATE TABLE `jurusan` (
 /*Data for the table `jurusan` */
 
 INSERT  INTO `jurusan`(`id_jurusan`,`nama_jurusan`,`kode_jurusan`,`fakultas`) VALUES
-(1,'Teknik Informatika','TI','teknik');
+(1,'Teknik Informatika','TI','teknik'),
+(2,'Teknik Elektro','TE','teknik'),
+(3,'Teknik Industri','TR','teknik'),
+(4,'Teknik Sipil','TS','teknik'),
+(5,'Teknik Mesin','TM','teknik');
 
 /*Table structure for table `kategori` */
 
@@ -154,7 +158,7 @@ CREATE TABLE `live_session` (
 /*Data for the table `live_session` */
 
 INSERT  INTO `live_session`(`id_live_session`,`id_live_account`,`content`,`periode`,`is_archive`,`is_acc`,`created_at`) VALUES
-(1,1,'gvn gay',2025,0,NULL,'2025-01-18 12:46:31');
+(1,1,'gvn gay',2025,0,2,'2025-01-18 12:46:31');
 
 /*Table structure for table `respon_keluhan` */
 
