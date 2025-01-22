@@ -45,8 +45,8 @@
     <div class="container mt-4 mx-auto w-full" style="height: 60vh;"> 
         <div class="text-center bg-indigo-400 p-6 shadow rounded h-full flex flex-col justify-center">
             <div id="keluhan-container" class="text-center bg-indigo-400 p-6 shadow rounded h-full flex flex-col justify-center break-words">
-                @if($keluhan)
-                    <h1 class="text-3xl text-gray-600" id="deskripsi-keluhan">{{ $keluhan->deskripsi }}</h1>
+                @if($live)
+                    <h1 class="text-3xl text-gray-600" id="deskripsi-keluhan">{{ $live->content }}</h1>
                 @else
                     <h1 class="text-3xl text-gray-600">Add any additional text or content here as needed.</h1>
                 @endif
@@ -55,12 +55,12 @@
         <div class="text-center flex justify-between mt-4">
             <form action="{{ url("/home/admin/updateprev") }}" method="POST">
                 @csrf
-                <input type="hidden" value="{{$keluhan->id_keluhan}}" name="id_keluhan">
+                <input type="hidden" value="{{$live->id_live_session}}" name="id_live_session">
                 <input type="submit" class="px-12 py-2 bg-blue-500 text-white font-semibold rounded transition duration-300 hover:bg-blue-600 hover:scale-105" value="Prev">
             </form>
             <form action="{{ url("/home/admin/updatenext") }}" method="POST">
                 @csrf
-                <input type="hidden" value="{{$keluhan->id_keluhan}}" name="id_keluhan">
+                <input type="hidden" value="{{$live->id_live_session}}" name="id_live_session">
                 <input type="submit" class="px-12 py-2 bg-blue-500 text-white font-semibold rounded transition duration-300 hover:bg-blue-600 hover:scale-105" value="Next">
             </form>
         </div>

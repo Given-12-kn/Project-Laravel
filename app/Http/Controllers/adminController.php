@@ -62,9 +62,9 @@ class adminController extends Controller
             $bladeStatus = trim($matches[1]);
         }
 
-        $keluhan = Keluhan::where('showing', 1)->first();
+        $live = live_session::where('showing', 1)->first();
         
-        return view('home.adminLiveSetting',compact('bladeStatus', 'keluhan'));
+        return view('home.adminLiveSetting',compact('bladeStatus', 'live'));
     }
 
     public function turnLive(Request $request){
@@ -218,23 +218,23 @@ class adminController extends Controller
     public function countData2(Request $request){
         // $dataLs = live_session::all();
 
-        $count = keluhan::where('status_keluhan', 2)->count();
+        $count = live_session::where('status_keluhan', 2)->count();
 
         return response()->json(['success' => true, 'count' => $count]);
     }
 
     public function updateShowing(Request $request)
     {
-        $legth = keluhan::count();
+        $legth = live_session::count();
 
-        if($request->id_keluhan < $legth){
-            $keluhan = Keluhan::findOrFail($request->id_keluhan);
-            $keluhan->showing = !$keluhan->showing;
-            $keluhan->save();
+        if($request->id_live_session < $legth){
+            $live = live_session::findOrFail($request->id_live_session);
+            $live->showing = !$live->showing;
+            $live->save();
 
-            $keluhannext = Keluhan::findOrFail($request->id_keluhan+1);
-            $keluhannext->showing = !$keluhannext->showing;
-            $keluhannext->save();
+            $livenext = live_session::findOrFail($request->id_live_session+1);
+            $livenext->showing = !$livenext->showing;
+            $livenext->save();
         }
         
         return redirect("/home/admin/liveSetting");
@@ -243,24 +243,17 @@ class adminController extends Controller
     public function updateShowingprev(Request $request)
     {
 
-        if($request->id_keluhan > 1){
-            $keluhan = Keluhan::findOrFail($request->id_keluhan);
-            $keluhan->showing = !$keluhan->showing;
-            $keluhan->save();
+        if($request->id_live_session > 1){
+            $live = live_session::findOrFail($request->id_live_session);
+            $live->showing = !$live->showing;
+            $live->save();
 
-            $keluhanprev = Keluhan::findOrFail($request->id_keluhan-1);
-            $keluhanprev->showing = !$keluhanprev->showing;
-            $keluhanprev->save();
+            $liveprev = live_session::findOrFail($request->id_live_session-1);
+            $liveprev->showing = !$liveprev->showing;
+            $liveprev->save();
         }
         
         return redirect("/home/admin/liveSetting");
-    }
-
-
-    public function setRefreshCookie(Request $request)
-    {
-        Cookie::queue('refresh_flag', true, 60); 
-        return response()->json(['success' => true]);
     }
 
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\dosen;
 
 use App\Http\Controllers\Controller;
 use App\Models\keluhan;
+use App\Models\live_session;
 use App\Models\respon_keluhan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -62,9 +63,9 @@ class dosenController extends Controller
     }
 
     public function live(){
-        $keluhan = Keluhan::where('showing', 1)->first();
+        $live = live_session::where('showing', 1)->first();
 
-        return view('dosen.dosenLive',compact('keluhan'));
+        return view('dosen.dosenLive',compact('live'));
     }
 
     public function submitAnswer(Request $request, $id){
