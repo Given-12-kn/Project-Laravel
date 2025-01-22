@@ -15,7 +15,7 @@
             <div id="chat-container">
                 <div id="main-chat-box" class="border border-gray-300 rounded-md p-4 h-24 bg-white mb-4 flex justify-between items-center">
                     <!-- Main chat message will appear here -->
-                    <span id="main-message-text"></span>
+                    <span>{{$keluhan->deskripsi}}</span>
                     <button id="upvote-button" class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-400">Upvote</button>
                 </div>
             </div>
@@ -36,7 +36,6 @@
     const addButton = document.getElementById('add-button');
     const chatInput = document.getElementById('chat-input');
     const dynamicChatContainer = document.getElementById('dynamic-chat-container');
-    const mainMessageText = document.getElementById('main-message-text');
     const upvoteButton = document.getElementById('upvote-button');
 
     // const sendMessage = (messageText) => {
@@ -101,9 +100,8 @@
             messageElement.style.transform = 'translateY(0)';
         }, 50);
 
-        if (dynamicChatContainer.children.length === 1 && mainMessageText.textContent === '') {
+        if (dynamicChatContainer.children.length === 1) {
             setTimeout(() => {
-                mainMessageText.textContent = messageText;
                 dynamicChatContainer.removeChild(messageElement);
             }, 600);
         }
@@ -122,7 +120,6 @@
         firstMessage.style.opacity = '0';
 
         setTimeout(() => {
-            mainMessageText.textContent = messageText;
             dynamicChatContainer.removeChild(firstMessage);
         }, 500);
     });

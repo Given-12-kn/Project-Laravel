@@ -59,6 +59,8 @@ Route::prefix('home')->group(function () {
         Route::post('/admin/accKeluhan', 'checkAcc2');
         Route::post('/admin/countData', 'countData');
         Route::post('/admin/countData2', 'countData2');
+        Route::post('/admin/updatenext', 'updateShowing');
+        Route::post('/admin/updateprev', 'updateShowingprev');
     });
 
 });
