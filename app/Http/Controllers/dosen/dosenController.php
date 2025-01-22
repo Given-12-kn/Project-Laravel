@@ -14,6 +14,7 @@ class dosenController extends Controller
 {
     public function index()
     {
+
         $kategori = DB::table('kategori')->get();
         $keluhan = keluhan::orderBy('id_keluhan', 'desc')->get();
         foreach($keluhan as $item){
@@ -27,7 +28,7 @@ class dosenController extends Controller
         $keluhan = DB::table('keluhan')->where('id_keluhan', $id)->first();
         $respon = DB::table('respon_keluhan')->where('id_keluhan', $id)->first();
         return view('dosen.dosenDetailKeluhan', compact('keluhan', 'respon', 'id'));
-    } 
+    }
 
     public function keluhanAjax(){
         $dataKeluhan = keluhan::orderBy('id_keluhan', 'desc')->get();
@@ -70,11 +71,11 @@ class dosenController extends Controller
         $request->validate([
             'response' => 'required',
         ]);
-        dd(auth::user());
+        dd(auth::guard('dosen')->user());
         $response = new respon_keluhan();
-        $response->respon = $request->response; 
-        $response->id_keluhan = $id;
-        $response->id_dosen = Auth::user()->id_dosen;
+        $response->respon = $request->response;
+        $response->id_keluhan = $i;
+        $response->id_dosen = auth::guard('dosen')->user()->id_dosen;
         $response->save();
 
         return redirect()->back()->with('success', 'Respon berhasil disimpan');

@@ -30,7 +30,6 @@
     <div id="card-container"></div>
 </div>
 
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     var myurl = "<?php echo URL::to('/'); ?>";
@@ -77,7 +76,7 @@
                 },
                 body: JSON.stringify({
                     id_keluhan: idKeluhan,
-                    username: "{{ Auth::user()->nama }}", // Pastikan username dikirim
+                    username: "{{ Auth::guard('dosen')->user()->nama }}", // Pastikan username dikirim
                 }),
             })
                 .then(response => response.json())
@@ -113,7 +112,7 @@
                             var sudahUpvote = false;
                             for (var j = 0; j < response.dataKeluhan[i].newData.length; j++) {
                                 console.log(response.dataKeluhan[i].newData[j]);
-                                if (response.dataKeluhan[i].newData[j].username == `{{Auth::user()->nama}}`) {
+                                if (response.dataKeluhan[i].newData[j].username == `{{Auth::guard('dosen')->user()->nama}}`) {
                                     sudahUpvote = true;
                                     break;
                                 }
