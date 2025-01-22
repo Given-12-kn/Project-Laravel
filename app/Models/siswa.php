@@ -13,7 +13,6 @@ class siswa extends Authenticatable
     public $timestamps = false;
     protected $appends = [];
     protected $hidden = ['password_siswa'];
-    protected $authPasswordName = 'password_siswa';
 
     public $fillable = [
         'id_jurusan',
@@ -35,6 +34,10 @@ class siswa extends Authenticatable
     //     $baru->save();
     // }
 
+    public function getAuthPassword()
+    {
+        return $this->password_siswa;
+    }
 
     public function selectAll(){
         return usersR::get();

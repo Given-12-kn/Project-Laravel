@@ -12,7 +12,6 @@ class dosen extends Authenticatable
     public $primaryKey = 'id_dosen';
     public $incrementing = true;
     public $timestamps = false;
-    protected $authPasswordName = 'password_dosen';
 
     public $fillable = [
         'nama',
@@ -24,5 +23,9 @@ class dosen extends Authenticatable
 
    public function toResponKeluhan(){
         return $this->hasMany(respon_keluhan::class, 'id_dosen', 'id_dosen');
+   }
+
+   public function getAuthPassword(){
+        return $this->password_dosen;
    }
 }

@@ -53,7 +53,7 @@ class login extends Controller
                     'password' => $password,
                 ];
 
-                if (Auth::attempt($credentials)) {
+                if (Auth::guard('web')->attempt($credentials)) {
                     // Simpan remember me ke cookie
                     if ($request->has('remember')) {
                         $cookie_nrp = cookie('remember_nrp', $nrp, 43200); // 30 hari
@@ -70,7 +70,7 @@ class login extends Controller
                     return redirect(url('form/login'))->with('fail', 'Nrp Atau Password Salah!');
                 }
             }
-        } 
+        }
         else if ($dosen){
             if ($dosen->is_active == 0) {
                 return redirect(url('form/login'))->with('fail', 'Akun Anda Belum Aktif!');
@@ -80,7 +80,8 @@ class login extends Controller
                     'password' => $password,
                 ];
 
-                if (Auth::attempt($credentials)) {
+
+                if (Auth::guard('dosen')->attempt($credentials)) {
                     // Simpan remember me ke cookie
                     if ($request->has('remember')) {
                         $cookie_nrp = cookie('remember_nrp', $nrp, 43200); // 30 hari
