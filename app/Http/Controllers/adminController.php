@@ -60,7 +60,10 @@ class adminController extends Controller
         if (preg_match('/^BLADE1_STATUS=(.*)$/m', $status, $matches)) {
             $bladeStatus = trim($matches[1]);
         }
-        return view('home.adminLiveSetting',compact('bladeStatus'));
+
+        $keluhan = Keluhan::select('id_keluhan','judul_keluhan', 'deskripsi')->get();
+
+        return view('home.adminLiveSetting',compact('bladeStatus', 'keluhan'));
     }
 
     public function turnLive(Request $request){

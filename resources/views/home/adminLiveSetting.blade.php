@@ -44,11 +44,18 @@
 
     <div class="container mt-4 mx-auto w-full" style="height: 60vh;"> 
         <div class="text-center bg-indigo-400 p-6 shadow rounded h-full flex flex-col justify-center">
-            <p class="text-lg font-semibold text-gray-700 mb-4">Judul</p>
-            <p class="text-sm text-gray-600">Add any additional text or content here as needed.</p>
+            <div id="keluhan-container" class="text-center bg-indigo-400 p-6 shadow rounded h-full flex flex-col justify-center">
+                @if($keluhan->count() > 0)
+                    <p class="text-lg font-semibold text-gray-700 mb-4" id="judul-keluhan">{{ $keluhan[$keluhan->count()-1]->judul_keluhan }}</p>
+                    <p class="text-sm text-gray-600" id="deskripsi-keluhan">{{ $keluhan[$keluhan->count()-1]->deskripsi }}</p>
+                @else
+                    <p class="text-lg font-semibold text-gray-700 mb-4">Judul</p>
+                    <p class="text-sm text-gray-600">Add any additional text or content here as needed.</p>
+                @endif
+            </div>
         </div>
         <div class="text-center mt-4">
-            <button class="px-6 py-2 bg-blue-500 text-white font-semibold rounded transition duration-300 hover:bg-blue-600 hover:scale-105">
+            <button id="next-btn" class="px-6 py-2 bg-blue-500 text-white font-semibold rounded transition duration-300 hover:bg-blue-600 hover:scale-105">
                 Next
             </button>
         </div>
@@ -65,10 +72,29 @@
         const arrowButton = $('#arrow-btn');
         const statusContainer = $('#statusContainer');
         const arrowIcon = $('#arrow-icon');
+        const nextButton = $('#next-btn');
+
+        const keluhanData = @json($keluhan);
+        let currentIndex = 0;
+        
+        function showNextKeluhan() {
+            currentIndex = (currentIndex + 1) % keluhanData.length;
+            
+            $("#keluhan-container").fadeOut(500, function() {
+                $("#judul-keluhan").text(keluhanData[currentIndex].judul_keluhan);
+                $("#deskripsi-keluhan").text(keluhanData[currentIndex].deskripsi);
+                $("#counter").text(`Keluhan ${currentIndex + 1} dari ${keluhanData.length}`);
+                
+                $("#keluhan-container").fadeIn(500);
+            });
+        }
+
+        nextButton.on('click', function() {
+            showNextKeluhan();
+        });
 
         var myurl = "<?php echo URL::to('/'); ?>";
 
-        // Toggle live chat status
         toggleButton.on('click', function (event) {
             const isActive = toggleButton.hasClass('bg-green-500');
             const chatStatus = !isActive;
