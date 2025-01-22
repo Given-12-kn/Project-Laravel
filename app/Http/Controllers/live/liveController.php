@@ -24,9 +24,7 @@ class liveController extends Controller
             return redirect('home/')->with('error', 'Live is not available yet');
         }
 
-        $keluhan = keluhan::where('showing', 1)->first();
-
-        return view('live.live', compact('keluhan'));
+        return view('live.live');
     }
 
     public function store(Request $request)
