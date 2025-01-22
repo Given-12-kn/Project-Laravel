@@ -28,7 +28,7 @@
             <div class="card relative flex-shrink-0 w-1/3 bg-white shadow-lg rounded-lg p-4 transform transition-all duration-500 ease-in-out">
                 <div class="absolute top-2 right-2 bg-gradient-to-r from-blue-300 to-blue-500 text-white rounded-full px-3 py-1 flex items-center space-x-2 shadow-md">
                     <ion-icon name="thumbs-up" class="text-xl"></ion-icon>
-                    <span class="text-sm font-bold">{{ $dataKeluhan[$i]->upvote }}</span>
+                    <span class="text-sm font-bold">{{ $dataKeluhan[$i]->toUpvote->count() }}</span>
                 </div>
                 <h3 class="text-lg font-semibold text-center mb-2 mt-14">{{$dataKeluhan[$i]->judul_keluhan}}</h3>
                 <p class="text-sm text-gray-500 text-center break-words">{{$dataKeluhan[$i]->deskripsi}}</p>

@@ -14,7 +14,7 @@ class homeController extends Controller
 {
     public function index()
     {
-        $dataKeluhan = keluhan::orderBy('id_keluhan', 'desc')->take(10)->get();
+        $dataKeluhan = Keluhan::with('toUpvote')->orderBy('created_at', 'desc')->limit(10)->get();
         return view('home.home2', compact('dataKeluhan'));
     }
 
