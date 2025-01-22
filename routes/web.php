@@ -21,10 +21,6 @@ Route::prefix('form')->group(function () {
         Route::post('/login/cekLogin', 'cekLogin');
         //Route::post('/resetPassword', 'resetPassword');
     });
-    Route::controller(register::class)->middleware('cekSudahLogin:admin')->group(function () {
-        Route::get('/register', 'index')->name('register');
-        Route::post('/register/add', 'register');
-    });
     // Route::controller(resetPassword::class)->group(function () {
     //     Route::get('/resetPassword', 'index');
     //     Route::post('/', '');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\form;
 
 use App\Http\Controllers\Controller;
+use App\Models\dosen;
 use App\Models\siswa;
 use App\Models\users;
 use App\Models\usersR;
@@ -41,6 +42,7 @@ class login extends Controller
         ]);
 
         $siswa = siswa::where('nrp', $nrp)->first();
+        $dosen = dosen::where('nrp', $nrp)->first();
 
         if ($siswa) {
             if ($siswa->is_active == 0) {
@@ -68,7 +70,31 @@ class login extends Controller
                     return redirect(url('form/login'))->with('fail', 'Nrp Atau Password Salah!');
                 }
             }
-        } else {
+        } 
+        else if ($dosen){
+            if ($dosen->is_active == 0) {
+                return redirect(url('form/login'))->with('fail', 'Akun Anda Belum Aktif!');
+            } else {
+                $credentials = [
+                    'nrp' => $nrp,
+                    'password' => $password,
+                ];
+
+                if (Auth::attempt($credentials)) {
+                    // Simpan remember me ke cookie
+                    if ($request->has('remember')) {
+                        $cookie_nrp = cookie('remember_nrp', $nrp, 43200); // 30 hari
+                        $cookie_password = cookie('remember_password', $password, 43200);
+                        return redirect(url('/dosen'))->withCookies([$cookie_nrp, $cookie_password]);
+                    }
+
+                    return redirect(url('/dosen'));
+                } else {
+                    return redirect(url('form/login'))->with('fail', 'Nrp Atau Password Salah!');
+                }
+            }
+        }
+        else{
             return redirect(url('form/login'))->with('fail', 'Nrp Tidak Terdaftar!');
         }
     }
