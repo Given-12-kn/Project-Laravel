@@ -147,7 +147,6 @@ CREATE TABLE `live_session` (
   `id_live_account` INT(11) DEFAULT NULL,
   `content` TEXT DEFAULT NULL,
   `periode` INT(4) DEFAULT NULL,
-  `is_archive` TINYINT(1) DEFAULT 0,
   `is_acc` TINYINT(1) DEFAULT 2,
   `created_at` DATETIME DEFAULT NULL,
   PRIMARY KEY (`id_live_session`),
@@ -157,8 +156,8 @@ CREATE TABLE `live_session` (
 
 /*Data for the table `live_session` */
 
-INSERT  INTO `live_session`(`id_live_session`,`id_live_account`,`content`,`periode`,`is_archive`,`is_acc`,`created_at`) VALUES
-(1,1,'gvn gay',2025,0,2,'2025-01-18 12:46:31');
+INSERT  INTO `live_session`(`id_live_session`,`id_live_account`,`content`,`periode`,`is_acc`,`created_at`) VALUES
+(1,1,'gvn gay',2025, 2,'2025-01-18 12:46:31');
 
 /*Table structure for table `respon_keluhan` */
 
