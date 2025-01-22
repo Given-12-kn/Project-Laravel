@@ -91,22 +91,6 @@
                 }
             });
         }
-           function countData2(){
-            $.ajax({
-                url: myurl + "/home/admin/countData2",
-                type: "POST",
-                data: {
-                    _token: "{{ csrf_token() }}",
-                },
-                success: function (response) {
-
-                    $('#unapproved-count2').text(response.count);
-                },
-                error: function () {
-                    alert('error occured');
-                }
-            });
-        }
         countData();
         setInterval(countData, 30000);
     });

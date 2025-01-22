@@ -23,6 +23,7 @@
     <div class="relative w-4/5 overflow-hidden">
         <div id="card-slider" class="flex items-center  transition-transform duration-500 ease-in-out">
             @for ($i = 1; $i <= 10; $i++)
+            
             <div class="card relative flex-shrink-0 w-1/3 bg-white shadow-lg rounded-lg p-4 transform transition-all duration-500 ease-in-out">
                 <div class="absolute top-2 right-2 bg-gradient-to-r from-blue-300 to-blue-500 text-white rounded-full px-3 py-1 flex items-center space-x-2 shadow-md">
                     <ion-icon name="thumbs-up" class="text-xl"></ion-icon>
