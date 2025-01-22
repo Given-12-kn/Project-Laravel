@@ -80,6 +80,7 @@ Route::prefix('keluhan')->group(function () {
 
         Route::post('/detail/add', 'addKeluhan');
         Route::post('/detail/keluhanAjax', 'keluhanAjax');
+        Route::post('/detail/upvote', 'upvoteKeluhan');
     });
 });
 

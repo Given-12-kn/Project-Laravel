@@ -71,6 +71,40 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("click", (event) => {
+        if (event.target.classList.contains("btn-upvote")) {
+            event.preventDefault(); 
+            const idKeluhan = event.target.dataset.idKeluhan;
+
+            fetch("{{ url('/keluhan/detail/upvote') }}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                },
+                body: JSON.stringify({
+                    id_keluhan: idKeluhan,
+                    username: "{{ Auth::user()->nama }}", // Pastikan username dikirim
+                }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("Upvote berhasil!");
+                        // Perbarui tampilan jumlah upvote jika diperlukan
+                        const upvoteCount = event.target.previousElementSibling.querySelector("span");
+                        upvoteCount.textContent = parseInt(upvoteCount.textContent) + 1;
+                    } else {
+                        alert(data.message);
+                    }
+                })
+                .catch(error => console.error("Error:", error));
+        }
+    });
+});
+
      var myurl = "<?php echo URL::to('/'); ?>";
     document.addEventListener("DOMContentLoaded", () => {
         const container = document.getElementById('card-container');
@@ -104,18 +138,18 @@
                             const card = document.createElement('div');
                         card.className = 'card bg-white p-4 shadow rounded fade-in';
                         card.innerHTML = `
-                        <a href="{{ url('/keluhan/detailKeluhan') }}" class="w-full h-full">
-                            <div class="card">
-                                <div class="absolute top-2 right-2 bg-gradient-to-r from-blue-300 to-blue-500 text-white rounded-full px-3 py-1 flex items-center space-x-2 shadow-md">
-                                    <ion-icon name="thumbs-up" class="text-xl"></ion-icon>
-                                    <span class="text-sm font-bold">` + response.dataKeluhan[i].daftarUpvote.length + ` </span>
-                                </div>
-                                <p class="mt-14">` + response.dataKeluhan[i].deskripsi + `</p>
-                                    </p>
-                                <button class="btn-upvote bg-gradient-to-r from-blue-300 to-blue-500 rounded-full">Upvote</button>
-                            </div>
-                        </a>
-                        `;
+    <a href="{{ url('/keluhan/detailKeluhan') }}" class="w-full h-full">
+        <div class="card">
+            <div class="absolute top-2 right-2 bg-gradient-to-r from-blue-300 to-blue-500 text-white rounded-full px-3 py-1 flex items-center space-x-2 shadow-md">
+                <ion-icon name="thumbs-up" class="text-xl"></ion-icon>
+                <span class="text-sm font-bold">` + response.dataKeluhan[i].daftarUpvote.length + `</span>
+            </div>
+            <p class="mt-14">` + response.dataKeluhan[i].deskripsi + `</p>
+            <button class="btn-upvote bg-gradient-to-r from-blue-300 to-blue-500 rounded-full" data-id-keluhan="` + response.dataKeluhan[i].id_keluhan + `">Upvote</button>
+        </div>
+    </a>
+`;
+
                         container.appendChild(card);
                         }
                         else{

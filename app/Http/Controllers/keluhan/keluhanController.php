@@ -12,8 +12,13 @@ class keluhanController extends Controller
 {
     public function index(){
         $kategori = DB::table('kategori')->get();
-        return view('keluhan.keluhan', compact('kategori'));
+        $keluhan = keluhan::orderBy('id_keluhan', 'desc')->get();
+        foreach($keluhan as $item){
+            $item->daftarUpvote = $item->toUpvote;
+        }
+        return view('keluhan.keluhan', compact('kategori', 'keluhan'));
     }
+    
 
 
     public function detailKeluhan(){
@@ -48,5 +53,29 @@ class keluhanController extends Controller
         }
         return response()->json(['success' => true, 'dataKeluhan' => $dataKeluhan]);
     }
+
+    public function upvoteKeluhan(Request $request)
+{
+    $request->validate([
+        'id_keluhan' => 'required|integer|exists:keluhan,id_keluhan',
+        'username' => 'required|string|max:255',
+    ]);
+
+    $upvote = DB::table('upvote')->where('id_keluhan', $request->id_keluhan)->where('username', $request->username)->first();
+
+    if ($upvote) {
+        return response()->json(['success' => false, 'message' => 'Upvote already exists']);
+    }
+
+    DB::table('upvote')->insert([
+        'id_keluhan' => $request->id_keluhan,
+        'username' => $request->username,
+        'created_at' => now(),
+        'updated_at' => now(),
+    ]);
+
+    return response()->json(['success' => true, 'message' => 'Upvote added successfully']);
+}
+
 
 }
