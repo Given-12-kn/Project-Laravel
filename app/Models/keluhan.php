@@ -21,4 +21,8 @@ class keluhan extends Model
     public function toKategori(){
         return $this->hasOne(kategori::class, 'id_kategori', 'id_kategori');
     }
+
+    public function toUpvote(){
+        return $this->hasMany(upvote::class, 'id_keluhan', 'id_keluhan');
+    }
 }

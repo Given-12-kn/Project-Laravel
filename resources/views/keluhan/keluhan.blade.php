@@ -91,16 +91,24 @@
                 success: function (response) {
                     console.log(response.success);
                     console.log(response);
-                    console.log(response.dataKeluhan[0].deskripsi);
                     for (var i = 0; i < response.dataKeluhan.length; i++) {
-                        const card = document.createElement('div');
+                        var sudahUpvote = false;
+                        for (var j = 0; j < response.dataKeluhan[i].daftarUpvote.length; j++) {
+                            console.log(response.dataKeluhan[i].daftarUpvote[j]);
+                            if (response.dataKeluhan[i].daftarUpvote[j].username == `{{Auth::user()->nama}}`) {
+                                sudahUpvote = true;
+                                break;
+                            }
+                        }
+                        if(!sudahUpvote){
+                            const card = document.createElement('div');
                         card.className = 'card bg-white p-4 shadow rounded fade-in';
                         card.innerHTML = `
                         <a href="{{ url('/keluhan/detailKeluhan') }}" class="w-full h-full">
                             <div class="card">
                                 <div class="absolute top-2 right-2 bg-gradient-to-r from-blue-300 to-blue-500 text-white rounded-full px-3 py-1 flex items-center space-x-2 shadow-md">
                                     <ion-icon name="thumbs-up" class="text-xl"></ion-icon>
-                                    <span class="text-sm font-bold">3</span>
+                                    <span class="text-sm font-bold">` + response.dataKeluhan[i].daftarUpvote.length + ` </span>
                                 </div>
                                 <p class="mt-14">` + response.dataKeluhan[i].deskripsi + `</p>
                                     </p>
@@ -109,6 +117,25 @@
                         </a>
                         `;
                         container.appendChild(card);
+                        }
+                        else{
+                            const card = document.createElement('div');
+                        card.className = 'card bg-white p-4 shadow rounded fade-in';
+                        card.innerHTML = `
+                        <a href="{{ url('/keluhan/detailKeluhan') }}" class="w-full h-full">
+                            <div class="card">
+                                <div class="absolute top-2 right-2 bg-gradient-to-r from-blue-300 to-blue-500 text-white rounded-full px-3 py-1 flex items-center space-x-2 shadow-md">
+                                    <ion-icon name="thumbs-up" class="text-xl"></ion-icon>
+                                    <span class="text-sm font-bold">` + response.dataKeluhan[i].daftarUpvote.length + ` </span>
+                                </div>
+                                <p class="mt-14">` + response.dataKeluhan[i].deskripsi + `</p>
+                                    </p>
+                            </div>
+                        </a>
+                        `;
+                        container.appendChild(card);
+                        }
+
                     }
                 },
                 error: function (response) {

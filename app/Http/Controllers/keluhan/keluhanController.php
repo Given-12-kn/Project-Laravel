@@ -43,6 +43,10 @@ class keluhanController extends Controller
 
     public function keluhanAjax(){
         $dataKeluhan = keluhan::orderBy('id_keluhan', 'desc')->get();
+        foreach($dataKeluhan as $item){
+            $item->daftarUpvote = $item->toUpvote;
+        }
         return response()->json(['success' => true, 'dataKeluhan' => $dataKeluhan]);
     }
+
 }
