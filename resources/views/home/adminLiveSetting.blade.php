@@ -44,26 +44,24 @@
 
     <div class="container mt-4 mx-auto w-full" style="height: 60vh;"> 
         <div class="text-center bg-indigo-400 p-6 shadow rounded h-full flex flex-col justify-center">
-            <div id="keluhan-container" class="text-center bg-indigo-400 p-6 shadow rounded h-full flex flex-col justify-center">
+            <div id="keluhan-container" class="text-center bg-indigo-400 p-6 shadow rounded h-full flex flex-col justify-center break-words">
                 @if($keluhan)
-                    <p class="text-lg font-semibold text-gray-700 mb-4" id="judul-keluhan">{{ $keluhan->judul_keluhan }}</p>
-                    <p class="text-sm text-gray-600" id="deskripsi-keluhan">{{ $keluhan->deskripsi }}</p>
+                    <h1 class="text-3xl text-gray-600" id="deskripsi-keluhan">{{ $keluhan->deskripsi }}</h1>
                 @else
-                    <p class="text-lg font-semibold text-gray-700 mb-4">Judul</p>
-                    <p class="text-sm text-gray-600">Add any additional text or content here as needed.</p>
+                    <h1 class="text-3xl text-gray-600">Add any additional text or content here as needed.</h1>
                 @endif
             </div>
         </div>
-        <div class="text-center mt-4">
+        <div class="text-center flex justify-between mt-4">
             <form action="{{ url("/home/admin/updateprev") }}" method="POST">
                 @csrf
                 <input type="hidden" value="{{$keluhan->id_keluhan}}" name="id_keluhan">
-                <input type="submit" class="px-6 py-2 bg-blue-500 text-white font-semibold rounded transition duration-300 hover:bg-blue-600 hover:scale-105" value="Prev">
+                <input type="submit" class="px-12 py-2 bg-blue-500 text-white font-semibold rounded transition duration-300 hover:bg-blue-600 hover:scale-105" value="Prev">
             </form>
             <form action="{{ url("/home/admin/updatenext") }}" method="POST">
                 @csrf
                 <input type="hidden" value="{{$keluhan->id_keluhan}}" name="id_keluhan">
-                <input type="submit" class="px-6 py-2 bg-blue-500 text-white font-semibold rounded transition duration-300 hover:bg-blue-600 hover:scale-105" value="Next">
+                <input type="submit" class="px-12 py-2 bg-blue-500 text-white font-semibold rounded transition duration-300 hover:bg-blue-600 hover:scale-105" value="Next">
             </form>
         </div>
     </div>
