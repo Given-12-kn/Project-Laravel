@@ -162,4 +162,67 @@
 
 </script>
 
+<style>
+    .table-auto {
+        table-layout: fixed;
+        width: 100%;
+    }
+
+    .table-auto th, .table-auto td {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .action-button {
+        display: inline-block;
+        padding: 8px 20px; 
+        text-align: center;
+        font-weight: bold;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    .card-body {
+        padding: 0;
+    }
+
+    .card-body table {
+        width: 100%;
+    }
+
+    .table-auto td:first-child {
+        vertical-align: middle;
+        text-align: center; 
+        padding: 12px;
+    }
+
+    .table-auto td:nth-child(2) {
+        word-wrap: break-word;
+        white-space: normal;
+        max-width: calc(100% - 150px); 
+    }
+
+    .table-auto td {
+        padding: 12px;
+    }
+
+    .table-auto td .action-button {
+        width: auto; 
+        margin: 5px;
+    }
+
+    .table-auto td .action-button.bg-green-500 {
+        background-color: #38a169;
+    }
+
+    .table-auto td .action-button.bg-red-500 {
+        background-color: #e53e3e; 
+    }
+
+    .action-button:hover {
+        opacity: 0.9; 
+    }
+</style>
+
+
 @endsection

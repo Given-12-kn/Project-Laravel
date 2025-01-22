@@ -152,27 +152,58 @@
     });
 </script>
 
+
 <style>
     #main-chat-box {
         background-color: #fffbcc;
         color: #333;
         font-weight: bold;
         border: 2px solid #ffc107;
+        max-width: 100%;
+    box-sizing: border-box;
     }
 
     #dynamic-chat-container div {
-        background-color: #f0f4f8;
-        color: #555;
-        font-size: 0.9rem;
-        border: 1px solid #ccc;
-        padding: 8px;
-        margin-bottom: 8px;
-        border-radius: 6px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f0f4f8;
+    color: #555;
+    font-size: 0.9rem;
+    border: 1px solid #ccc;
+    padding: 8px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    line-height: 1.5;
+    max-height: calc(1.5em * 4);
+    word-wrap: break-word;
+    max-width: 100%;
+    box-sizing: border-box;
     }
 
     #dynamic-chat-container div:hover {
         background-color: #e0e7ee;
     }
+    #main-message-text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 4;
+    line-height: 1.5;
+    max-height: calc(1.5em * 4);
+    word-wrap: break-word;
+    max-width: 100%;
+    box-sizing: border-box;
+    }
+
+    #main-message-text.wrap {
+        white-space: normal;
+        word-wrap: break-word;
+    }
 </style>
+
 @endsection
