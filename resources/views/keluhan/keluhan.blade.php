@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const container = document.getElementById('card-container');
         var status = 'lama';
         loadCard();
-        
+
         $(document).ready(function () {
            $('#baru').click(function (e) {
                 e.preventDefault();
@@ -151,9 +151,9 @@ document.addEventListener("DOMContentLoaded", () => {
                         container.innerHTML = '';
                         for (var i = 0; i < response.dataKeluhan.length; i++) {
                             var sudahUpvote = false;
-                            for (var j = 0; j < response.dataKeluhan[i].daftarUpvote.length; j++) {
-                                console.log(response.dataKeluhan[i].daftarUpvote[j]);
-                                if (response.dataKeluhan[i].daftarUpvote[j].username == `{{Auth::user()->nama}}`) {
+                            for (var j = 0; j < response.dataKeluhan[i].newData.length; j++) {
+                                console.log(response.dataKeluhan[i].newData[j]);
+                                if (response.dataKeluhan[i].newData[j].username == `{{Auth::user()->nama}}`) {
                                     sudahUpvote = true;
                                     break;
                                 }
@@ -194,7 +194,6 @@ document.addEventListener("DOMContentLoaded", () => {
                                         <h2 class="text-center font-semibold text-lg mt-14 mb-4 truncate">` + response.dataKeluhan[i].judul_keluhan + `</h2>
                                         <div class="line-clamp-4">` + response.dataKeluhan[i].deskripsi + `</div>
                                     </div>
-                                    <button class="btn-upvote bg-gradient-to-r from-blue-300 to-blue-500 rounded-full" data-id-keluhan="` + response.dataKeluhan[i].id_keluhan + `">Upvote</button>
                                 </div>
                             </a>
                             `;

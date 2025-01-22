@@ -61,6 +61,7 @@ class keluhanController extends Controller
         }
         foreach($dataKeluhan as $item){
             $item->daftarUpvote = $item->to_upvote_count;
+            $item->newData = $item->toUpvote;
         }
 
         return response()->json(['success' => true, 'dataKeluhan' => $dataKeluhan]);
