@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\dosen;
 
 use App\Http\Controllers\Controller;
+use App\Models\keluhan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use App\Models\keluhan;
 
 
 class dosenController extends Controller
@@ -37,29 +37,31 @@ class dosenController extends Controller
     }
 
     public function upvoteKeluhan(Request $request)
-{
-    $request->validate([
-        'id_keluhan' => 'required|integer|exists:keluhan,id_keluhan',
-        'username' => 'required|string|max:255',
-    ]);
+    {
+        $request->validate([
+            'id_keluhan' => 'required|integer|exists:keluhan,id_keluhan',
+            'username' => 'required|string|max:255',
+        ]);
 
-    $upvote = DB::table('upvote')->where('id_keluhan', $request->id_keluhan)->where('username', $request->username)->first();
+        $upvote = DB::table('upvote')->where('id_keluhan', $request->id_keluhan)->where('username', $request->username)->first();
 
-    if ($upvote) {
-        return response()->json(['success' => false, 'message' => 'Upvote already exists']);
-    }
+        if ($upvote) {
+            return response()->json(['success' => false, 'message' => 'Upvote already exists']);
+        }
 
-    DB::table('upvote')->insert([
-        'id_keluhan' => $request->id_keluhan,
-        'username' => $request->username,
-        'created_at' => now(),
-        'updated_at' => now(),
-    ]);
+        DB::table('upvote')->insert([
+            'id_keluhan' => $request->id_keluhan,
+            'username' => $request->username,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
 
-    return response()->json(['success' => true, 'message' => 'Upvote added successfully']);
+        return response()->json(['success' => true, 'message' => 'Upvote added successfully']);
     }
 
     public function live(){
-        return view('dosen.dosenLive');
+        $keluhan = Keluhan::where('showing', 1)->first();
+
+        return view('dosen.dosenLive',compact('keluhan'));
     }
 }

@@ -61,8 +61,8 @@ class adminController extends Controller
             $bladeStatus = trim($matches[1]);
         }
 
-        $keluhan = Keluhan::select('id_keluhan','judul_keluhan', 'deskripsi')->get();
-
+        $keluhan = Keluhan::where('showing', 1)->first();
+        
         return view('home.adminLiveSetting',compact('bladeStatus', 'keluhan'));
     }
 
@@ -220,6 +220,37 @@ class adminController extends Controller
         $count = keluhan::where('status_keluhan', 2)->count();
 
         return response()->json(['success' => true, 'count' => $count]);
+    }
+
+    public function updateShowing(Request $request)
+    {
+        $legth = keluhan::select('id_keluhan')->count();
+
+        if($request->id_keluhan < $legth){
+            $keluhan = Keluhan::findOrFail($request->id_keluhan);
+            $keluhan->showing = !$keluhan->showing;
+            $keluhan->save();
+
+            $keluhannext = Keluhan::findOrFail($request->id_keluhan+1);
+            $keluhannext->showing = !$keluhannext->showing;
+            $keluhannext->save();
+        }
+        return redirect("/home/admin/liveSetting");
+    }
+
+    public function updateShowingprev(Request $request)
+    {
+
+        if($request->id_keluhan > 1){
+            $keluhan = Keluhan::findOrFail($request->id_keluhan);
+            $keluhan->showing = !$keluhan->showing;
+            $keluhan->save();
+
+            $keluhanprev = Keluhan::findOrFail($request->id_keluhan-1);
+            $keluhanprev->showing = !$keluhanprev->showing;
+            $keluhanprev->save();
+        }
+        return redirect("/home/admin/liveSetting");
     }
 
 }

@@ -79,6 +79,7 @@ CREATE TABLE `keluhan` (
   `judul_keluhan` VARCHAR(255) NOT NULL,
   `deskripsi` TEXT NOT NULL,
   `status_keluhan` TINYINT(1) DEFAULT 2,
+  `showing` INT(1) DEFAULT 0,
   `created_at` DATETIME DEFAULT NULL,
   `deleted_at` DATETIME DEFAULT NULL,
   `updated_at` DATETIME DEFAULT NULL,
@@ -89,14 +90,14 @@ CREATE TABLE `keluhan` (
   CONSTRAINT `keluhan_ibfk_2` FOREIGN KEY (`id_live_account`) REFERENCES `live_account` (`id_live_account`)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO keluhan (id_kategori, id_live_account, judul_keluhan, deskripsi, status_keluhan, created_at, updated_at)
+INSERT INTO keluhan (id_kategori, id_live_account, judul_keluhan, deskripsi, status_keluhan, showing, created_at, updated_at)
 VALUES
-(1, 1, 'Open Talk', 'Open Talk kali ini sangat bagus yah!', '1', '2025-01-21 22:25:42', '2025-01-21 15:41:48'),
-(2, 1, 'Open Talk', 'Student lounge nya kurang bagus', '1', '2025-01-21 22:26:24', '2025-01-21 15:43:09'),
-(3, 1, 'Open Heim', 'Bom nya kurang seru bang', '2', '2025-01-21 23:57:25', NULL),
-(3, 1, 'Pubg', 'Aim nya kurang bagus bang', '2', '2025-01-22 10:22:45', NULL),
-(2, 1, 'Open Talk 2025', 'Open Talk Pada kali ini kurang begitu menarik seperti yang ...', '2', '2025-01-22 03:20:51', NULL),
-(2, 1, 'Open Talk 2024', 'Menurut saya lumayan menarik open talk 2024 ini karena ba...', '2', '2025-01-22 10:27:40', NULL);
+(1, 1, 'Open Talk', 'Open Talk kali ini sangat bagus yah!', '1', 1, '2025-01-21 22:25:42', '2025-01-21 15:41:48'),
+(2, 1, 'Open Talk', 'Student lounge nya kurang bagus', '1', 0, '2025-01-21 22:26:24', '2025-01-21 15:43:09'),
+(3, 1, 'Open Heim', 'Bom nya kurang seru bang', '2', 0, '2025-01-21 23:57:25', NULL),
+(3, 1, 'Pubg', 'Aim nya kurang bagus bang', '2', 0, '2025-01-22 10:22:45', NULL),
+(2, 1, 'Open Talk 2025', 'Open Talk Pada kali ini kurang begitu menarik seperti yang ...', '2', 0, '2025-01-22 03:20:51', NULL),
+(2, 1, 'Open Talk 2024', 'Menurut saya lumayan menarik open talk 2024 ini karena ba...', '2', 0, '2025-01-22 10:27:40', NULL);
 
 /*Data for the table `keluhan` */
 INSERT  INTO `kategori`(`id_kategori`,`nama_kategori`) VALUES
@@ -104,8 +105,7 @@ INSERT  INTO `kategori`(`id_kategori`,`nama_kategori`) VALUES
 (2,'fasilitas'),
 (3,'akadedmis');
 
-
-
+DROP TABLE IF EXISTS `upvote`;
 
 CREATE TABLE upvote (
     id_upvote INT(11) NOT NULL AUTO_INCREMENT,

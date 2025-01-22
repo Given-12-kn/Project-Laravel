@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\live;
 
 use App\Http\Controllers\Controller;
+use App\Models\keluhan;
 use Illuminate\Http\Request;
 use App\Models\live_session;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +24,9 @@ class liveController extends Controller
             return redirect('home/')->with('error', 'Live is not available yet');
         }
 
-        return view('live.live');
+        $keluhan = keluhan::where('showing', 1)->first();
+
+        return view('live.live', compact('keluhan'));
     }
 
     public function store(Request $request)
