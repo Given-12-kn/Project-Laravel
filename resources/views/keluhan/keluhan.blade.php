@@ -138,19 +138,18 @@ document.addEventListener("DOMContentLoaded", () => {
                             const card = document.createElement('div');
                         card.className = 'card bg-white p-4 shadow rounded fade-in';
                         card.innerHTML = `
-    <a href="{{ url('/keluhan/detailKeluhan') }}" class="w-full h-full">
-        <div class="card">
-            <div class="absolute top-2 right-2 bg-gradient-to-r from-blue-300 to-blue-500 text-white rounded-full px-3 py-1 flex items-center space-x-2 shadow-md">
-                <ion-icon name="thumbs-up" class="text-xl"></ion-icon>
-                <span class="text-sm font-bold">` + response.dataKeluhan[i].daftarUpvote.length + `</span>
-            </div>
-            <p class="mt-14">` + response.dataKeluhan[i].judul_keluhan + `</p>
-            <button class="btn-upvote bg-gradient-to-r from-blue-300 to-blue-500 rounded-full" data-id-keluhan="` + response.dataKeluhan[i].id_keluhan + `">Upvote</button>
-        </div>
-    </a>
-`;
-
-                        container.appendChild(card);
+                        <a href="{{ url('/keluhan/detailKeluhan') }}" class="w-full h-full">
+                            <div class="card">
+                                <div class="absolute top-2 right-2 bg-gradient-to-r from-blue-300 to-blue-500 text-white rounded-full px-3 py-1 flex items-center space-x-2 shadow-md">
+                                    <ion-icon name="thumbs-up" class="text-xl"></ion-icon>
+                                    <span class="text-sm font-bold">` + response.dataKeluhan[i].daftarUpvote.length + `</span>
+                                </div>
+                                <p class="mt-14">` + response.dataKeluhan[i].deskripsi + `</p>
+                                <button class="btn-upvote bg-gradient-to-r from-blue-300 to-blue-500 rounded-full" data-id-keluhan="` + response.dataKeluhan[i].id_keluhan + `">Upvote</button>
+                            </div>
+                        </a>
+                    `;
+                    container.appendChild(card);
                         }
                         else{
                             const card = document.createElement('div');
