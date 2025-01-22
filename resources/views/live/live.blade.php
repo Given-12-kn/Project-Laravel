@@ -15,7 +15,9 @@
             <div id="chat-container">
                 <div id="main-chat-box" class="border border-gray-300 rounded-md p-4 h-24 bg-white mb-4 flex justify-between items-center">
                     <!-- Main chat message will appear here -->
-                    <span id="main-message-text"></span>
+                    <span id="main-message-text">
+
+                    </span>
                     <button id="upvote-button" class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-400">Upvote</button>
                 </div>
             </div>
@@ -59,6 +61,24 @@
     //     });
     // };
     var myurl = "<?php echo URL::to('/'); ?>";
+
+    $(document).ready(function () {
+
+       $.ajax({
+        type: "POST",
+        url: myurl + "/live/store",
+        data: {
+            _token: '{{ csrf_token() }}',
+        },
+        success: function (response) {
+            console.log('Message stored:', response);
+        },
+        error: function () {
+            alert('Error storing message');
+        }
+       });
+    });
+
 
     $(document).ready(function () {
         $('#add-button').on('click', function (e) {

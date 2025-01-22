@@ -57,17 +57,18 @@ Route::prefix('home')->middleware('cekRole:web')->group(function () {
 
 });
 
-Route::prefix('live')->middleware('cekRole:web','cekSudahLogin:admin,user')->group(function () {
+Route::prefix('live')->middleware('cekRole:web','cekSudahLogin:admin,siswa')->group(function () {
     Route::controller(liveController::class)
         ->middleware('cekSudahLogin:siswa,admin,dosen')
         ->group(function () {
             Route::get('/', 'index')->name('live.index');
+
             Route::post('/store', 'store')->name('live.store');
+            Route::post('/getDataChat', 'dataChat')->name('live.store');
         });
 });
 
-
-Route::prefix('keluhan')->middleware('cekRole:web','cekSudahLogin:admin,user')->group(function () {
+Route::prefix('keluhan')->middleware('cekRole:web','cekSudahLogin:admin,siswa')->group(function () {
     Route::controller(keluhanController::class)->group(function () {
         Route::get('/', 'index');
         // Route::get('/detail', 'detailKeluhan');
@@ -79,7 +80,6 @@ Route::prefix('keluhan')->middleware('cekRole:web','cekSudahLogin:admin,user')->
     });
 });
 
-
 Route::prefix('dosen')->middleware('cekRole:dosen')->group(function () {
     Route::controller(dosenController::class)->group(function () {
         Route::get('/', 'index');
@@ -88,4 +88,6 @@ Route::prefix('dosen')->middleware('cekRole:dosen')->group(function () {
         Route::post('/answer/{id}', 'submitAnswer');
     });
 });
+
+
 

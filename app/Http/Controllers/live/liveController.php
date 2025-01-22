@@ -64,4 +64,9 @@ class liveController extends Controller
         }
     }
 
+    public function dataChat(){
+        $data = live_session::get(100);
+        return response()->json($data);
+    }
+
 }
