@@ -71,40 +71,6 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-
-document.addEventListener("DOMContentLoaded", () => {
-    document.addEventListener("click", (event) => {
-        if (event.target.classList.contains("btn-upvote")) {
-            event.preventDefault();
-            const idKeluhan = event.target.dataset.idKeluhan;
-
-            fetch("{{ url('/keluhan/detail/upvote') }}", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": "{{ csrf_token() }}",
-                },
-                body: JSON.stringify({
-                    id_keluhan: idKeluhan,
-                    username: "{{ Auth::user()->nama }}", // Pastikan username dikirim
-                }),
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        alert("Upvote berhasil!");
-                        // Perbarui tampilan jumlah upvote jika diperlukan
-                        const upvoteCount = event.target.previousElementSibling.querySelector("span");
-                        upvoteCount.textContent = parseInt(upvoteCount.textContent) + 1;
-                    } else {
-                        alert(data.message);
-                    }
-                })
-                .catch(error => console.error("Error:", error));
-        }
-    });
-});
-
     var myurl = "<?php echo URL::to('/'); ?>";
     document.addEventListener("DOMContentLoaded", () => {
         const container = document.getElementById('card-container');
@@ -135,6 +101,38 @@ document.addEventListener("DOMContentLoaded", () => {
                 $(this).toggleClass('bg-blue-300 bg-blue-500');
             });
         });
+
+        document.addEventListener("click", (event) => {
+        if (event.target.classList.contains("btn-upvote")) {
+            event.preventDefault();
+            const idKeluhan = event.target.dataset.idKeluhan;
+
+            fetch("{{ url('/keluhan/detail/upvote') }}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                },
+                body: JSON.stringify({
+                    id_keluhan: idKeluhan,
+                    username: "{{ Auth::user()->nama }}", // Pastikan username dikirim
+                }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("Upvote berhasil!");
+                        loadCard();
+                        // Perbarui tampilan jumlah upvote jika diperlukan
+                        const upvoteCount = event.target.previousElementSibling.querySelector("span");
+                        upvoteCount.textContent = parseInt(upvoteCount.textContent) + 1;
+                    } else {
+                        alert(data.message);
+                    }
+                })
+                .catch(error => console.error("Error:", error));
+        }
+    });
 
         function loadCard(){
             $(document).ready(function () {
@@ -209,7 +207,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             });
         }
-        setInterval(loadCard, 60000);
+        // setInterval(loadCard, 60000)
+        ;
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
