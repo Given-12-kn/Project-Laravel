@@ -8,11 +8,11 @@
 @section('content')
 <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 
-<div class="bg-gradient-to-r from-white via-[#f0e6fa] to-[#d2eaff]">
+<div class="bg-gradient-to-r from-white via-[#f0e6fa] to-[#d2eaff] pb-12">
 
     <div class="header-container flex justify-end items-center px-4 py-2">
         <div class="flex items-center gap-2 relative mt-8">
-
+            <button id="addButton" class="btn-add bg-blue-400 text-white px-4 py-2 rounded shadow">Tambah Keluhan</button>
             <button class="px-4 py-2 rounded shadow" id="dropdownBtn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-filter-right" viewBox="0 0 16 16">
                     <path d="M14 10.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5m0-3a.5.5 0 0 0-.5-.5h-7a.5.5 0 0 0 0 1h7a.5.5 0 0 0 .5-.5m0-3a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0 0 1h11a.5.5 0 0 0 .5-.5"/>
@@ -20,14 +20,14 @@
             </button>
             <div id="dropdownMenu" class="dropdown-menu mt-2">
                 <ul class="list-none p-2">
-                    <li><a href="#" class="block px-4 py-2">Terbaru</a></li>
-                    <li><a href="#" class="block px-4 py-2">Terlama</a></li>
-                    <li><a href="#" class="block px-4 py-2">Vote terbanyak</a></li>
+                    <li><button id="baru"  class="block px-4 py-2">Terbaru</button></li>
+                    <li><button id="lama" class="block px-4 py-2">Terlama</button></li>
+                    <li><button id="terbanyak" class="block px-4 py-2">Vote terbanyak</button></li>
                 </ul>
             </div>
         </div>
     </div>
-    <div id="card-container" class="p-4"></div>
+    <div id="card-container"></div>
 </div>
 
 
@@ -134,7 +134,6 @@
                                             <h2 class="text-center font-semibold text-lg mt-14 mb-4 truncate">` + response.dataKeluhan[i].judul_keluhan + `</h2>
                                             <div class="line-clamp-4">` + response.dataKeluhan[i].deskripsi + `</div>
                                         </div>
-                                        <button class="btn-upvote bg-gradient-to-r from-blue-300 to-blue-500 rounded-full" data-id-keluhan="` + response.dataKeluhan[i].id_keluhan + `">Upvote</button>
                                     </div>
                                 </a>
                             `;
@@ -263,24 +262,6 @@
         }
     }
 
-    .card {
-        background-color: white;
-        padding: 0.75rem;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        border-radius: 0.5rem;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        text-align: center;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        max-width: 16rem;
-        min-height: 10rem;
-        height: auto;
-        overflow: hidden;
-    }
-
     .card:hover {
         transform: translateY(-10px);
         box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
@@ -308,8 +289,8 @@
 
     #card-container {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 1.5rem;
+        grid-template-columns: repeat(auto-fill, minmax(250px, auto));
+        gap: 3rem;
         justify-items: center;
         max-width: 1200px;
         margin: 0 auto;
@@ -335,8 +316,8 @@
 
     .dropdown-menu.active {
         max-height: 500px;
-    opacity: 1;
-    transform: translateY(0);
+        opacity: 1;
+        transform: translateY(0);
     }
 
     .card {
@@ -346,15 +327,14 @@
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         border-radius: 0.5rem;
         width: 100%;
-        display: flex;
-        flex-direction: column;
         justify-content: flex-start;
         text-align: left;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         max-width: 16rem;
-        min-height: 10rem;
-        height: auto;
-        overflow: hidden;
+        /* min-height: 10rem; */
+        width: 700px;
+        max-height: 300px;
+        min-height: 300px;
     }
 
     .btn-upvote {

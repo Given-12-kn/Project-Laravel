@@ -60,7 +60,7 @@
         </div>
     </div>
 
-    <div class="p-8 flex justify-center items-center">
+    <div class="pl-8 pr-8 pb-8 flex justify-center items-center">
         <div class="bg-white shadow-lg rounded-lg max-w-3xl w-full p-6 fade-in">
           
             <textarea id="replyInput" rows="4" class="w-full border border-gray-300 rounded-lg p-3 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Tulis jawaban Anda di sini..."></textarea>

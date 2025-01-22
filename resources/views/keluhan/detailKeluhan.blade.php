@@ -66,7 +66,7 @@
     </div>
 
     <!-- Card Jawaban -->
-    <div class="p-8 flex justify-center items-center">
+    <div class="px-8 pb-8 flex justify-center items-center">
         <div class="bg-white shadow-lg rounded-lg max-w-3xl w-full p-6 fade-in">
             <h3 class="text-2xl">respon</h3> <br>
             <span>
