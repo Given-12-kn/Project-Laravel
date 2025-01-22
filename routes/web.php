@@ -89,7 +89,8 @@ Route::prefix('keluhan')->group(function () {
 Route::prefix('dosen')->group(function () {
     Route::controller(dosenController::class)->group(function () {
         Route::get('/', 'index');
-        Route::get('/detail', 'detail');
+        Route::get('/detail/{id}', 'detailKeluhan');
         Route::get('/live', 'live');
     });
 });
+

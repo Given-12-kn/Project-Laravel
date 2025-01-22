@@ -33,26 +33,146 @@
 
 
 <script>
+    var myurl = "<?php echo URL::to('/'); ?>";
     document.addEventListener("DOMContentLoaded", () => {
         const container = document.getElementById('card-container');
+        var status = 'lama';
+        loadCard();
 
-        for (let i = 1; i <= 100; i++) {
-            const card = document.createElement('div');
-            card.className = 'card bg-white p-4 shadow rounded fade-in';
-            card.innerHTML = ` 
-            <a href="{{ url('/dosen/detail') }}" class="w-full h-full">
-                <div class="card">
-                    <div class="absolute top-2 right-2 bg-gradient-to-r from-blue-300 to-blue-500 text-white rounded-full px-3 py-1 flex items-center space-x-2 shadow-md">
-                        <ion-icon name="thumbs-up" class="text-xl"></ion-icon>
-                        <span class="text-sm font-bold">3</span>
-                    </div>
-                    <p class="mt-14">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum explicabo vero nostrum, iure repellendus perspiciatis non numquam eaque est ipsum quam similique nobis sit assumenda.</p>
-                    <button class="btn-upvote bg-gradient-to-r from-blue-300 to-blue-500 rounded-full">Upvote</button>
-                </div>
-            </a>
-            `;
-            container.appendChild(card);
+        $(document).ready(function () {
+           $('#baru').click(function (e) {
+                e.preventDefault();
+                status = 'baru';
+                loadCard();
+            });
+            $('#lama').click(function (e) {
+                e.preventDefault();
+                status = 'lama';
+                loadCard();
+            });
+            $('#terbanyak').click(function (e) {
+                e.preventDefault();
+                status = 'terbanyak';
+                loadCard();
+            });
+
+        });
+
+        $(document).ready(function () {
+            $('.btn-upvote').click(function () {
+                $(this).toggleClass('bg-blue-300 bg-blue-500');
+            });
+        });
+
+        document.addEventListener("click", (event) => {
+        if (event.target.classList.contains("btn-upvote")) {
+            event.preventDefault();
+            const idKeluhan = event.target.dataset.idKeluhan;
+
+            fetch("{{ url('/keluhan/detail/upvote') }}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                },
+                body: JSON.stringify({
+                    id_keluhan: idKeluhan,
+                    username: "{{ Auth::user()->nama }}", // Pastikan username dikirim
+                }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("Upvote berhasil!");
+                        loadCard();
+                        // Perbarui tampilan jumlah upvote jika diperlukan
+                        const upvoteCount = event.target.previousElementSibling.querySelector("span");
+                        upvoteCount.textContent = parseInt(upvoteCount.textContent) + 1;
+                    } else {
+                        alert(data.message);
+                    }
+                })
+                .catch(error => console.error("Error:", error));
         }
+    });
+
+        function loadCard(){
+            $(document).ready(function () {
+                $.ajax({
+                    type: "post",
+                    url: myurl + "/keluhan/detail/keluhanAjax",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        status: status
+                    },
+                    success: function (response) {
+                        console.log(response.success);
+                        console.log(response);
+                        container.innerHTML = '';
+                        for (var i = 0; i < response.dataKeluhan.length; i++) {
+                            var sudahUpvote = false;
+                            for (var j = 0; j < response.dataKeluhan[i].newData.length; j++) {
+                                console.log(response.dataKeluhan[i].newData[j]);
+                                if (response.dataKeluhan[i].newData[j].username == `{{Auth::user()->nama}}`) {
+                                    sudahUpvote = true;
+                                    break;
+                                }
+                            }
+                            if(!sudahUpvote){
+                                const card = document.createElement('div');
+                                card.className = 'card fade-out';
+                                card.className = 'card bg-white p-4 shadow rounded fade-in';
+                                card.innerHTML = `
+                                <a href="{{ url('/dosen/detail/${response.dataKeluhan[i].id_keluhan}') }}" class="w-full h-full">
+                                    <div class="card">
+                                        <div> ` + response.dataKeluhan[i].nama_kategori + ` </div>
+                                        <div class="absolute top-2 right-2 bg-gradient-to-r from-blue-300 to-blue-500 text-white rounded-full px-3 py-1 flex items-center space-x-2 shadow-md">
+                                            <ion-icon name="thumbs-up" class="text-xl"></ion-icon>
+                                            <span class="text-sm font-bold">` + response.dataKeluhan[i].daftarUpvote + `</span>
+                                        </div>
+                                        <div>
+                                            <h2 class="text-center font-semibold text-lg mt-14 mb-4 truncate">` + response.dataKeluhan[i].judul_keluhan + `</h2>
+                                            <div class="line-clamp-4">` + response.dataKeluhan[i].deskripsi + `</div>
+                                        </div>
+                                        <button class="btn-upvote bg-gradient-to-r from-blue-300 to-blue-500 rounded-full" data-id-keluhan="` + response.dataKeluhan[i].id_keluhan + `">Upvote</button>
+                                    </div>
+                                </a>
+                            `;
+                            container.appendChild(card);
+                            observer.observe(card);
+                            }
+                            else{
+                                const card = document.createElement('div');
+                            card.className = 'card bg-white p-4 shadow rounded fade-in';
+                            card.innerHTML = `
+                            <a href="{{ url('/dosen/detail/${response.dataKeluhan[i].id_keluhan}') }}" class="w-full h-full">
+                                <div class="card">
+                                    <div> ` + response.dataKeluhan[i].nama_kategori + ` </div>
+                                    <div class="absolute top-2 right-2 bg-gradient-to-r from-blue-300 to-blue-500 text-white rounded-full px-3 py-1 flex items-center space-x-2 shadow-md">
+                                        <ion-icon name="thumbs-up" class="text-xl"></ion-icon>
+                                        <span class="text-sm font-bold">` + response.dataKeluhan[i].daftarUpvote + `</span>
+                                    </div>
+                                    <div>
+                                        <h2 class="text-center font-semibold text-lg mt-14 mb-4 truncate">` + response.dataKeluhan[i].judul_keluhan + `</h2>
+                                        <div class="line-clamp-4">` + response.dataKeluhan[i].deskripsi + `</div>
+                                    </div>
+                                </div>
+                            </a>
+                            `;
+                            container.appendChild(card);
+                            observer.observe(card);
+                            }
+
+                        }
+                    },
+                    error: function (response) {
+                        console.log(response);
+                    }
+                });
+            });
+        }
+        // setInterval(loadCard, 60000)
+        ;
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -86,7 +206,7 @@
             }
         });
     });
-    
+
 
     document.addEventListener("DOMContentLoaded", () => {
         const addButton = document.getElementById("addButton");
@@ -101,13 +221,14 @@
             formContainer.classList.add("hidden");
         });
 
-        const form = document.getElementById("addComplaintForm");
-        form.addEventListener("submit", (e) => {
-            e.preventDefault();
-            alert("Form submitted!");
-            form.reset();
-            formContainer.classList.add("hidden");
-        });
+        // Handle form submission (example behavior)
+        // const form = document.getElementById("addComplaintForm");
+        // form.addEventListener("submit", (e) => {
+        //     e.preventDefault();
+        //     alert("Form submitted!");
+        //     form.reset();
+        //     formContainer.classList.add("hidden");
+        // });
     });
 </script>
 
