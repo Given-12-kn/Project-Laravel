@@ -171,12 +171,12 @@ CREATE TABLE `live_session` (
 /*Data for the table `live_session` */
 
 INSERT  INTO `live_session`(`id_live_session`,`id_live_account`,`content`,`periode`, `showing`, `is_acc`,`created_at`) VALUES
-(1, 1, 'gvn gay', 2025, 2, 1, '2025-01-18'),
-(2, 1, 'gvn suka cowok', 2025, 1, 0, '2025-01-19'),
+(1, 1, 'gvn gay', 2025, 1, 2, '2025-01-18'),
+(2, 1, 'gvn suka cowok', 2025, 0, 1, '2025-01-19'),
 (3, 1, 'gvn dewa', 2025, 0, 0, '2025-01-20'),
-(4, 2, 'gvn rhyma', 2025, 1, 0, '2025-01-21'),
-(5, 2, 'gvn punya kakak', 2025, 2, 0, '2025-01-22'),
-(6, 2, 'gvn stress', 2025, 1, 0, '2025-01-22');
+(4, 2, 'gvn rhyma', 2025, 0, 1, '2025-01-21'),
+(5, 2, 'gvn punya kakak', 2025, 0, 2, '2025-01-22'),
+(6, 2, 'gvn stress', 2025, 0, 1, '2025-01-22');
 
 /*Table structure for table `respon_keluhan` */
 
