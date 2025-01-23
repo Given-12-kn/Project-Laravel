@@ -33,13 +33,13 @@ CREATE TABLE `dosen` (
 
 /*Data for the table `dosen` */
 
-INSERT INTO `dosen` (`nama`, `password_dosen`, `nrp`, `jenis_kelamin`, `is_active`, `updated_at`) 
-VALUES 
-('John Doe', 'password123', 12345, 'M', 1, NOW()),
-('Jane Smith', 'securepass', 67890, 'F', 1, NULL),
-('Ahmad Ali', 'mypassword', 11223, 'M', 0, NULL),
-('Rina Ayu', 'strongpass', 33456, 'F', 1, NULL),
-('Budi Hartono', 'adminpass', 55678, 'M', 1, NULL);
+INSERT INTO `dosen` (`nama`, `password_dosen`, `nrp`, `jenis_kelamin`, `is_active`, `updated_at`)
+VALUES
+('John Doe', '$2y$12$BIZG.7Y8ACKgWlL8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa', 198110062, 'M', 1, NOW()),
+('Jane Smith', '$2y$12$BIZG.7Y8ACKgWlL8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa', 198110063, 'F', 1, NULL),
+('Ahmad Ali', '$2y$12$BIZG.7Y8ACKgWlL8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa', 198110064, 'M', 0, NULL),
+('Rina Ayu', '$2y$12$BIZG.7Y8ACKgWlL8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa', 198110065, 'F', 1, NULL),
+('Budi Hartono', '$2y$12$BIZG.7Y8ACKgWlL8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa', 198110066, 'M', 1, NULL);
 
 /*Table structure for table `jurusan` */
 
@@ -76,7 +76,7 @@ CREATE TABLE `kategori` (
 
 /*Data for the table `kategori` */
 
-INSERT INTO kategori (id_kategori, nama_kategori) VALUES 
+INSERT INTO kategori (id_kategori, nama_kategori) VALUES
 (1,'fasilitas'),
 (2,'akademis'),
 (3,'administrasi');
@@ -197,7 +197,7 @@ CREATE TABLE `respon_keluhan` (
 
 /*Data for the table `respon_keluhan` */
 
-INSERT INTO `respon_keluhan` (`id_respon`, `id_keluhan`, `id_dosen`, `respon`, `created_at`) 
+INSERT INTO `respon_keluhan` (`id_respon`, `id_keluhan`, `id_dosen`, `respon`, `created_at`)
 VALUES
 (1, 1, 1, 'iya mana ada', '2025-01-21'),
 (2, 2, 2, 'mendingan pulang', '2025-01-21'),
@@ -230,16 +230,16 @@ CREATE TABLE `siswa` (
 INSERT  INTO `siswa`(`id_jurusan`,`nama`,`password_siswa`,`nrp`,`jenis_kelamin`,`angkatan`,`is_active`,`updated_at`) VALUES
 (1,'Given Lee','$2y$12$BIZG.7Y8ACKgWlL8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa',223117082,'L',2025,1,NULL),
 (1,'Ayano','$2y$12$BIZG.7Y8ACKgWlL8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa',223117084,'P',2025,1,NULL),
-( 1, 'Yoshi', '$2y$12$BIZG.7Y8ACKgWl8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa', 223117085, 'L', 2025, 1, NULL),
-( 1, 'Miyabi', '$2y$12$BIZG.7Y8ACKgWl8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa', 223117086, 'P', 2025, 1, NULL),
-( 1, 'Nael', '$2y$12$BIZG.7Y8ACKgWl8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa', 223117087, 'L', 2025, 1, NULL),
-( 1, 'Qingyi', '$2y$12$BIZG.7Y8ACKgWl8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa', 223117088, 'P', 2025, 1, NULL),
-( 1, 'Genji', '$2y$12$BIZG.7Y8ACKgWl8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa', 223117089, 'L', 2025, 1, NULL),
-( 1, 'Naomi', '$2y$12$BIZG.7Y8ACKgWl8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa', 223117090, 'P', 2025, 1, NULL),
-( 1, 'Jason', '$2y$12$BIZG.7Y8ACKgWl8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa', 223117091, 'L', 2025, 1, NULL),
-( 1, 'Astra', '$2y$12$BIZG.7Y8ACKgWl8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa', 223117092, 'P', 2025, 1, NULL),
-( 1, 'Rici', '$2y$12$BIZG.7Y8ACKgWl8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa', 223117093, 'L', 2025, 1, NULL),
-( 1, 'Anby', '$2y$12$BIZG.7Y8ACKgWl8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa', 223117094, 'P', 2025, 1, NULL);
+( 1, 'Yoshi', '$2y$12$BIZG.7Y8ACKgWlL8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa', 223117085, 'L', 2025, 1, NULL),
+( 1, 'Miyabi', '$2y$12$BIZG.7Y8ACKgWlL8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa', 223117086, 'P', 2025, 1, NULL),
+( 1, 'Nael', '$2y$12$BIZG.7Y8ACKgWlL8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa', 223117087, 'L', 2025, 1, NULL),
+( 1, 'Qingyi', '$2y$12$BIZG.7Y8ACKgWlL8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa', 223117088, 'P', 2025, 1, NULL),
+( 1, 'Genji', '$2y$12$BIZG.7Y8ACKgWlL8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa', 223117089, 'L', 2025, 1, NULL),
+( 1, 'Naomi', '$2y$12$BIZG.7Y8ACKgWlL8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa', 223117090, 'P', 2025, 1, NULL),
+( 1, 'Jason', '$2y$12$BIZG.7Y8ACKgWlL8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa', 223117091, 'L', 2025, 1, NULL),
+( 1, 'Astra', '$2y$12$BIZG.7Y8ACKgWlL8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa', 223117092, 'P', 2025, 1, NULL),
+( 1, 'Rici', '$2y$12$BIZG.7Y8ACKgWlL8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa', 223117093, 'L', 2025, 1, NULL),
+( 1, 'Anby', '$2y$12$BIZG.7Y8ACKgWlL8iCmBiO7D5hi8cVjzyvo.7jDOxbQ//cdvlpMqa', 223117094, 'P', 2025, 1, NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
