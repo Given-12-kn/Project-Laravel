@@ -23,6 +23,7 @@ Route::prefix('form')->group(function () {
     });
 });
 
+//test
 
 Route::prefix('home')->group(function () {
     Route::controller(homeController::class)->group(function () {
