@@ -74,7 +74,7 @@ Route::prefix('keluhan')->group(function () {
         // Route::get('/detail', 'detailKeluhan');
 
         Route::post('/detail/add', 'addKeluhan')->middleware('cekRole:web','cekSudahLogin:admin,siswa');
-        Route::post('/detail/keluhanAjax', 'keluhanAjax')->middleware('cekRole:dosen');
+        Route::post('/detail/keluhanAjax', 'keluhanAjax')->middleware('cekRole:web','cekSudahLogin:admin,siswa');
         Route::post('/detail/upvote', 'upvoteKeluhan')->middleware('cekRole:web','cekSudahLogin:admin,siswa');
         Route::get('/detailKeluhan/{id}', 'detailKeluhan')->middleware('cekRole:dosen');
     });

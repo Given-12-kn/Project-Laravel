@@ -46,7 +46,6 @@ class liveController extends Controller
         $liveSession->id_live_account = Auth::user()->toLa->id_live_account;
         $liveSession->content = $request->content;
         $liveSession->periode = now()->year;
-        $liveSession->is_archive = 0;
         $liveSession->is_acc = 2;
         $liveSession->created_at = now();
 

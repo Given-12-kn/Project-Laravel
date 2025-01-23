@@ -84,7 +84,7 @@
                     for (let i = 0; i < response.data.length; i++) {
 
                         const messageElement = document.createElement('div');
-                        messageElement.textContent = response.data[i].content; // Perbaiki akses ke response.data
+                        messageElement.textContent = response.data[i].content;
                         messageElement.style.opacity = '0';
                         messageElement.style.transform = 'translateY(20px)';
 
@@ -97,10 +97,10 @@
                                 messageElement.style.transform = 'translateY(0)';
                             }, 50);
 
-                            // Atur pesan utama jika kontainer kosong
+
                             if (mainMessageText.children.length === 1 && mainMessageText.textContent === '') {
                                 setTimeout(() => {
-                                    mainMessageText.textContent = response.data[i].content; // Ambil dari response.data
+                                    mainMessageText.textContent = response.data[i].content;
                                     mainMessageText.removeChild(messageElement);
                                 }, 600);
                             } else {
@@ -108,6 +108,7 @@
                             }
                         }
                         else if(response.data[i].is_acc == 2){
+
                             dynamicChatContainer.appendChild(messageElement);
 
                             setTimeout(() => {
