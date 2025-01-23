@@ -127,7 +127,7 @@
                         const upvoteCount = event.target.previousElementSibling.querySelector("span");
                         upvoteCount.textContent = parseInt(upvoteCount.textContent) + 1;
                     } else {
-                        alert(data.message);
+                        console.log('Error: ' data.message);
                     }
                 })
                 .catch(error => console.error("Error:", error));

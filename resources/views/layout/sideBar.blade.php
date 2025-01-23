@@ -82,7 +82,7 @@
                     $('#unapproved-count').text(response.count);
                 },
                 error: function () {
-                    alert('error occured');
+                    console.log('Error: Failed to get count data');
                 }
             });
         }
@@ -103,7 +103,7 @@
                     $('#unapproved-count2').text(response.count);
                 },
                 error: function () {
-                    alert('error occured');
+                    console.log('Error: Failed to get count data2');
                 }
             });
         }

@@ -132,7 +132,7 @@
                 }
             },
             error: function () {
-                alert('Error storing message');
+                console.log('Error storing message');
             }
             });
         }
@@ -154,7 +154,7 @@
                 chatInput.value = '';
             },
             error: function () {
-                alert('Error storing message');
+                console.log('Error storing message');
             }
         });
 

@@ -63,7 +63,7 @@ class adminController extends Controller
         }
 
         $live = live_session::where('showing', 1)->first();
-        
+
         return view('home.adminLiveSetting',compact('bladeStatus', 'live'));
     }
 
@@ -218,8 +218,8 @@ class adminController extends Controller
     public function countData2(Request $request){
         // $dataLs = live_session::all();
 
-        $count = live_session::where('status_keluhan', 2)->count();
-
+        $data = keluhan::select('status_keluhan')->where('status_keluhan', 2)->get();
+        $count = count($data);
         return response()->json(['success' => true, 'count' => $count]);
     }
 
@@ -236,7 +236,7 @@ class adminController extends Controller
             $livenext->showing = !$livenext->showing;
             $livenext->save();
         }
-        
+
         return redirect("/home/admin/liveSetting");
     }
 
@@ -252,7 +252,7 @@ class adminController extends Controller
             $liveprev->showing = !$liveprev->showing;
             $liveprev->save();
         }
-        
+
         return redirect("/home/admin/liveSetting");
     }
 
